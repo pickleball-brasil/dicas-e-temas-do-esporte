@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #111827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #e6e4e4;
+    --foreground: #e5e7eb;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  min-height: 100vh;
+}
+
+/* Modern card with depth */
+.card {
+  @apply bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+/* Button system */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+.btn-primary {
+  @apply bg-gradient-to-br from-sky-500 to-sky-600 text-white hover:from-sky-600 hover:to-sky-700 active:scale-95 shadow-sm hover:shadow disabled:opacity-50 disabled:pointer-events-none focus:ring-sky-500;
+}
+.btn-secondary {
+  @apply bg-gradient-to-br from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 active:scale-95 shadow-sm hover:shadow disabled:opacity-50 disabled:pointer-events-none focus:ring-purple-500;
+}
+.btn-ghost {
+  @apply border border-gray-200 hover:bg-gray-50/80 hover:border-gray-300 text-gray-700 active:scale-95 focus:ring-gray-300;
+}
+.btn-danger {
+  @apply border border-red-200 hover:bg-red-50 hover:border-red-300 text-red-700 active:scale-95 focus:ring-red-300;
+}
+
+/* Input system */
+.input {
+  @apply w-full rounded-xl border border-gray-200 bg-white/80 backdrop-blur-sm px-4 py-2.5 text-sm placeholder:text-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 hover:border-gray-300;
+}
+
+/* Badge */
+.badge {
+  @apply inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-medium;
+}
+.badge-primary {
+  @apply bg-sky-100 text-sky-700;
+}
+.badge-secondary {
+  @apply bg-purple-100 text-purple-700;
+}
+
+/* Section icon */
+.section-icon {
+  @apply inline-flex h-10 w-10 items-center justify-center rounded-xl font-semibold text-base transition-all duration-300;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out;
+}

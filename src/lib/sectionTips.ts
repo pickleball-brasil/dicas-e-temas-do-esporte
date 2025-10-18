@@ -1,0 +1,457 @@
+import { Section } from "./sections";
+
+export const sectionTips: Record<Section, string[]> = {
+  "Regras": [
+    "A zona da cozinha tem 7 pés de profundidade - não pode pisar na linha ao volear",
+    "Saque deve ser por baixo (underhand) e na diagonal",
+    "Apenas o time que está sacando pode pontuar",
+    "A bola deve quicar uma vez de cada lado antes de poder volear",
+    "Pontuação: seu placar, placar adversário, número do servidor (1 ou 2)",
+    "Pode ficar na cozinha, mas não pode volear enquanto estiver dentro",
+    "Após volear, pode cair na cozinha, mas contato deve ser fora"
+  ],
+  "Saque": [
+    "Contato com a bola abaixo da cintura, cabeça da raquete abaixo do punho",
+    "Mire profundo, perto da linha de fundo",
+    "Varie entre corpo e cantos para manter adversário adivinhando",
+    "Desenvolva rotina pré-saque (respirar, quicar) para consistência",
+    "Pratique consistência antes de potência",
+    "Experimente saques com spin para dificultar devolução",
+    "Saque na diagonal para o quadrante correto"
+  ],
+  "Devolução": [
+    "Sempre devolva profundo para ganhar tempo de avançar",
+    "Mire no meio ou no jogador mais fraco",
+    "Use topspin para manter a bola baixa após o quique",
+    "Prepare-se para avançar 2-3 passos após devolver",
+    "Devolva para o backhand se não souber a fraqueza",
+    "Evite devoluções curtas que dão vantagem aos adversários",
+    "Posicione-se atrás da linha de base para tempo de reação"
+  ],
+  "Dink": [
+    "Joelhos flexionados, corpo baixo, pulso firme",
+    "Dink cruzado é mais seguro (mais distância e ângulo)",
+    "Mire para os pés do adversário, mantenha bola baixa",
+    "Seja paciente - não force o ataque prematuramente",
+    "Raquete aberta (face para cima) para melhor controle",
+    "Varie profundidade: linha da cozinha e mais fundo",
+    "Observe pés do adversário - se recuando, ataque"
+  ],
+  "Voleio": [
+    "Raquete alta e na frente do corpo, movimentos curtos",
+    "Bloqueie ao invés de balançar forte",
+    "Posicione-se a um braço de distância da rede",
+    "Voleie para baixo quando possível",
+    "Antecipe direção observando preparação do oponente",
+    "Use voleios de bloqueio contra drives rápidos",
+    "Mantenha peso para frente, pés ativos"
+  ],
+  "Footwork": [
+    "Faça split step quando adversário bater na bola",
+    "Use passos laterais, não cruze as pernas",
+    "Posicione-se atrás da bola, não ao lado",
+    "Recupere para o centro após cada golpe",
+    "Base ampla (largura dos ombros) para estabilidade",
+    "Joelhos flexionados, peso na frente dos pés",
+    "Passos pequenos e rápidos para ajustes finos"
+  ],
+  "Posicionamento": [
+    "A rede é a posição dominante - avance sempre que possível",
+    "Mantenha-se alinhado com parceiro em duplas",
+    "Posicione-se logo atrás da linha da cozinha na rede",
+    "Evite 'terra de ninguém' (meio da quadra)",
+    "Cubra o meio da quadra - área mais vulnerável",
+    "Movam-se como unidade - frente/trás juntos",
+    "Ajuste posição baseado na posição dos adversários"
+  ],
+  "Empunhadura": [
+    "Continental é a mais versátil para todos os golpes",
+    "Segure firme mas relaxada - aperte só no contato",
+    "Teste: deve caber um dedo entre dedos e palma",
+    "Eastern grip (aperto de mão) funciona para iniciantes",
+    "Posicione mão na base do grip para mais alcance",
+    "Empunhadura relaxada = melhor sensibilidade",
+    "Verifique tamanho do grip - deve ser confortável"
+  ],
+  "Aquecimento": [
+    "5-10 minutos de cardio leve para começar",
+    "Alongamentos dinâmicos, não estáticos",
+    "Aqueça ombros, pulsos e tornozelos com rotações",
+    "Pratique split steps e movimentos laterais",
+    "Comece com dinks suaves, aumente intensidade gradualmente",
+    "Hidrate-se antes, durante e após",
+    "Alongue panturrilhas, quadríceps e isquiotibiais"
+  ],
+  "Erros Comuns": [
+    "Bater muito forte - controle > potência",
+    "Ficar no fundo da quadra - avance para a rede!",
+    "Não se comunicar com parceiro em duplas",
+    "Segurar raquete muito apertada - causa tensão",
+    "Não fazer split step - reação lenta",
+    "Pisar na linha da cozinha ao volear",
+    "Tentar smash em bolas que não estão altas o suficiente"
+  ],
+  "Dicas": [
+    "Assista jogadores profissionais para aprender",
+    "Jogue com jogadores melhores que você",
+    "Filme seus jogos para identificar melhorias",
+    "Pratique um aspecto específico a cada sessão",
+    "Participe de clínicas e workshops",
+    "Estabeleça metas mensuráveis mensais",
+    "Celebre vitórias e aprenda com derrotas"
+  ],
+  "Equipamentos": [
+    "Raquete 7.5-8.5 oz para começar (leve=controle, pesada=potência)",
+    "Tênis de quadra com boa tração lateral",
+    "Bolas outdoor são mais pesadas que indoor",
+    "Troque grip quando escorregadio, use overgrip",
+    "Considere óculos de sol para jogos ao ar livre",
+    "Leve toalha, água e bolas extras",
+    "Raquete backup para treinos e torneios"
+  ],
+  "Drop Shot": [
+    "Objetivo: fazer a bola cair na cozinha",
+    "Movimento ascendente suave, abra face da raquete",
+    "Mire 2-3 pés acima da rede para margem de erro",
+    "Use pernas para gerar movimento, não só braços",
+    "É melhor errar longo do que curto",
+    "Pratique de diferentes distâncias",
+    "Varie ocasionalmente para manter adversários honestos"
+  ],
+  "Terceira bola": [
+    "Crucial para avançar à rede - drop é mais seguro que drive",
+    "Permite avançar enquanto bola está no ar",
+    "Observe posição dos oponentes antes de escolher",
+    "Mire meio da quadra para segurança",
+    "Não precisa ser perfeito - só bom o suficiente",
+    "Use drive apenas se bola alta e fácil",
+    "Pratique transição imediatamente após"
+  ],
+  "Lob": [
+    "Use quando oponentes muito próximos da rede",
+    "Mire alto e profundo, perto da linha de fundo",
+    "Lob com topspin cai mais rápido e é controlável",
+    "Disfarce movimento para não telegrafar",
+    "Lob defensivo muito alto para ganhar tempo",
+    "Use ocasionalmente para manter adversários recuados",
+    "Lob para backhand geralmente mais efetivo"
+  ],
+  "Transição": [
+    "Avance em linha reta em etapas: 2-3 passos, split step, repita",
+    "Pare e faça split step quando oponente bater",
+    "Mantenha raquete baixa para bolas aos pés",
+    "Use bloqueios suaves - não tente atacar",
+    "Não corra até a cozinha de uma vez",
+    "Comunique com parceiro durante transição",
+    "Pratique drill repetidamente para automatizar"
+  ],
+  "Jogo de Duplas": [
+    "Movam-se como unidade, não independentemente",
+    "Comuniquem constantemente ('minha', 'sua', 'troca')",
+    "Jogador à direita geralmente pega bolas no meio",
+    "Cubram o meio juntos - não deixem espaços",
+    "Mantenham 10-12 pés entre parceiros",
+    "Discutam estratégia entre pontos, não durante",
+    "Encorajem um ao outro, positividade sempre"
+  ],
+  "Defesa": [
+    "Raquete alta e pronta, joelhos flexionados",
+    "Use bloqueios, não swings completos",
+    "Absorva velocidade com raquete relaxada",
+    "Posicione-se levemente atrás da linha da cozinha",
+    "Use resets para neutralizar bolas agressivas",
+    "Não recue - mantenha posição na rede",
+    "Antecipe ataques observando preparação do oponente"
+  ],
+  "Bloqueio": [
+    "Raquete firme mas não rígida, ângulo para baixo",
+    "Bloqueio é posicionamento, não força",
+    "Raquete na frente do corpo, movimento mínimo",
+    "Use momentum da bola a seu favor",
+    "Mire para pés ou espaços abertos",
+    "Absorva energia com leve recuo da raquete",
+    "Pratique bloqueios de diferentes alturas"
+  ],
+  "Spin": [
+    "Topspin: escove baixo→cima (mergulha, útil em drives)",
+    "Backspin: corte por baixo (flutua, útil em dinks/drops)",
+    "Sidespin: escove lateralmente para ângulos",
+    "Leia spin observando raquete do oponente",
+    "Ajuste sua raquete para compensar spin adversário",
+    "Use spin para controle, não só para efeito",
+    "Spin mais efetivo com raquetes texturizadas"
+  ],
+  "Contra-ataque": [
+    "Identifique bolas altas como oportunidades",
+    "Mude defesa→ataque rapidamente",
+    "Contra-ataque quando adversário desequilibrado",
+    "Acelere bolas que quicam acima da rede",
+    "Mantenha bola baixa mesmo ao acelerar",
+    "Surpreenda após sequência de dinks",
+    "Mantenha controle - não force demais"
+  ],
+  "Comunicação": [
+    "Chame 'minha' alto e claro",
+    "Avise 'fora' se bola vai sair",
+    "Chame 'troca' ao trocar de lado",
+    "Elogie bons golpes do parceiro",
+    "Nunca critique durante o jogo",
+    "Discuta estratégia entre pontos",
+    "Use linguagem corporal positiva"
+  ],
+  "Drills e Treinos": [
+    "Dinking cross-court por 10 minutos",
+    "Drill de transição repetidamente",
+    "Voleio rápido na rede (hands battle)",
+    "Terceira bola drop de diferentes posições",
+    "Footwork sem bola para automatizar",
+    "Simule situações de pressão (match point)",
+    "Trabalhe pontos fracos, não só fortes"
+  ],
+  "Preparação Física": [
+    "Fortaleça core e pernas para estabilidade",
+    "Agilidade com escadas e cones",
+    "Exercícios de explosão (pliométricos)",
+    "Equilíbrio (prancha, single-leg)",
+    "Fortaleça rotadores do ombro (previne lesões)",
+    "Treino intervalado simula ritmo do jogo",
+    "Cardio essencial + dieta balanceada"
+  ],
+  "Estratégia de Jogo": [
+    "Identifique jogador mais fraco e explore",
+    "Varie ritmo e colocação para confundir",
+    "Jogue percentual em pontos importantes",
+    "Analise adversários nos primeiros pontos",
+    "Use timeouts para quebrar momentum",
+    "Adapte estratégia se não funcionar",
+    "Mantenha bola em jogo - force erros"
+  ],
+  "Smash": [
+    "Posicione-se embaixo, deixe bola cair até altura ideal",
+    "Use rotação completa do corpo + pernas",
+    "Contato no ponto mais alto, siga o movimento",
+    "Mire para baixo, pés ou espaços abertos",
+    "Smash para pés é mais seguro que para fora",
+    "Não force se bola não estiver ideal",
+    "Pratique timing com bolas lançadas altas"
+  ],
+  "Acelerar as bolas": [
+    "Escolha momento certo - não apresse",
+    "Acelere bolas acima da altura da rede",
+    "Use 70-80% potência para manter controle",
+    "Acelere quando adversário desequilibrado",
+    "Mire para pés ou ombros, não para fora",
+    "Varie entre acelerar e fazer drop",
+    "Esteja preparado - bola pode voltar"
+  ],
+  "Reset": [
+    "Absorva velocidade com raquete relaxada",
+    "Abra face da raquete, movimento ascendente suave",
+    "Mire meio da cozinha para segurança",
+    "Use pernas para amortecer impacto",
+    "Reset é defesa, não ataque - seja paciente",
+    "Mantenha-se baixo e equilibrado",
+    "Pratique com parceiro batendo forte"
+  ],
+  "Ataque": [
+    "Ataque apenas bolas altas e favoráveis",
+    "Mire para pés ou corpo dos oponentes",
+    "Ataque quando tem tempo e posição ideal",
+    "Use ângulos para criar espaços vulneráveis",
+    "Varie entre potência e colocação",
+    "Ataque ao meio em duplas cria confusão",
+    "Não ataque se desequilibrado"
+  ],
+  "Mental Game": [
+    "Foque no processo, não no resultado",
+    "Respire profundamente entre pontos",
+    "Desenvolva rotina entre pontos",
+    "Não deixe erros afetarem próximos pontos",
+    "Auto-conversa positiva ('vamos lá', 'próximo ponto')",
+    "Mantenha-se no presente",
+    "Controle o que pode, ignore o resto"
+  ],
+  "Erne": [
+    "Legal apenas se pular fora da quadra",
+    "Timing é tudo - antecipe dink cross-court",
+    "Salte antes da bola cruzar a rede",
+    "Aterrisse fora, não na cozinha",
+    "Observe padrão de dinks cruzados do adversário",
+    "Comunique com parceiro antes",
+    "Use com moderação para manter surpresa"
+  ],
+  "ATP (Around The Post)": [
+    "Apenas possível com ângulo extremo",
+    "Bola não precisa passar sobre a rede",
+    "Deve passar abaixo da altura da rede",
+    "Corra para fora da quadra para melhor ângulo",
+    "Oportunidade quando bola muito lateral",
+    "Pratique com parceiro criando ângulos extremos",
+    "Um dos golpes mais espetaculares!"
+  ],
+  "Stacking": [
+    "Coloca cada jogador em seu lado preferido",
+    "Útil quando um tem forehand dominante/backhand fraco",
+    "Jogador que não saca fica no lado preferido",
+    "Troquem posição após saque/devolução",
+    "Requer comunicação clara e prática",
+    "Planeje rotação antes do ponto",
+    "Comunique quem vai onde antes de cada ponto"
+  ],
+  "Switching": [
+    "Troque quando fizer sentido taticamente",
+    "Comunique claramente 'troca' ou 'switch'",
+    "Troque quando bola cruza muito para um lado",
+    "Jogador com melhor ângulo pega a bola",
+    "Use para cobrir lobs ou bolas profundas",
+    "Evite trocar em meio a rally rápido",
+    "Pratique em treinos antes de usar em jogos"
+  ],
+  "Poaching": [
+    "Intercepte apenas se tiver certeza",
+    "Poach em bolas no meio da quadra",
+    "Jogador com forehand geralmente poach mais",
+    "Observe padrões de devolução dos oponentes",
+    "Use elemento surpresa - não seja previsível",
+    "Comunique intenção com parceiro",
+    "Não exagere - pode expor parceiro"
+  ],
+  "Finalizações": [
+    "Identifique bolas altas como oportunidades",
+    "Não apresse - espere a bola certa",
+    "Finalize quando bola acima da rede",
+    "Use ângulos para dificultar defesa",
+    "Varie entre potência e colocação",
+    "Finalize para pés em bolas médias",
+    "Mire espaços abertos, mantenha controle"
+  ],
+  "Jogo Singles": [
+    "Condicionamento é crucial - cubra mais quadra",
+    "Use lobs e drives profundos",
+    "Explore cantos, movimente oponente",
+    "Recupere sempre para o centro",
+    "Use drop shots para trazer adversário à frente",
+    "Varie entre cruzado e paralelo",
+    "Seja paciente - pontos são mais longos"
+  ],
+  "Torneios": [
+    "Chegue cedo para aquecer adequadamente",
+    "Traga água, snacks, equipamento extra + backup",
+    "Mantenha rotina pré-jogo consistente",
+    "Hidrate-se e coma leve entre jogos",
+    "Descanse entre partidas",
+    "Estude adversários e chaveamento",
+    "Mentalidade positiva independente de resultados"
+  ],
+
+  // Táticas
+  "Controle de Ritmo": [
+    "Use dinks para desacelerar, acelere quando oponentes confortáveis",
+    "Controle tempo entre pontos - respire e planeje",
+    "Use timeouts para quebrar momentum adversário",
+    "Ritmo lento favorece pacientes, rápido favorece agressivos",
+    "Mude ritmo após perder 2-3 pontos seguidos",
+    "Observe quando adversários ficam impacientes",
+    "Controle ritmo com profundidade e colocação"
+  ],
+  "Jogo no Meio": [
+    "Mire na linha divisória entre os jogadores",
+    "Meio cria confusão sobre quem pega a bola",
+    "Bolas no meio = devoluções mais fracas",
+    "Use meio em terceira bola para neutralizar",
+    "Funciona melhor quando oponentes estão largos",
+    "Ataque meio quando adversários não se comunicam",
+    "Varie entre meio e laterais"
+  ],
+  "Explorar Fraquezas": [
+    "Observe primeiros pontos para identificar fraquezas",
+    "Teste backhand de ambos cedo",
+    "Note dificuldade com bolas altas/baixas, rápidas/lentas",
+    "Identifique jogador menos móvel e footwork fraco",
+    "Explore fraqueza mental (nervosismo, impaciência)",
+    "Mantenha pressão constante na fraqueza",
+    "Adapte se adversários corrigirem"
+  ],
+  "Variação de Altura": [
+    "Alterne dinks baixos, drives médios, lobs ocasionais",
+    "Bolas na altura dos ombros são difíceis de controlar",
+    "Bolas baixas forçam adversário a bater de baixo→cima",
+    "Bolas altas testam overhead e paciência",
+    "Varie altura dentro do mesmo rally",
+    "Use para tirar adversário da zona de conforto",
+    "Combine variação de altura + velocidade"
+  ],
+  "Pressão Constante": [
+    "Mantenha profundidade, não dê bolas fáceis",
+    "Coloque cada bola com propósito",
+    "Seja consistente - force adversário a fazer algo especial",
+    "Pressão cansa física e mentalmente",
+    "Não dê tempo para respirar ou pensar",
+    "Mantenha bola em jogo - force adversário a ganhar",
+    "Pressão quebra jogadores inconsistentes"
+  ],
+  "Jogo Cruzado": [
+    "Dinks cruzados têm mais margem de erro",
+    "Cruzado tem mais distância - mais tempo para reagir",
+    "Use para abrir ângulos e construir ponto",
+    "Cruzado é mais seguro sob pressão",
+    "Permite melhor recuperação de posição",
+    "Combine cruzado com paralelo ocasional",
+    "Fundamental em jogo de duplas"
+  ],
+  "Isolamento de Jogador": [
+    "Identifique jogador mais fraco nos primeiros pontos",
+    "Direcione 70-80% das bolas para o alvo",
+    "Isole também jogador cansado em jogos longos",
+    "Isolamento cria frustração e tensão na dupla",
+    "Jogador isolado tende a cometer mais erros",
+    "Use especialmente em pontos importantes",
+    "Varie ocasionalmente para manter surpresa"
+  ],
+  "Mudança de Direção": [
+    "Não seja previsível - varie constantemente",
+    "Mudanças bruscas são mais efetivas",
+    "Use após sequência no mesmo lado",
+    "Força adversário a ajustar footwork",
+    "Use quando adversário se movendo em uma direção",
+    "Combine com variação de velocidade",
+    "Mudanças frequentes cansam adversário"
+  ],
+  "Jogo de Paciência": [
+    "Nem todo ponto precisa ser rápido",
+    "Espere a bola certa para atacar",
+    "Paciência frustra jogadores agressivos",
+    "Construa ponto até criar oportunidade",
+    "Não force ataques - deixe adversário errar",
+    "Especialmente importante em dinking",
+    "Pratique pontos longos em treinos"
+  ],
+  "Ataque ao Corpo": [
+    "Mire entre ombros e quadris",
+    "Limita opções de resposta do adversário",
+    "Especialmente efetivo em voleios rápidos",
+    "Use quando adversário muito perto da rede",
+    "Jogador não pode usar forehand/backhand completo",
+    "Efetivo contra jogadores com boa cobertura lateral",
+    "Combine com ataques aos pés"
+  ],
+  "Uso do Lob Tático": [
+    "Lob não é só defesa - use ofensivamente",
+    "Força adversários a recuar da rede",
+    "Use para quebrar ritmo de dinking",
+    "Lob após sequência de bolas baixas surpreende",
+    "Cria oportunidade de avançar para rede",
+    "Lob ocasional mantém adversários recuados",
+    "Pratique lobs com topspin para controle"
+  ],
+  "Forçar Erros": [
+    "Coloque bolas em posições desconfortáveis",
+    "Mantenha profundidade para limitar opções",
+    "Varie colocação para criar incerteza",
+    "Jogue para fraquezas",
+    "Mantenha consistência - adversário eventualmente erra",
+    "Pressão mental força mais erros que física",
+    "Seja paciente - deixe adversário se auto-destruir"
+  ]
+};
+
