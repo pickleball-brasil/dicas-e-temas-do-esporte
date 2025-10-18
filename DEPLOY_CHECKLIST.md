@@ -22,6 +22,7 @@ Use este checklist para garantir que tudo está configurado corretamente.
 
 - [ ] `src/api.disabled/` - API routes movidas
 - [ ] `src/admin.disabled/` - Admin page movida
+
 - [ ] `src/middleware.ts.disabled` - Middleware desabilitado
 
 ## 🚀 Durante o Deploy
