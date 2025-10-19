@@ -8,7 +8,7 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   output: "export",
-  // basePath: "/dicas-e-temas-do-esporte", // Comentado para i18n
+  basePath: "/dicas-e-temas-do-esporte",
   images: {
     unoptimized: true,
   },
