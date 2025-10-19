@@ -1,8 +1,12 @@
 "use client";
 import Link from "next/link";
 import ModeToggle from "./ModeToggle";
+import LanguageSelector from "./LanguageSelector";
+import { useLanguageContext } from '@/contexts/LanguageContext';
 
 export default function Header() {
+  const { t } = useLanguageContext();
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-gray-200/50 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,14 +21,17 @@ export default function Header() {
             </div>
             <div className="hidden sm:flex flex-col">
               <span className="font-bold text-xl text-gray-900 tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
-                Ziliotti Picklebook
+                {t('header.title')}
               </span>
-              <span className="text-xs text-gray-600 font-medium">Material de estudo para o Pickleball</span>
+              <span className="text-xs text-gray-600 font-medium">{t('header.subtitle')}</span>
             </div>
           </Link>
 
-          {/* Toggle de modo */}
-          <ModeToggle />
+          {/* Controles */}
+          <div className="flex items-center gap-3">
+            <ModeToggle />
+            <LanguageSelector />
+          </div>
         </div>
       </div>
     </header>

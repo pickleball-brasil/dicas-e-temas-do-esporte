@@ -1,0 +1,61 @@
+{
+  "common": {
+    "back": "Voltar",
+    "backToHome": "Voltar para Início",
+    "continueExploring": "Continuar explorando",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "notFound": "Não encontrado"
+  },
+  "header": {
+    "title": "Ziliotti Picklebook",
+    "subtitle": "Material de estudo para o Pickleball"
+  },
+  "modes": {
+    "tracking": "Acompanhamento",
+    "study": "Estudo",
+    "trackingDescription": "Explore conteúdos organizados por categorias e acompanhe seu progresso.",
+    "studyDescription": "Explore conteúdos aprofundados de cada tema."
+  },
+  "sections": {
+    "title": "Principais Temas",
+    "basic": "Básico",
+    "intermediate": "Intermediário", 
+    "advanced": "Avançado",
+    "tactics": "Táticas",
+    "beginner": "Iniciante",
+    "progress": "Progresso",
+    "expert": "Expert",
+    "strategy": "Estratégia",
+    "viewResources": "Ver recursos",
+    "tipsRead": "dicas lidas"
+  },
+  "progress": {
+    "readingProgress": "Progresso de Leitura",
+    "tipsRead": "dicas lidas",
+    "remaining": "restantes",
+    "markAllAsRead": "Marcar todas como lidas",
+    "unmarkAll": "Desmarcar todas"
+  },
+  "study": {
+    "backToHome": "Voltar para Início",
+    "continueExploring": "Continuar explorando",
+    "tipsAndTechniques": "Dicas e Técnicas",
+    "contentInDevelopment": "Conteúdo em desenvolvimento",
+    "moreTipsSoon": "Em breve mais dicas sobre este tema.",
+    "totalTips": "Total de dicas",
+    "inThisSection": "Nesta seção"
+  },
+  "footer": {
+    "madeWith": "Feito com",
+    "by": "por Fabrício Ziliotti",
+    "copyright": "© 2025",
+    "allRightsReserved": "Todos os direitos reservados"
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Página de Estudo Não Encontrada",
+    "description": "Parece que o tópico de estudo que você está procurando não existe ou foi removido.",
+    "backToHome": "Voltar para a página inicial"
+  }
+}

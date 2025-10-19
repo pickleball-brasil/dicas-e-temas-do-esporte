@@ -1,9 +1,8 @@
 "use client";
 import { type Section } from "@/lib/sections";
-import { sectionDescriptions } from "@/lib/sectionDescriptions";
-import { sectionTips } from "@/lib/sectionTips";
 import { getSectionLevel } from "@/lib/sections";
 import { useReadingProgressContext } from "@/contexts/ReadingProgressContext";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 interface SectionModalProps {
   section: Section;
@@ -25,8 +24,10 @@ const levelBadgeColors = {
 };
 
 export default function SectionModal({ section, onClose }: SectionModalProps) {
-  const tips = sectionTips[section] || [];
-  const description = sectionDescriptions[section];
+  const { getTips, getSectionName, getSectionDescription, t } = useLanguageContext();
+  const tips = getTips(section);
+  const sectionName = getSectionName(section);
+  const description = getSectionDescription(section);
   const level = getSectionLevel(section);
   const gradientColor = levelColors[level];
   const badgeColor = levelBadgeColors[level];
@@ -41,7 +42,7 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/20 transition-all duration-200 backdrop-blur-sm"
-          aria-label="Fechar"
+          aria-label={t('common.close')}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -59,11 +60,11 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
                   <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
                   <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                 </svg>
-                {progress.read}/{progress.total} lidas ({progress.percentage}%)
+                {progress.read}/{progress.total} {t('progress.tipsRead')} ({progress.percentage}%)
               </div>
             )}
           </div>
-          <h2 className="text-3xl font-bold mb-3 drop-shadow-sm">{section}</h2>
+          <h2 className="text-3xl font-bold mb-3 drop-shadow-sm">{sectionName}</h2>
           <p className="text-white/90 text-sm leading-relaxed max-w-2xl">
             {description}
           </p>
@@ -77,7 +78,7 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
             <div className="flex items-center gap-2">
               <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${gradientColor}`}></div>
               <h3 className="text-lg font-bold text-gray-900">
-                Dicas Essenciais
+                {t('ui.essentialTips')}
               </h3>
             </div>
             {tips.length > 0 && (
@@ -85,7 +86,7 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
                 onClick={() => progress.read === tips.length ? markAllAsUnread(section) : markAllAsRead(section, tips.length)}
                 className="text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200 px-3 py-1.5 rounded-lg hover:bg-gray-100"
               >
-                {progress.read === tips.length ? '✓ Desmarcar todas' : 'Marcar todas como lidas'}
+                {progress.read === tips.length ? `✓ ${t('progress.unmarkAll')}` : t('progress.markAllAsRead')}
               </button>
             )}
           </div>
@@ -97,7 +98,7 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-gray-600 font-medium">Dicas em breve</p>
+              <p className="text-gray-600 font-medium">{t('study.moreTipsSoon')}</p>
             </div>
           ) : (
             <div className="grid gap-3">
@@ -158,7 +159,7 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>{tips.length} {tips.length === 1 ? 'dica' : 'dicas'}</span>
+              <span>{tips.length} {tips.length === 1 ? t('ui.tip') : t('ui.tips')}</span>
             </div>
             {tips.length > 0 && (
               <div className="flex items-center gap-2 text-xs">
@@ -176,7 +177,7 @@ export default function SectionModal({ section, onClose }: SectionModalProps) {
             onClick={onClose}
             className={`px-6 py-2.5 rounded-lg bg-gradient-to-r ${gradientColor} text-white font-medium hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200`}
           >
-            Entendi!
+            Ok
           </button>
         </div>
       </div>

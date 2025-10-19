@@ -1,8 +1,10 @@
 "use client";
 import { useAppModeContext } from "@/contexts/AppModeContext";
+import { useLanguageContext } from '@/contexts/LanguageContext';
 
 export default function ModeToggle() {
   const { mode, toggleMode, isLoaded } = useAppModeContext();
+  const { t } = useLanguageContext();
 
   if (!isLoaded) return null;
 
@@ -16,7 +18,7 @@ export default function ModeToggle() {
             : "text-gray-600 hover:text-gray-900"
         }`}
       >
-        <span className="hidden sm:inline">📊 Acompanhamento</span>
+        <span className="hidden sm:inline">📊 {t('modes.tracking')}</span>
         <span className="sm:hidden">📊</span>
       </button>
       <button
@@ -27,7 +29,7 @@ export default function ModeToggle() {
             : "text-gray-600 hover:text-gray-900"
         }`}
       >
-        <span className="hidden sm:inline">📚 Estudo</span>
+        <span className="hidden sm:inline">📚 {t('modes.study')}</span>
         <span className="sm:hidden">📚</span>
       </button>
     </div>

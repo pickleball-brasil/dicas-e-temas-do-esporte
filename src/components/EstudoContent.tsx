@@ -1,8 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { getSectionLevel, type Section } from "@/lib/sections";
-import { sectionDescriptions } from "@/lib/sectionDescriptions";
-import { sectionTips } from "@/lib/sectionTips";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 const levelColors = {
   "Básico": "from-green-500 to-emerald-600",
@@ -24,9 +23,11 @@ interface EstudoContentProps {
 
 export default function EstudoContent({ section }: EstudoContentProps) {
   const router = useRouter();
+  const { getTips, getSectionName, getSectionDescription, t } = useLanguageContext();
   
-  const tips = sectionTips[section] || [];
-  const description = sectionDescriptions[section];
+  const tips = getTips(section);
+  const sectionName = getSectionName(section);
+  const description = getSectionDescription(section);
   const level = getSectionLevel(section);
   const gradientColor = levelColors[level];
   const badgeColor = levelBadgeColors[level];
@@ -41,7 +42,7 @@ export default function EstudoContent({ section }: EstudoContentProps) {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            Voltar
+            {t('common.back')}
           </button>
       <div className={`relative bg-gradient-to-br ${gradientColor} text-white py-16 px-4`}>
        
@@ -52,7 +53,7 @@ export default function EstudoContent({ section }: EstudoContentProps) {
             {level}
           </div>
           
-          <h1 className="text-5xl font-bold mb-4 drop-shadow-sm">{section}</h1>
+          <h1 className="text-5xl font-bold mb-4 drop-shadow-sm">{sectionName}</h1>
           <p className="text-white/90 text-lg leading-relaxed max-w-2xl">
             {description}
           </p>
@@ -64,7 +65,7 @@ export default function EstudoContent({ section }: EstudoContentProps) {
         <div className="flex items-center gap-3 mb-8">
           <div className={`h-1.5 w-16 rounded-full bg-gradient-to-r ${gradientColor}`}></div>
           <h2 className="text-3xl font-bold text-gray-900">
-            Dicas e Técnicas
+            {t('study.tipsAndTechniques')}
           </h2>
         </div>
 
@@ -75,8 +76,8 @@ export default function EstudoContent({ section }: EstudoContentProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className="text-gray-600 font-medium text-lg">Conteúdo em desenvolvimento</p>
-            <p className="text-gray-500 text-sm mt-2">Em breve mais dicas sobre este tema.</p>
+            <p className="text-gray-600 font-medium text-lg">{t('study.contentInDevelopment')}</p>
+            <p className="text-gray-500 text-sm mt-2">{t('study.moreTipsSoon')}</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -111,8 +112,8 @@ export default function EstudoContent({ section }: EstudoContentProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 <div>
-                  <p className="font-semibold text-gray-900">Total de dicas</p>
-                  <p className="text-sm text-gray-600">Nesta seção</p>
+                  <p className="font-semibold text-gray-900">{t('study.totalTips')}</p>
+                  <p className="text-sm text-gray-600">{t('study.inThisSection')}</p>
                 </div>
               </div>
               <div className={`text-4xl font-bold bg-gradient-to-r ${gradientColor} bg-clip-text text-transparent`}>
