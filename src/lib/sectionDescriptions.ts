@@ -100,6 +100,46 @@ export const sectionDescriptions: Record<Section, string> = {
 
   "Uso do Lob Tático": "O lob não é apenas defensivo. Use lobs táticos para forçar adversários a recuar da rede, quebrar o ritmo deles, criar tempo para você se reposicionar, ou até mesmo como ataque quando bem executado.",
 
-  "Forçar Erros": "Nem sempre você precisa fazer o vencedor. Coloque a bola em posições difíceis, mantenha profundidade, varie colocação, e force os adversários a tentarem golpes difíceis. Muitos pontos são ganhos por erros forçados."
+  "Forçar Erros": "Nem sempre você precisa fazer o vencedor. Coloque a bola em posições difíceis, mantenha profundidade, varie colocação, e force os adversários a tentarem golpes difíceis. Muitos pontos são ganhos por erros forçados.",
+  
+  "Golpes Fundamentais": "Domine os golpes básicos do pickleball: forehand, backhand, voleio, overhead, dink, lob, drop, drive, block e reset. Cada golpe tem técnica específica, momento ideal para uso, e variações. A base sólida nos fundamentos permite evolução para técnicas avançadas.",
+  
+  "Técnica de Base": "A técnica de base inclui postura, equilíbrio, preparação, seguimento, relaxamento, respiração, foco visual, timing, ritmo e consistência. São os fundamentos que sustentam todos os golpes. Desenvolver técnica sólida desde o início evita vícios e acelera progresso.",
+  
+  "Concentração": "A concentração é essencial para performance consistente. Inclui foco no presente, visualização de golpes, rotina entre pontos, controle de distrações, preparação mental, e manutenção de atenção durante todo o jogo. Mente focada executa melhor.",
+  
+  "Respiração": "A respiração controlada melhora performance física e mental. Inclui sincronização com movimentos, controle de nervos, manutenção de energia, relaxamento muscular, e foco. Respiração adequada permite jogar mais tempo e com melhor qualidade.",
+  
+  "Tempo de Reação": "Desenvolva reflexos rápidos e reação instantânea através de drills específicos, posicionamento adequado, antecipação, e treinamento de reação. Tempo de reação rápido permite chegar a bolas difíceis e executar golpes de qualidade.",
+  
+  "Antecipação": "Aprenda a ler sinais do adversário para antecipar direção, tipo de golpe, e colocação da bola. Inclui observação de preparação, posição da raquete, linguagem corporal, e padrões de jogo. Antecipação correta economiza energia e melhora posicionamento.",
+  
+  "Leitura de Jogo": "Desenvolva capacidade de analisar o jogo em tempo real: identificar fraquezas do adversário, padrões de jogo, momentos de pressão, e oportunidades. Leitura de jogo permite adaptar estratégia e maximizar chances de vitória.",
+  
+  "Adaptação": "Seja flexível e adapte-se a diferentes situações: mudança de adversário, condições da quadra, placar, cansaço, ou estratégia que não está funcionando. Adaptação rápida é marca de jogadores experientes e inteligentes.",
+  
+  "Consistência": "Mantenha nível de jogo constante durante toda a partida através de técnica sólida, preparação mental, gestão de energia, e foco. Consistência vence jogadores que têm picos e vales de performance.",
+  
+  "Golpes Especiais": "Domine golpes avançados e espetaculares: Erne, ATP, behind the back, between the legs, no-look shots, fakes, e outros golpes que surpreendem e finalizam pontos. Golpes especiais são ferramentas poderosas quando usados no momento certo.",
+  
+  "Técnicas Avançadas": "Desenvolva habilidades sofisticadas: spin reverso, mudança de direção, fakes, timing perfeito, placement preciso, controle de potência, criação de ângulos, e variações constantes. Técnicas avançadas separam bons jogadores dos excepcionais.",
+  
+  "Pressão Mental": "Mantenha calma e foco sob pressão através de técnicas de respiração, visualização, rotina consistente, e controle emocional. Pressão mental bem gerenciada permite executar melhor nos momentos mais importantes.",
+  
+  "Execução Sob Pressão": "Execute golpes de qualidade mesmo em situações tensas através de técnica automatizada, foco no processo, confiança no treinamento, e mentalidade positiva. Execução sob pressão é marca de campeões.",
+  
+  "Liderança em Quadra": "Seja líder positivo em duplas através de comunicação eficaz, motivação do parceiro, tomada de decisões, energia positiva, e exemplo de comportamento. Liderança em quadra eleva o nível de toda a dupla.",
+  
+  "Estratégias de Abertura": "Desenvolva planos para começar pontos com vantagem através de saques bem colocados, devoluções estratégicas, e transição eficiente para a rede. Boa abertura estabelece controle do ponto desde o início.",
+  
+  "Controle de Ponto": "Mantenha domínio tático durante todo o ponto através de iniciativa constante, pressão controlada, variação estratégica, e forçar adversários a reagir às suas jogadas. Controle de ponto maximiza chances de vitória.",
+  
+  "Quebra de Ritmo": "Use variações constantes de velocidade, altura, direção, e timing para quebrar o ritmo do adversário e mantê-lo sempre adivinhando. Quebra de ritmo é ferramenta poderosa contra jogadores rítmicos.",
+  
+  "Exploração de Ângulos": "Use ângulos extremos e colocação precisa para criar espaços impossíveis de defender, forçar movimento do adversário, e abrir a quadra. Exploração de ângulos maximiza eficiência de cada golpe.",
+  
+  "Jogos Mentais": "Use psicologia do jogo para confundir adversários através de linguagem corporal, variação de tempo, fakes, mudanças estratégicas, e pressão mental constante. Jogos mentais podem ser decisivos em partidas equilibradas.",
+  
+  "Adaptação Tática": "Seja flexível estrategicamente e adapte táticas conforme necessário: mudança de adversário, placar, condições, ou estratégia que não funciona. Adaptação tática é essencial para jogadores de alto nível."
 };
 

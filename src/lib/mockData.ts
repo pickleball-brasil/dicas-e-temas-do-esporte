@@ -132,6 +132,26 @@ export const mockLinks: Record<Section, string[]> = {
         "https://www.youtube.com/watch?v=Rl5kCJI8uGo",
         "https://www.youtube.com/watch?v=3WKNWZTvfuE"
       ],
+      "Golpes Fundamentais": [
+        "https://www.youtube.com/watch?v=x_vLGBnSzPo",
+        "https://www.youtube.com/watch?v=puKEWrHH8bY",
+        "https://www.youtube.com/watch?v=5JD2xm0I5RA"
+      ],
+      "Técnica de Base": [
+        "https://www.youtube.com/watch?v=YjYEcHvvNNE",
+        "https://www.youtube.com/watch?v=vXgpGBbh5r8",
+        "https://www.youtube.com/watch?v=Yw0AOmKIYP4"
+      ],
+      "Concentração": [
+        "https://www.youtube.com/watch?v=fBpJX0KIwXE",
+        "https://www.youtube.com/watch?v=Rl5kCJI8uGo",
+        "https://www.youtube.com/watch?v=3WKNWZTvfuE"
+      ],
+      "Respiração": [
+        "https://www.youtube.com/watch?v=IKVfRWJJ5Zk",
+        "https://www.youtube.com/watch?v=nKQHHqQvKXg",
+        "https://www.youtube.com/watch?v=Qy8RbFH0YLc"
+      ],
       "Spin": [
         "https://www.youtube.com/watch?v=puKEWrHH8bY",
         "https://www.youtube.com/watch?v=lAq8m9xZ8qE",
@@ -151,6 +171,31 @@ export const mockLinks: Record<Section, string[]> = {
         "https://www.youtube.com/watch?v=IKVfRWJJ5Zk",
         "https://www.youtube.com/watch?v=nKQHHqQvKXg",
         "https://www.youtube.com/watch?v=Qy8RbFH0YLc"
+      ],
+      "Tempo de Reação": [
+        "https://www.youtube.com/watch?v=YjYEcHvvNNE",
+        "https://www.youtube.com/watch?v=vXgpGBbh5r8",
+        "https://www.youtube.com/watch?v=Yw0AOmKIYP4"
+      ],
+      "Antecipação": [
+        "https://www.youtube.com/watch?v=fBpJX0KIwXE",
+        "https://www.youtube.com/watch?v=Rl5kCJI8uGo",
+        "https://www.youtube.com/watch?v=3WKNWZTvfuE"
+      ],
+      "Leitura de Jogo": [
+        "https://www.youtube.com/watch?v=IKVfRWJJ5Zk",
+        "https://www.youtube.com/watch?v=nKQHHqQvKXg",
+        "https://www.youtube.com/watch?v=Qy8RbFH0YLc"
+      ],
+      "Adaptação": [
+        "https://www.youtube.com/watch?v=qVGYKZVHqlg",
+        "https://www.youtube.com/watch?v=5bVJ_dELmPo",
+        "https://www.youtube.com/watch?v=vYPPnMz_ByM"
+      ],
+      "Consistência": [
+        "https://www.youtube.com/watch?v=HU1YkKvtplc",
+        "https://www.youtube.com/watch?v=zTZc3mil0D0",
+        "https://www.youtube.com/watch?v=8xJLRvNfXYo"
       ],
       "Erne": [
         "https://www.youtube.com/watch?v=HU1YkKvtplc",
@@ -191,6 +236,31 @@ export const mockLinks: Record<Section, string[]> = {
         "https://www.youtube.com/watch?v=YjYEcHvvNNE",
         "https://www.youtube.com/watch?v=vXgpGBbh5r8",
         "https://www.youtube.com/watch?v=Yw0AOmKIYP4"
+      ],
+      "Golpes Especiais": [
+        "https://www.youtube.com/watch?v=HU1YkKvtplc",
+        "https://www.youtube.com/watch?v=zTZc3mil0D0",
+        "https://www.youtube.com/watch?v=8xJLRvNfXYo"
+      ],
+      "Técnicas Avançadas": [
+        "https://www.youtube.com/watch?v=lAq8m9xZ8qE",
+        "https://www.youtube.com/watch?v=9Ug-FnqKvKc",
+        "https://www.youtube.com/watch?v=puKEWrHH8bY"
+      ],
+      "Pressão Mental": [
+        "https://www.youtube.com/watch?v=qVGYKZVHqlg",
+        "https://www.youtube.com/watch?v=5bVJ_dELmPo",
+        "https://www.youtube.com/watch?v=vYPPnMz_ByM"
+      ],
+      "Execução Sob Pressão": [
+        "https://www.youtube.com/watch?v=fBpJX0KIwXE",
+        "https://www.youtube.com/watch?v=Rl5kCJI8uGo",
+        "https://www.youtube.com/watch?v=3WKNWZTvfuE"
+      ],
+      "Liderança em Quadra": [
+        "https://www.youtube.com/watch?v=IKVfRWJJ5Zk",
+        "https://www.youtube.com/watch?v=nKQHHqQvKXg",
+        "https://www.youtube.com/watch?v=Qy8RbFH0YLc"
       ],
 
       // Táticas
@@ -253,6 +323,36 @@ export const mockLinks: Record<Section, string[]> = {
         "https://www.youtube.com/watch?v=qVGYKZVHqlg",
         "https://www.youtube.com/watch?v=5bVJ_dELmPo",
         "https://www.youtube.com/watch?v=vYPPnMz_ByM"
+      ],
+      "Estratégias de Abertura": [
+        "https://www.youtube.com/watch?v=x_vLGBnSzPo",
+        "https://www.youtube.com/watch?v=puKEWrHH8bY",
+        "https://www.youtube.com/watch?v=5JD2xm0I5RA"
+      ],
+      "Controle de Ponto": [
+        "https://www.youtube.com/watch?v=YjYEcHvvNNE",
+        "https://www.youtube.com/watch?v=vXgpGBbh5r8",
+        "https://www.youtube.com/watch?v=Yw0AOmKIYP4"
+      ],
+      "Quebra de Ritmo": [
+        "https://www.youtube.com/watch?v=fBpJX0KIwXE",
+        "https://www.youtube.com/watch?v=Rl5kCJI8uGo",
+        "https://www.youtube.com/watch?v=3WKNWZTvfuE"
+      ],
+      "Exploração de Ângulos": [
+        "https://www.youtube.com/watch?v=IKVfRWJJ5Zk",
+        "https://www.youtube.com/watch?v=nKQHHqQvKXg",
+        "https://www.youtube.com/watch?v=Qy8RbFH0YLc"
+      ],
+      "Jogos Mentais": [
+        "https://www.youtube.com/watch?v=qVGYKZVHqlg",
+        "https://www.youtube.com/watch?v=5bVJ_dELmPo",
+        "https://www.youtube.com/watch?v=vYPPnMz_ByM"
+      ],
+      "Adaptação Tática": [
+        "https://www.youtube.com/watch?v=HU1YkKvtplc",
+        "https://www.youtube.com/watch?v=zTZc3mil0D0",
+        "https://www.youtube.com/watch?v=8xJLRvNfXYo"
       ]
     };
 

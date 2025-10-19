@@ -10,16 +10,17 @@ export function generateStaticParams() {
 }
 
 interface EstudoPageProps {
-  params: {
+  params: Promise<{
     section: string;
-  };
+  }>;
 }
 
-export default function EstudoPage({ params }: EstudoPageProps) {
-  const sectionParam = decodeURIComponent(params.section);
+export default async function EstudoPage({ params }: EstudoPageProps) {
+  const { section: sectionParam } = await params;
+  const decodedSection = decodeURIComponent(sectionParam);
   
   // Verificar se a seção existe
-  const section = SECTIONS.find(s => s === sectionParam) as Section | undefined;
+  const section = SECTIONS.find(s => s === decodedSection) as Section | undefined;
   
   if (!section) {
     notFound();
