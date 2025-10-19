@@ -12,6 +12,10 @@ export const BASIC_SECTIONS = [
   "Erros Comuns",
   "Dicas",
   "Equipamentos",
+  "Golpes Fundamentais",
+  "Técnica de Base",
+  "Concentração",
+  "Respiração",
 ] as const;
 
 // Intermediário
@@ -29,6 +33,11 @@ export const INTERMEDIATE_SECTIONS = [
   "Drills e Treinos",
   "Preparação Física",
   "Estratégia de Jogo",
+  "Tempo de Reação",
+  "Antecipação",
+  "Leitura de Jogo",
+  "Adaptação",
+  "Consistência",
 ] as const;
 
 // Avançado
@@ -46,6 +55,11 @@ export const ADVANCED_SECTIONS = [
   "Finalizações",
   "Jogo Singles",
   "Torneios",
+  "Golpes Especiais",
+  "Técnicas Avançadas",
+  "Pressão Mental",
+  "Execução Sob Pressão",
+  "Liderança em Quadra",
 ] as const;
 
 // Táticas
@@ -62,6 +76,12 @@ export const TACTICS_SECTIONS = [
   "Ataque ao Corpo",
   "Uso do Lob Tático",
   "Forçar Erros",
+  "Estratégias de Abertura",
+  "Controle de Ponto",
+  "Quebra de Ritmo",
+  "Exploração de Ângulos",
+  "Jogos Mentais",
+  "Adaptação Tática",
 ] as const;
 
 export const SECTIONS = [
