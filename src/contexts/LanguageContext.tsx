@@ -3123,8 +3123,11 @@ const translations = {
 
 export function LanguageProvider({ children }: PropsWithChildren) {
   const [language, setLanguage] = useState<Language>('pt');
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Marcar como cliente após hidratação
+    setIsClient(true);
     // Carregar idioma salvo do localStorage
     const savedLanguage = localStorage.getItem('language') as Language;
     if (savedLanguage && (savedLanguage === 'pt' || savedLanguage === 'en')) {
@@ -3133,9 +3136,11 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   }, []);
 
   useEffect(() => {
-    // Salvar idioma no localStorage
-    localStorage.setItem('language', language);
-  }, [language]);
+    // Salvar idioma no localStorage apenas no cliente
+    if (isClient) {
+      localStorage.setItem('language', language);
+    }
+  }, [language, isClient]);
 
   const t = (key: string): string => {
     const keys = key.split('.');
