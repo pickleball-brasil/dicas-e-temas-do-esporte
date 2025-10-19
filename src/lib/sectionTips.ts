@@ -8,7 +8,17 @@ export const sectionTips: Record<Section, string[]> = {
     "A bola deve quicar uma vez de cada lado antes de poder volear",
     "Pontuação: seu placar, placar adversário, número do servidor (1 ou 2)",
     "Pode ficar na cozinha, mas não pode volear enquanto estiver dentro",
-    "Após volear, pode cair na cozinha, mas contato deve ser fora"
+    "Após volear, pode cair na cozinha, mas contato deve ser fora",
+    "Bola que toca a linha é considerada 'in' - sempre jogue",
+    "Saque deve ser diagonal - não pode ser direto",
+    "Se a bola tocar a rede no saque e cair na área correta, é 'let' - repita",
+    "Bola que toca o corpo ou roupa do jogador é ponto para o adversário",
+    "Jogador pode tocar a rede apenas se a bola já passou para o lado adversário",
+    "Bola que toca a linha de fundo é considerada 'in' - sempre jogue",
+    "Em duplas, ordem de saque deve ser respeitada (servidor 1, depois 2)",
+    "Time perde o saque se cometer falta (bola fora, na rede, etc.)",
+    "Jogo vai até 11 pontos, mas deve ganhar por 2 pontos de diferença",
+    "Em torneios, pode ir até 15 ou 21 pontos dependendo do formato"
   ],
   "Saque": [
     "Contato com a bola abaixo da cintura, cabeça da raquete abaixo do punho",
@@ -17,7 +27,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Desenvolva rotina pré-saque (respirar, quicar) para consistência",
     "Pratique consistência antes de potência",
     "Experimente saques com spin para dificultar devolução",
-    "Saque na diagonal para o quadrante correto"
+    "Saque na diagonal para o quadrante correto",
+    "Posicione-se atrás da linha de base - não pise na linha",
+    "Use movimento fluido de baixo para cima - não pare o movimento",
+    "Mire para o backhand do adversário - geralmente mais fraco",
+    "Saque com topspin cai mais rápido e é mais difícil de devolver",
+    "Varie altura: saque baixo e rasteiro vs alto e profundo",
+    "Observe posição do adversário - saque para onde ele não está",
+    "Saque para o meio em duplas cria confusão sobre quem pega",
+    "Mantenha mesmo ritmo e preparação para todos os saques",
+    "Saque para os pés do adversário é mais difícil de devolver",
+    "Pratique saque de diferentes posições na linha de base",
+    "Saque com underspin (backspin) pode confundir adversários"
   ],
   "Devolução": [
     "Sempre devolva profundo para ganhar tempo de avançar",
@@ -26,7 +47,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Prepare-se para avançar 2-3 passos após devolver",
     "Devolva para o backhand se não souber a fraqueza",
     "Evite devoluções curtas que dão vantagem aos adversários",
-    "Posicione-se atrás da linha de base para tempo de reação"
+    "Posicione-se atrás da linha de base para tempo de reação",
+    "Devolução cruzada é mais segura - mais distância e ângulo",
+    "Use movimento de baixo para cima para gerar topspin",
+    "Devolva para os pés do adversário - mais difícil de atacar",
+    "Varie entre devolução cruzada e paralela",
+    "Devolução no meio em duplas cria confusão",
+    "Mantenha raquete na frente do corpo para reação rápida",
+    "Devolva com altura suficiente para passar sobre a rede",
+    "Observe posição dos adversários antes de escolher direção",
+    "Devolução com underspin pode confundir adversários",
+    "Pratique devolução de diferentes alturas de saque",
+    "Devolva para o lado mais fraco do adversário"
   ],
   "Dink": [
     "Joelhos flexionados, corpo baixo, pulso firme",
@@ -35,7 +67,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Seja paciente - não force o ataque prematuramente",
     "Raquete aberta (face para cima) para melhor controle",
     "Varie profundidade: linha da cozinha e mais fundo",
-    "Observe pés do adversário - se recuando, ataque"
+    "Observe pés do adversário - se recuando, ataque",
+    "Dink paralelo é mais agressivo mas mais arriscado",
+    "Use movimento de baixo para cima para gerar arco",
+    "Mantenha bola 6-12 polegadas acima da rede",
+    "Dink para o meio em duplas cria confusão",
+    "Varie entre dink baixo e médio para confundir",
+    "Dink com underspin é mais difícil de atacar",
+    "Observe posição da raquete do adversário para antecipar",
+    "Dink para o backhand é geralmente mais seguro",
+    "Pratique dink de diferentes distâncias da rede",
+    "Dink defensivo: mais alto e profundo",
+    "Dink ofensivo: mais baixo e próximo da rede"
   ],
   "Voleio": [
     "Raquete alta e na frente do corpo, movimentos curtos",
@@ -44,7 +87,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Voleie para baixo quando possível",
     "Antecipe direção observando preparação do oponente",
     "Use voleios de bloqueio contra drives rápidos",
-    "Mantenha peso para frente, pés ativos"
+    "Mantenha peso para frente, pés ativos",
+    "Voleio cruzado é mais seguro - mais distância",
+    "Voleio para os pés do adversário é mais efetivo",
+    "Use voleio de bloqueio para bolas rápidas",
+    "Voleio ofensivo: mire para espaços abertos",
+    "Mantenha raquete firme mas não tensa",
+    "Voleio no meio em duplas cria confusão",
+    "Varie entre voleio alto e baixo",
+    "Voleio com underspin é mais difícil de devolver",
+    "Observe posição dos pés do adversário",
+    "Voleio defensivo: mantenha bola em jogo",
+    "Pratique voleio de diferentes alturas"
   ],
   "Footwork": [
     "Faça split step quando adversário bater na bola",
@@ -53,7 +107,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Recupere para o centro após cada golpe",
     "Base ampla (largura dos ombros) para estabilidade",
     "Joelhos flexionados, peso na frente dos pés",
-    "Passos pequenos e rápidos para ajustes finos"
+    "Passos pequenos e rápidos para ajustes finos",
+    "Split step: pequeno pulo quando adversário bate",
+    "Use passos de deslizamento para movimentos laterais",
+    "Mantenha pés ativos - nunca fique parado",
+    "Pés devem estar em movimento antes da bola chegar",
+    "Use passos de ajuste para posicionamento fino",
+    "Recuperação: sempre volte para posição central",
+    "Antecipe direção observando preparação do adversário",
+    "Pés devem estar prontos para qualquer direção",
+    "Pratique footwork sem bola para automatizar",
+    "Use passos de explosão para bolas distantes",
+    "Mantenha equilíbrio durante todo o movimento"
   ],
   "Posicionamento": [
     "A rede é a posição dominante - avance sempre que possível",
@@ -62,7 +127,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Evite 'terra de ninguém' (meio da quadra)",
     "Cubra o meio da quadra - área mais vulnerável",
     "Movam-se como unidade - frente/trás juntos",
-    "Ajuste posição baseado na posição dos adversários"
+    "Ajuste posição baseado na posição dos adversários",
+    "Posição na rede: um braço de distância da linha da cozinha",
+    "Em duplas, cubra seu lado e o meio da quadra",
+    "Posição de fundo: atrás da linha de base",
+    "Ajuste posição baseado na altura da bola",
+    "Posicione-se para cobrir o ângulo mais provável",
+    "Mantenha distância adequada do parceiro",
+    "Posição ofensiva: mais próximo da rede",
+    "Posição defensiva: mais afastado da rede",
+    "Ajuste posição baseado no estilo do adversário",
+    "Posicione-se para maximizar cobertura da quadra",
+    "Mantenha posição que permita movimento rápido"
   ],
   "Empunhadura": [
     "Continental é a mais versátil para todos os golpes",
@@ -116,7 +192,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Use pernas para gerar movimento, não só braços",
     "É melhor errar longo do que curto",
     "Pratique de diferentes distâncias",
-    "Varie ocasionalmente para manter adversários honestos"
+    "Varie ocasionalmente para manter adversários honestos",
+    "Drop cruzado é mais seguro - mais distância",
+    "Use topspin para fazer bola cair mais rápido",
+    "Mire para os pés do adversário na cozinha",
+    "Drop com underspin é mais difícil de atacar",
+    "Varie altura: drop baixo vs alto",
+    "Drop para o meio em duplas cria confusão",
+    "Pratique drop de diferentes posições na quadra",
+    "Drop defensivo: mais alto e profundo",
+    "Drop ofensivo: mais baixo e próximo da rede",
+    "Observe posição dos adversários antes de dropar",
+    "Drop é fundamental para avançar à rede"
   ],
   "Terceira bola": [
     "Crucial para avançar à rede - drop é mais seguro que drive",
@@ -125,7 +212,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Mire meio da quadra para segurança",
     "Não precisa ser perfeito - só bom o suficiente",
     "Use drive apenas se bola alta e fácil",
-    "Pratique transição imediatamente após"
+    "Pratique transição imediatamente após",
+    "Terceira bola cruzada é mais segura",
+    "Use topspin para fazer bola cair mais rápido",
+    "Mire para os pés do adversário na cozinha",
+    "Terceira bola com underspin é mais difícil de atacar",
+    "Varie altura: baixa vs alta",
+    "Terceira bola para o meio em duplas cria confusão",
+    "Pratique terceira bola de diferentes posições",
+    "Terceira bola defensiva: mais alta e profunda",
+    "Terceira bola ofensiva: mais baixa e próxima da rede",
+    "Observe posição dos adversários antes de escolher",
+    "Terceira bola é fundamental para controlar o ponto"
   ],
   "Lob": [
     "Use quando oponentes muito próximos da rede",
@@ -233,7 +331,18 @@ export const sectionTips: Record<Section, string[]> = {
     "Mire para baixo, pés ou espaços abertos",
     "Smash para pés é mais seguro que para fora",
     "Não force se bola não estiver ideal",
-    "Pratique timing com bolas lançadas altas"
+    "Pratique timing com bolas lançadas altas",
+    "Smash cruzado é mais seguro - mais distância",
+    "Use topspin para fazer bola cair mais rápido",
+    "Mire para os pés do adversário",
+    "Smash com underspin é mais difícil de devolver",
+    "Varie altura: smash baixo vs alto",
+    "Smash para o meio em duplas cria confusão",
+    "Pratique smash de diferentes posições",
+    "Smash defensivo: mais alto e profundo",
+    "Smash ofensivo: mais baixo e próximo da rede",
+    "Observe posição dos adversários antes de smashar",
+    "Smash é fundamental para finalizar pontos"
   ],
   "Acelerar as bolas": [
     "Escolha momento certo - não apresse",
@@ -352,7 +461,17 @@ export const sectionTips: Record<Section, string[]> = {
     "Ritmo lento favorece pacientes, rápido favorece agressivos",
     "Mude ritmo após perder 2-3 pontos seguidos",
     "Observe quando adversários ficam impacientes",
-    "Controle ritmo com profundidade e colocação"
+    "Controle ritmo com profundidade e colocação",
+    "Ritmo lento: dinks longos e profundos",
+    "Ritmo rápido: drives e voleios agressivos",
+    "Varie ritmo dentro do mesmo rally",
+    "Use ritmo para tirar adversário da zona de conforto",
+    "Ritmo defensivo: mantenha bola em jogo",
+    "Ritmo ofensivo: force decisões rápidas",
+    "Observe como adversário reage a diferentes ritmos",
+    "Controle ritmo com altura e spin das bolas",
+    "Use pausas estratégicas para quebrar concentração",
+    "Ritmo consistente cansa adversários inconsistentes"
   ],
   "Jogo no Meio": [
     "Mire na linha divisória entre os jogadores",
@@ -361,7 +480,17 @@ export const sectionTips: Record<Section, string[]> = {
     "Use meio em terceira bola para neutralizar",
     "Funciona melhor quando oponentes estão largos",
     "Ataque meio quando adversários não se comunicam",
-    "Varie entre meio e laterais"
+    "Varie entre meio e laterais",
+    "Meio em dinks é mais seguro",
+    "Meio em voleios cria confusão máxima",
+    "Use meio para forçar comunicação entre adversários",
+    "Meio funciona melhor contra duplas que não se comunicam",
+    "Varie altura: meio baixo vs alto",
+    "Meio defensivo: mais alto e profundo",
+    "Meio ofensivo: mais baixo e próximo da rede",
+    "Observe posição dos adversários antes de jogar no meio",
+    "Meio é fundamental para quebrar ritmo do adversário",
+    "Pratique precisão para acertar a linha divisória"
   ],
   "Explorar Fraquezas": [
     "Observe primeiros pontos para identificar fraquezas",

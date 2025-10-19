@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
 import Providers from "./providers";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,31 +35,28 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <div className="max-w-4xl mx-auto w-full px-4 py-6 sm:px-6 lg:px-8">
-            <header className="mb-10">
-              <div className="flex items-center justify-between py-4">
-                <Link href="/" className="group flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-600 text-white shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-lg">
-                    <span className="text-xl">🏓</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-bold text-lg text-gray-900 tracking-tight">Ziliotti Picklebook</span>
-                    <span className="text-xs text-gray-500">Material de estudo para o Pickleball</span>
-                  </div>
-                </Link>
-                <nav className="flex items-center gap-2">
-                  <Link href="/" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-sky-600 transition-colors duration-200 rounded-lg hover:bg-white/50">
-                    Início
-                  </Link>
-                  <Link href="/admin" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-sky-600 transition-colors duration-200 rounded-lg hover:bg-white/50">
-                    Admin
-                  </Link>
-                </nav>
-              </div>
-            </header>
+          <Header />
+          
+          {/* Conteúdo principal */}
+          <div className="max-w-6xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
             {children}
-            <footer className="mt-16 py-8 text-center text-xs text-gray-500 border-t border-gray-200/50">
-              <p>Feito por Fabrício Ziliotti</p>
+            
+            {/* Footer moderno */}
+            <footer className="mt-20 py-10 text-center border-t border-gray-200/50">
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex items-center gap-2 text-gray-600">
+                  <span className="text-2xl">🏓</span>
+                  <span className="font-semibold">Ziliotti Picklebook</span>
+                </div>
+                <p className="text-sm text-gray-500">
+                  Feito com <span className="text-red-500">♥</span> por Fabrício Ziliotti
+                </p>
+                <div className="flex items-center gap-4 text-xs text-gray-400 mt-2">
+                  <span>© 2025</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                  <span>Todos os direitos reservados</span>
+                </div>
+              </div>
             </footer>
           </div>
         </Providers>
