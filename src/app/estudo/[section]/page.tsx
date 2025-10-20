@@ -11,13 +11,13 @@ export function generateStaticParams() {
 }
 
 interface EstudoPageProps {
-  params: Promise<{
+  params: {
     section: string;
-  }>;
+  };
 }
 
 export default async function EstudoPage({ params }: EstudoPageProps) {
-  const { section: sectionParam } = await params;
+  const { section: sectionParam } = params;
   
   // Verificar se a seção existe
   const section = SECTIONS.find(s => s === sectionParam) as Section | undefined;
