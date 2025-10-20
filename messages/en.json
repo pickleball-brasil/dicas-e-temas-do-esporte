@@ -8,7 +8,7 @@
     "notFound": "Not found"
   },
   "header": {
-    "title": "Ziliotti Picklebook",
+    "title": "PickleBook",
     "subtitle": "Study material for Pickleball"
   },
   "modes": {
@@ -40,11 +40,8 @@
   "study": {
     "backToHome": "Back to Home",
     "continueExploring": "Continue exploring",
-    "tipsAndTechniques": "Tips and Techniques",
     "contentInDevelopment": "Content in development",
-    "moreTipsSoon": "More tips about this topic coming soon.",
-    "totalTips": "Total tips",
-    "inThisSection": "In this section"
+    "moreTipsSoon": "More tips about this topic coming soon."
   },
   "footer": {
     "madeWith": "Made with",

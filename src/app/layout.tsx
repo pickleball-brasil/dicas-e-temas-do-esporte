@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ziliotti Favorites",
-  description: "Favoritos de Ziliotti",
+  title: "PickleBook",
+  description: "Material de estudo para o Pickleball",
   manifest: "/manifest.json",
   themeColor: "#0ea5e9",
   icons: {

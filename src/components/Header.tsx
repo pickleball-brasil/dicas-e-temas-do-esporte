@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import ModeToggle from "./ModeToggle";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 
@@ -29,7 +28,6 @@ export default function Header() {
 
           {/* Controles */}
           <div className="flex items-center gap-3">
-            <ModeToggle />
             <LanguageSelector />
           </div>
         </div>

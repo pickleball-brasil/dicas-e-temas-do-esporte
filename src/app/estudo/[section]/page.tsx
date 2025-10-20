@@ -1,6 +1,7 @@
 import { SECTIONS, type Section } from "@/lib/sections";
 import { notFound } from "next/navigation";
 import EstudoContent from "@/components/EstudoContent";
+import { getSectionContent } from "@/lib/markdown";
 
 // Necessário para exportação estática
 export function generateStaticParams() {
@@ -26,6 +27,9 @@ export default async function EstudoPage({ params }: EstudoPageProps) {
     notFound();
   }
 
-  return <EstudoContent section={section} />;
+  // Tentar carregar conteúdo do Markdown
+  const content = await getSectionContent(section);
+
+  return <EstudoContent section={section} content={content || undefined} />;
 }
 

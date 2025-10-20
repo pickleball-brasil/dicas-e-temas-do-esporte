@@ -1,0 +1,419 @@
+{
+  "titulo": "Índice Completo - Pickleball Study Guide",
+  "total_topicos": 71,
+  "categorias": {
+    "basico": {
+      "nome": "Básico",
+      "cor": "🟢",
+      "quantidade": 17,
+      "percentual": 25,
+      "topicos": [
+        {
+          "nome": "Regras",
+          "arquivo": "Regras.md",
+          "descricao": "Regras fundamentais do pickleball"
+        },
+        {
+          "nome": "Saque",
+          "arquivo": "Saque.md",
+          "descricao": "Técnicas básicas de saque"
+        },
+        {
+          "nome": "Devolução",
+          "arquivo": "Devolução.md",
+          "descricao": "Como devolver o saque"
+        },
+        {
+          "nome": "Dink",
+          "arquivo": "Dink.md",
+          "descricao": "Golpe suave próximo à rede"
+        },
+        {
+          "nome": "Voleio",
+          "arquivo": "Voleio.md",
+          "descricao": "Técnica de voleio na rede"
+        },
+        {
+          "nome": "Footwork",
+          "arquivo": "Footwork.md",
+          "descricao": "Movimentação e posicionamento"
+        },
+        {
+          "nome": "Posicionamento",
+          "arquivo": "Posicionamento.md",
+          "descricao": "Estratégias de posicionamento"
+        },
+        {
+          "nome": "Empunhadura",
+          "arquivo": "Empunhadura.md",
+          "descricao": "Técnicas de empunhadura"
+        },
+        {
+          "nome": "Aquecimento",
+          "arquivo": "Aquecimento.md",
+          "descricao": "Preparação física antes do jogo"
+        },
+        {
+          "nome": "Erros Comuns",
+          "arquivo": "Erros Comuns.md",
+          "descricao": "Erros frequentes e como evitá-los"
+        },
+        {
+          "nome": "Dicas",
+          "arquivo": "Dicas.md",
+          "descricao": "Dicas gerais para iniciantes"
+        },
+        {
+          "nome": "Equipamentos",
+          "arquivo": "Equipamentos.md",
+          "descricao": "Raquetes, bolas e acessórios"
+        },
+        {
+          "nome": "Golpes Fundamentais",
+          "arquivo": "Golpes Fundamentais.md",
+          "descricao": "Golpes básicos essenciais"
+        },
+        {
+          "nome": "Técnica de Base",
+          "arquivo": "Técnica de Base.md",
+          "descricao": "Fundamentos técnicos"
+        },
+        {
+          "nome": "Concentração",
+          "arquivo": "Concentração.md",
+          "descricao": "Manter o foco durante o jogo"
+        },
+        {
+          "nome": "Respiração",
+          "arquivo": "Respiração.md",
+          "descricao": "Técnicas de respiração"
+        }
+      ]
+    },
+    "intermediario": {
+      "nome": "Intermediário",
+      "cor": "🟡",
+      "quantidade": 18,
+      "percentual": 26,
+      "topicos": [
+        {
+          "nome": "Drop Shot",
+          "arquivo": "Drop Shot.md",
+          "descricao": "Golpe suave para controlar o ritmo"
+        },
+        {
+          "nome": "Terceira bola",
+          "arquivo": "Terceira bola.md",
+          "descricao": "Estratégia da terceira bola"
+        },
+        {
+          "nome": "Lob",
+          "arquivo": "Lob.md",
+          "descricao": "Golpe alto e profundo"
+        },
+        {
+          "nome": "Transição",
+          "arquivo": "Transição.md",
+          "descricao": "Movimento da linha de base para a rede"
+        },
+        {
+          "nome": "Jogo de Duplas",
+          "arquivo": "Jogo de Duplas.md",
+          "descricao": "Estratégias para duplas"
+        },
+        {
+          "nome": "Defesa",
+          "arquivo": "Defesa.md",
+          "descricao": "Técnicas defensivas"
+        },
+        {
+          "nome": "Bloqueio",
+          "arquivo": "Bloqueio.md",
+          "descricao": "Técnica de bloqueio na rede"
+        },
+        {
+          "nome": "Spin",
+          "arquivo": "Spin.md",
+          "descricao": "Aplicação de rotação na bola"
+        },
+        {
+          "nome": "Contra-ataque",
+          "arquivo": "Contra-ataque.md",
+          "descricao": "Estratégias de contra-ataque"
+        },
+        {
+          "nome": "Comunicação",
+          "arquivo": "Comunicação.md",
+          "descricao": "Comunicação entre parceiros"
+        },
+        {
+          "nome": "Drills e Treinos",
+          "arquivo": "Drills e Treinos.md",
+          "descricao": "Exercícios de prática"
+        },
+        {
+          "nome": "Preparação Física",
+          "arquivo": "Preparação Física.md",
+          "descricao": "Condicionamento físico"
+        },
+        {
+          "nome": "Estratégia de Jogo",
+          "arquivo": "Estratégia de Jogo.md",
+          "descricao": "Planejamento estratégico"
+        },
+        {
+          "nome": "Tempo de Reação",
+          "arquivo": "Tempo de Reação.md",
+          "descricao": "Melhorar reflexos"
+        },
+        {
+          "nome": "Antecipação",
+          "arquivo": "Antecipação.md",
+          "descricao": "Prever movimentos do adversário"
+        },
+        {
+          "nome": "Leitura de Jogo",
+          "arquivo": "Leitura de Jogo.md",
+          "descricao": "Analisar situações"
+        },
+        {
+          "nome": "Adaptação",
+          "arquivo": "Adaptação.md",
+          "descricao": "Adaptar-se às situações"
+        },
+        {
+          "nome": "Consistência",
+          "arquivo": "Consistência.md",
+          "descricao": "Manter performance constante"
+        }
+      ]
+    },
+    "avancado": {
+      "nome": "Avançado",
+      "cor": "🔴",
+      "quantidade": 18,
+      "percentual": 26,
+      "topicos": [
+        {
+          "nome": "Smash",
+          "arquivo": "Smash.md",
+          "descricao": "Golpe de finalização"
+        },
+        {
+          "nome": "Acelerar as bolas",
+          "arquivo": "Acelerar as bolas.md",
+          "descricao": "Aumentar velocidade"
+        },
+        {
+          "nome": "Reset",
+          "arquivo": "Reset.md",
+          "descricao": "Recuperar controle do ponto"
+        },
+        {
+          "nome": "Ataque",
+          "arquivo": "Ataque.md",
+          "descricao": "Estratégias ofensivas"
+        },
+        {
+          "nome": "Mental Game",
+          "arquivo": "Mental Game.md",
+          "descricao": "Aspectos mentais do jogo"
+        },
+        {
+          "nome": "Erne",
+          "arquivo": "Erne.md",
+          "descricao": "Golpe especial sobre a rede"
+        },
+        {
+          "nome": "ATP (Around The Post)",
+          "arquivo": "ATP (Around The Post).md",
+          "descricao": "Golpe ao redor do poste"
+        },
+        {
+          "nome": "Stacking",
+          "arquivo": "Stacking.md",
+          "descricao": "Posicionamento estratégico"
+        },
+        {
+          "nome": "Switching",
+          "arquivo": "Switching.md",
+          "descricao": "Troca de posições"
+        },
+        {
+          "nome": "Poaching",
+          "arquivo": "Poaching.md",
+          "descricao": "Interceptar bolas do parceiro"
+        },
+        {
+          "nome": "Finalizações",
+          "arquivo": "Finalizações.md",
+          "descricao": "Técnicas de finalização"
+        },
+        {
+          "nome": "Jogo Singles",
+          "arquivo": "Jogo Singles.md",
+          "descricao": "Estratégias para jogo individual"
+        },
+        {
+          "nome": "Torneios",
+          "arquivo": "Torneios.md",
+          "descricao": "Preparação para competições"
+        },
+        {
+          "nome": "Golpes Especiais",
+          "arquivo": "Golpes Especiais.md",
+          "descricao": "Golpes únicos e avançados"
+        },
+        {
+          "nome": "Técnicas Avançadas",
+          "arquivo": "Técnicas Avançadas.md",
+          "descricao": "Técnicas complexas"
+        },
+        {
+          "nome": "Pressão Mental",
+          "arquivo": "Pressão Mental.md",
+          "descricao": "Lidar com pressão"
+        },
+        {
+          "nome": "Execução Sob Pressão",
+          "arquivo": "Execução Sob Pressão.md",
+          "descricao": "Performance em situações difíceis"
+        },
+        {
+          "nome": "Liderança em Quadra",
+          "arquivo": "Liderança em Quadra.md",
+          "descricao": "Liderar em quadra"
+        }
+      ]
+    },
+    "taticas": {
+      "nome": "Táticas",
+      "cor": "🟣",
+      "quantidade": 18,
+      "percentual": 26,
+      "topicos": [
+        {
+          "nome": "Controle de Ritmo",
+          "arquivo": "Controle de Ritmo.md",
+          "descricao": "Controlar velocidade do jogo"
+        },
+        {
+          "nome": "Jogo no Meio",
+          "arquivo": "Jogo no Meio.md",
+          "descricao": "Estratégias do meio da quadra"
+        },
+        {
+          "nome": "Explorar Fraquezas",
+          "arquivo": "Explorar Fraquezas.md",
+          "descricao": "Identificar e explorar pontos fracos"
+        },
+        {
+          "nome": "Variação de Altura",
+          "arquivo": "Variação de Altura.md",
+          "descricao": "Variações de altura das bolas"
+        },
+        {
+          "nome": "Pressão Constante",
+          "arquivo": "Pressão Constante.md",
+          "descricao": "Manter pressão no adversário"
+        },
+        {
+          "nome": "Jogo Cruzado",
+          "arquivo": "Jogo Cruzado.md",
+          "descricao": "Estratégias de cruzamento"
+        },
+        {
+          "nome": "Isolamento de Jogador",
+          "arquivo": "Isolamento de Jogador.md",
+          "descricao": "Isolar um jogador"
+        },
+        {
+          "nome": "Mudança de Direção",
+          "arquivo": "Mudança de Direção.md",
+          "descricao": "Variações de direção"
+        },
+        {
+          "nome": "Jogo de Paciência",
+          "arquivo": "Jogo de Paciência.md",
+          "descricao": "Estratégias de paciência"
+        },
+        {
+          "nome": "Ataque ao Corpo",
+          "arquivo": "Ataque ao Corpo.md",
+          "descricao": "Direcionar para o corpo"
+        },
+        {
+          "nome": "Uso do Lob Tático",
+          "arquivo": "Uso do Lob Tático.md",
+          "descricao": "Lob como ferramenta tática"
+        },
+        {
+          "nome": "Forçar Erros",
+          "arquivo": "Forçar Erros.md",
+          "descricao": "Estratégias para forçar erros"
+        },
+        {
+          "nome": "Estratégias de Abertura",
+          "arquivo": "Estratégias de Abertura.md",
+          "descricao": "Começar o ponto"
+        },
+        {
+          "nome": "Controle de Ponto",
+          "arquivo": "Controle de Ponto.md",
+          "descricao": "Controlar o desenvolvimento do ponto"
+        },
+        {
+          "nome": "Quebra de Ritmo",
+          "arquivo": "Quebra de Ritmo.md",
+          "descricao": "Interromper o ritmo do adversário"
+        },
+        {
+          "nome": "Exploração de Ângulos",
+          "arquivo": "Exploração de Ângulos.md",
+          "descricao": "Usar diferentes ângulos"
+        },
+        {
+          "nome": "Jogos Mentais",
+          "arquivo": "Jogos Mentais.md",
+          "descricao": "Estratégias psicológicas"
+        },
+        {
+          "nome": "Adaptação Tática",
+          "arquivo": "Adaptação Tática.md",
+          "descricao": "Adaptar táticas durante o jogo"
+        }
+      ]
+    }
+  },
+  "links_uteis": [
+    {
+      "nome": "USA Pickleball - Site Oficial",
+      "url": "https://www.usapickleball.org/"
+    },
+    {
+      "nome": "Pickleball.com - Equipamentos e Dicas",
+      "url": "https://www.pickleball.com/"
+    },
+    {
+      "nome": "Pickleball Channel - YouTube",
+      "url": "https://www.youtube.com/c/PickleballChannel"
+    }
+  ],
+  "estatisticas": {
+    "total_topicos": 71,
+    "distribuicao": {
+      "basico": 17,
+      "intermediario": 18,
+      "avancado": 18,
+      "taticas": 18
+    },
+    "percentuais": {
+      "basico": 25,
+      "intermediario": 26,
+      "avancado": 26,
+      "taticas": 26
+    }
+  },
+  "ultima_atualizacao": "2025-01-19",
+  "autor": "Fabrício Ziliotti"
+}

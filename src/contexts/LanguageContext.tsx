@@ -28,7 +28,7 @@ const translations = {
       close: "Fechar"
     },
     header: {
-      title: "Ziliotti Picklebook",
+      title: "Picklebook",
       subtitle: "Material de estudo para o Pickleball"
     },
     modes: {

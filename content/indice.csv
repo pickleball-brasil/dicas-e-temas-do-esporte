@@ -1,0 +1,71 @@
+Nível,Cor,Tópico,Arquivo,Descrição
+Básico,🟢,Regras,Regras.md,Regras fundamentais do pickleball
+Básico,🟢,Saque,Saque.md,Técnicas básicas de saque
+Básico,🟢,Devolução,Devolução.md,Como devolver o saque
+Básico,🟢,Dink,Dink.md,Golpe suave próximo à rede
+Básico,🟢,Voleio,Voleio.md,Técnica de voleio na rede
+Básico,🟢,Footwork,Footwork.md,Movimentação e posicionamento
+Básico,🟢,Posicionamento,Posicionamento.md,Estratégias de posicionamento
+Básico,🟢,Empunhadura,Empunhadura.md,Técnicas de empunhadura
+Básico,🟢,Aquecimento,Aquecimento.md,Preparação física antes do jogo
+Básico,🟢,Erros Comuns,Erros Comuns.md,Erros frequentes e como evitá-los
+Básico,🟢,Dicas,Dicas.md,Dicas gerais para iniciantes
+Básico,🟢,Equipamentos,Equipamentos.md,Raquetes bolas e acessórios
+Básico,🟢,Golpes Fundamentais,Golpes Fundamentais.md,Golpes básicos essenciais
+Básico,🟢,Técnica de Base,Técnica de Base.md,Fundamentos técnicos
+Básico,🟢,Concentração,Concentração.md,Manter o foco durante o jogo
+Básico,🟢,Respiração,Respiração.md,Técnicas de respiração
+Intermediário,🟡,Drop Shot,Drop Shot.md,Golpe suave para controlar o ritmo
+Intermediário,🟡,Terceira bola,Terceira bola.md,Estratégia da terceira bola
+Intermediário,🟡,Lob,Lob.md,Golpe alto e profundo
+Intermediário,🟡,Transição,Transição.md,Movimento da linha de base para a rede
+Intermediário,🟡,Jogo de Duplas,Jogo de Duplas.md,Estratégias para duplas
+Intermediário,🟡,Defesa,Defesa.md,Técnicas defensivas
+Intermediário,🟡,Bloqueio,Bloqueio.md,Técnica de bloqueio na rede
+Intermediário,🟡,Spin,Spin.md,Aplicação de rotação na bola
+Intermediário,🟡,Contra-ataque,Contra-ataque.md,Estratégias de contra-ataque
+Intermediário,🟡,Comunicação,Comunicação.md,Comunicação entre parceiros
+Intermediário,🟡,Drills e Treinos,Drills e Treinos.md,Exercícios de prática
+Intermediário,🟡,Preparação Física,Preparação Física.md,Condicionamento físico
+Intermediário,🟡,Estratégia de Jogo,Estratégia de Jogo.md,Planejamento estratégico
+Intermediário,🟡,Tempo de Reação,Tempo de Reação.md,Melhorar reflexos
+Intermediário,🟡,Antecipação,Antecipação.md,Prever movimentos do adversário
+Intermediário,🟡,Leitura de Jogo,Leitura de Jogo.md,Analisar situações
+Intermediário,🟡,Adaptação,Adaptação.md,Adaptar-se às situações
+Intermediário,🟡,Consistência,Consistência.md,Manter performance constante
+Avançado,🔴,Smash,Smash.md,Golpe de finalização
+Avançado,🔴,Acelerar as bolas,Acelerar as bolas.md,Aumentar velocidade
+Avançado,🔴,Reset,Reset.md,Recuperar controle do ponto
+Avançado,🔴,Ataque,Ataque.md,Estratégias ofensivas
+Avançado,🔴,Mental Game,Mental Game.md,Aspectos mentais do jogo
+Avançado,🔴,Erne,Erne.md,Golpe especial sobre a rede
+Avançado,🔴,ATP (Around The Post),ATP (Around The Post).md,Golpe ao redor do poste
+Avançado,🔴,Stacking,Stacking.md,Posicionamento estratégico
+Avançado,🔴,Switching,Switching.md,Troca de posições
+Avançado,🔴,Poaching,Poaching.md,Interceptar bolas do parceiro
+Avançado,🔴,Finalizações,Finalizações.md,Técnicas de finalização
+Avançado,🔴,Jogo Singles,Jogo Singles.md,Estratégias para jogo individual
+Avançado,🔴,Torneios,Torneios.md,Preparação para competições
+Avançado,🔴,Golpes Especiais,Golpes Especiais.md,Golpes únicos e avançados
+Avançado,🔴,Técnicas Avançadas,Técnicas Avançadas.md,Técnicas complexas
+Avançado,🔴,Pressão Mental,Pressão Mental.md,Lidar com pressão
+Avançado,🔴,Execução Sob Pressão,Execução Sob Pressão.md,Performance em situações difíceis
+Avançado,🔴,Liderança em Quadra,Liderança em Quadra.md,Liderar em quadra
+Táticas,🟣,Controle de Ritmo,Controle de Ritmo.md,Controlar velocidade do jogo
+Táticas,🟣,Jogo no Meio,Jogo no Meio.md,Estratégias do meio da quadra
+Táticas,🟣,Explorar Fraquezas,Explorar Fraquezas.md,Identificar e explorar pontos fracos
+Táticas,🟣,Variação de Altura,Variação de Altura.md,Variações de altura das bolas
+Táticas,🟣,Pressão Constante,Pressão Constante.md,Manter pressão no adversário
+Táticas,🟣,Jogo Cruzado,Jogo Cruzado.md,Estratégias de cruzamento
+Táticas,🟣,Isolamento de Jogador,Isolamento de Jogador.md,Isolar um jogador
+Táticas,🟣,Mudança de Direção,Mudança de Direção.md,Variações de direção
+Táticas,🟣,Jogo de Paciência,Jogo de Paciência.md,Estratégias de paciência
+Táticas,🟣,Ataque ao Corpo,Ataque ao Corpo.md,Direcionar para o corpo
+Táticas,🟣,Uso do Lob Tático,Uso do Lob Tático.md,Lob como ferramenta tática
+Táticas,🟣,Forçar Erros,Forçar Erros.md,Estratégias para forçar erros
+Táticas,🟣,Estratégias de Abertura,Estratégias de Abertura.md,Começar o ponto
+Táticas,🟣,Controle de Ponto,Controle de Ponto.md,Controlar o desenvolvimento do ponto
+Táticas,🟣,Quebra de Ritmo,Quebra de Ritmo.md,Interromper o ritmo do adversário
+Táticas,🟣,Exploração de Ângulos,Exploração de Ângulos.md,Usar diferentes ângulos
+Táticas,🟣,Jogos Mentais,Jogos Mentais.md,Estratégias psicológicas
+Táticas,🟣,Adaptação Tática,Adaptação Tática.md,Adaptar táticas durante o jogo

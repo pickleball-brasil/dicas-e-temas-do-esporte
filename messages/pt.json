@@ -40,11 +40,8 @@
   "study": {
     "backToHome": "Voltar para Início",
     "continueExploring": "Continuar explorando",
-    "tipsAndTechniques": "Dicas e Técnicas",
     "contentInDevelopment": "Conteúdo em desenvolvimento",
-    "moreTipsSoon": "Em breve mais dicas sobre este tema.",
-    "totalTips": "Total de dicas",
-    "inThisSection": "Nesta seção"
+    "moreTipsSoon": "Em breve mais dicas sobre este tema."
   },
   "footer": {
     "madeWith": "Feito com",
