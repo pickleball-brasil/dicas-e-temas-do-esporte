@@ -85,7 +85,7 @@ const sectionColors: Record<string, string> = {
   "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
 };
 
-const SectionCard = ({ section, onClick, t, getSectionName, isVisited }: { section: Section; onClick: () => void; t: (key: string) => string; getSectionName: (section: string) => string; isVisited: boolean }) => (
+const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
   <button
     onClick={onClick}
     className="card block p-4 group hover:scale-[1.02] active:scale-100 transition-transform duration-300 w-full text-left"
@@ -226,8 +226,6 @@ export default function Home() {
               <SectionCard 
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
-                t={t}
-                getSectionName={getSectionName}
                 isVisited={isVisited(s)}
               />
             </li>
@@ -270,8 +268,6 @@ export default function Home() {
               <SectionCard 
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
-                t={t}
-                getSectionName={getSectionName}
                 isVisited={isVisited(s)}
               />
             </li>
@@ -314,8 +310,6 @@ export default function Home() {
               <SectionCard 
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
-                t={t}
-                getSectionName={getSectionName}
                 isVisited={isVisited(s)}
               />
             </li>
@@ -358,8 +352,6 @@ export default function Home() {
               <SectionCard 
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
-                t={t}
-                getSectionName={getSectionName}
                 isVisited={isVisited(s)}
               />
             </li>

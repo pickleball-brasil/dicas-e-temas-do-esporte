@@ -1,20 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getSectionLevel, type Section } from "@/lib/sections";
+import { getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { SectionContent } from "@/lib/markdown";
 import { getDisplayName } from "@/lib/displayNames";
 import Sidebar from "./Sidebar";
 
-const levelColors = {
+const levelColors: Record<SectionLevel, string> = {
   "Básico": "from-green-500 to-emerald-600",
   "Intermediário": "from-orange-500 to-amber-600",
   "Avançado": "from-red-500 to-rose-600",
   "Táticas": "from-purple-500 to-violet-600",
 };
 
-const levelBadgeColors = {
+const levelBadgeColors: Record<SectionLevel, string> = {
   "Básico": "bg-green-100 text-green-700 border-green-200",
   "Intermediário": "bg-orange-100 text-orange-700 border-orange-200",
   "Avançado": "bg-red-100 text-red-700 border-red-200",
@@ -28,7 +28,7 @@ interface EstudoContentProps {
 
 export default function EstudoContent({ section, content }: EstudoContentProps) {
   const router = useRouter();
-  const { getSectionName, getSectionDescription, t } = useLanguageContext();
+  const { getSectionDescription, t } = useLanguageContext();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Abrir sidebar automaticamente ao carregar a página

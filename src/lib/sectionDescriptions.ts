@@ -1,6 +1,4 @@
-import { Section } from "./sections";
-
-export const sectionDescriptions: Record<Section, string> = {
+export const sectionDescriptions: Record<string, string> = {
     "Dink": "O dink é um dos golpes mais importantes no pickleball. É uma jogada suave e controlada, geralmente executada próximo à rede (na zona da cozinha), com o objetivo de manter a bola baixa e forçar o oponente a cometer erros. Dominar o dink é essencial para controlar o ritmo do jogo.",
 
     "Voleio": "O voleio é executado quando você rebate a bola antes que ela toque o chão, geralmente próximo à rede. É fundamental para manter pressão sobre os adversários e controlar o ponto. Um bom voleio requer reflexos rápidos, posicionamento adequado e controle de força.",

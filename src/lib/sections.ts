@@ -95,7 +95,9 @@ export const SECTIONS = [
 export type Section = typeof SECTIONS[number];
 
 // Níveis das seções
-export const SECTION_LEVELS: Record<Section, string> = {
+export type SectionLevel = 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas';
+
+export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "regras": "Básico",
   "saque": "Básico",
   "devolucao": "Básico",
@@ -168,6 +170,6 @@ export const SECTION_LEVELS: Record<Section, string> = {
   "adaptacao-tatica": "Táticas",
 };
 
-export function getSectionLevel(section: Section): string {
+export function getSectionLevel(section: Section): SectionLevel {
   return SECTION_LEVELS[section] || 'Básico';
 }

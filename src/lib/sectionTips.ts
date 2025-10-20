@@ -1,6 +1,4 @@
-import { Section } from "./sections";
-
-export const sectionTips: Record<Section, string[]> = {
+export const sectionTips: Record<string, string[]> = {
   "Regras": [
     "A zona da cozinha tem 7 pés de profundidade - não pode pisar na linha ao volear",
     "Saque deve ser por baixo (underhand) e na diagonal",

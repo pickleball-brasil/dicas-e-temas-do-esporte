@@ -1,7 +1,7 @@
 import { type Section } from "./sections";
 
 // Mock data - substitui Firebase temporariamente
-export const mockLinks: Record<Section, string[]> = {
+export const mockLinks: Record<string, string[]> = {
     "Regras": [
         "https://www.youtube.com/watch?v=LBhrLu1zpmM",
         "https://www.youtube.com/watch?v=C3zjvYJsJoQ",

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { SECTIONS, getSectionLevel } from "@/lib/sections";
+import { SECTIONS, getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
 import { getDisplayName } from "@/lib/displayNames";
 
 interface SidebarProps {
@@ -10,14 +10,14 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const levelColors = {
+const levelColors: Record<SectionLevel, string> = {
   "Básico": "text-green-600 bg-green-50 border-green-200",
   "Intermediário": "text-orange-600 bg-orange-50 border-orange-200", 
   "Avançado": "text-red-600 bg-red-50 border-red-200",
   "Táticas": "text-purple-600 bg-purple-50 border-purple-200"
 };
 
-const levelIcons = {
+const levelIcons: Record<SectionLevel, string> = {
   "Básico": "🟢",
   "Intermediário": "🟡", 
   "Avançado": "🔴",
@@ -39,7 +39,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     }
     acc[level].push(section);
     return acc;
-  }, {} as Record<string, string[]>);
+  }, {} as Record<SectionLevel, Section[]>);
 
   // Carregar links visitados do localStorage
   useEffect(() => {
@@ -67,8 +67,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       const currentPath = pathname.split('/').pop() || '';
       const activeSection = currentPath.replace(/\/$/, '');
       
-      if (activeSection && SECTIONS.includes(activeSection as any)) {
-        const level = getSectionLevel(activeSection as any);
+      const isValidSection = (s: string): s is Section => (SECTIONS as readonly string[]).includes(s);
+      if (activeSection && isValidSection(activeSection)) {
+        const level = getSectionLevel(activeSection);
         if (level) {
           setExpandedLevels(new Set([level]));
         }
@@ -80,12 +81,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   }, [pathname]);
 
   // Filtrar seções baseado na busca
-  const filteredSections = Object.entries(sectionsByLevel).map(([level, sections]) => [
-    level,
-    sections.filter(section => 
-      section.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  ]).filter(([, sections]) => (sections as string[]).length > 0) as [string, string[]][];
+  const filteredSections = (Object.entries(sectionsByLevel) as [SectionLevel, Section[]][]) 
+    .map(([level, sections]) => [
+      level,
+      sections.filter(section => 
+        section.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    ] as [SectionLevel, Section[]])
+    .filter(([, sections]) => sections.length > 0);
 
   const toggleLevel = (level: string) => {
     setExpandedLevels(prev => {
@@ -118,15 +121,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return visitedSections.has(section);
   };
 
-  const clearVisitedHistory = () => {
-    setVisitedSections(new Set());
-    localStorage.removeItem('visitedSections');
-  };
+  // const clearVisitedHistory = () => {
+  //   setVisitedSections(new Set());
+  //   localStorage.removeItem('visitedSections');
+  // };
 
   // Fechar sidebar ao clicar fora (mobile)
   useEffect(() => {
     // Só desabilita scroll no mobile quando sidebar está aberto
-    const isMobile = window.innerWidth < 1024; // lg breakpoint
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024; // lg breakpoint
     if (isOpen && isMobile) {
       document.body.style.overflow = 'hidden';
     } else {
