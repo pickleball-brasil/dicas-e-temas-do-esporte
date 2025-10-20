@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import LanguageSelector from "./LanguageSelector";
+// import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 
 export default function Header() {
@@ -28,7 +28,7 @@ export default function Header() {
 
           {/* Controles */}
           <div className="flex items-center gap-3">
-            <LanguageSelector />
+            {/* <LanguageSelector /> */}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { SECTIONS, getSectionLevel } from "@/lib/sections";
+import { getDisplayName } from "@/lib/displayNames";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -62,24 +63,21 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   // Expandir automaticamente apenas a categoria do estudo atual
   useEffect(() => {
-    if (isOpen) {
-      const activeSection = decodeURIComponent(pathname.split('/').pop() || '');
-      if (activeSection) {
-        for (const [level, sections] of Object.entries(sectionsByLevel)) {
-          if (sections.includes(activeSection)) {
-            setExpandedLevels(prev => {
-              // Só atualiza se a categoria for diferente da atual
-              if (!prev.has(level) || prev.size > 1) {
-                return new Set([level]);
-              }
-              return prev;
-            });
-            break;
-          }
+    if (pathname.includes('/estudo/')) {
+      const currentPath = pathname.split('/').pop() || '';
+      const activeSection = currentPath.replace(/\/$/, '');
+      
+      if (activeSection && SECTIONS.includes(activeSection as any)) {
+        const level = getSectionLevel(activeSection as any);
+        if (level) {
+          setExpandedLevels(new Set([level]));
         }
       }
+    } else {
+      // Se não estiver em uma página de estudo, limpar expansões
+      setExpandedLevels(new Set());
     }
-  }, [isOpen, pathname]);
+  }, [pathname]);
 
   // Filtrar seções baseado na busca
   const filteredSections = Object.entries(sectionsByLevel).map(([level, sections]) => [
@@ -90,25 +88,30 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   ]).filter(([, sections]) => (sections as string[]).length > 0) as [string, string[]][];
 
   const toggleLevel = (level: string) => {
-    const newExpanded = new Set(expandedLevels);
-    if (newExpanded.has(level)) {
-      newExpanded.delete(level);
-    } else {
-      newExpanded.add(level);
-    }
-    setExpandedLevels(newExpanded);
+    setExpandedLevels(prev => {
+      const newExpanded = new Set(prev);
+      if (newExpanded.has(level)) {
+        newExpanded.delete(level);
+      } else {
+        newExpanded.add(level);
+      }
+      return newExpanded;
+    });
   };
 
   const handleSectionClick = (section: string) => {
     // Marcar seção como visitada
     setVisitedSections(prev => new Set([...prev, section]));
     
-    router.push(`/estudo/${encodeURIComponent(section)}`);
+    router.push(`/estudo/${section}`);
     onClose();
   };
 
   const isActive = (section: string) => {
-    return pathname.includes(encodeURIComponent(section));
+    const currentPath = pathname.split('/').pop() || '';
+    // Remover trailing slash se existir
+    const cleanPath = currentPath.replace(/\/$/, '');
+    return cleanPath === section;
   };
 
   const isVisited = (section: string) => {
@@ -249,7 +252,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       className={`
                         w-full text-left px-3 py-2.5 mx-2 rounded-md transition-all duration-200 group
                         ${isActive(section) 
-                          ? `bg-gradient-to-r from-blue-50 to-indigo-50 border-l-3 border-blue-500 shadow-sm ${levelColors[level as keyof typeof levelColors]}`
+                          ? `bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 shadow-sm ${levelColors[level as keyof typeof levelColors]}`
                           : isVisited(section)
                           ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50/80 bg-gray-50/30'
                           : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/60'
@@ -266,7 +269,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                             : 'bg-gray-300 group-hover:bg-gray-400 group-hover:scale-110'
                           }
                         `} />
-                        <span className="text-sm font-medium flex-1 truncate">{section}</span>
+                        <span className="text-sm font-medium flex-1 truncate">{getDisplayName(section)}</span>
                         {isActive(section) && (
                           <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse" />
                         )}

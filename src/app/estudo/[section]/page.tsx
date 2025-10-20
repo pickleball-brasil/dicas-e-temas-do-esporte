@@ -6,7 +6,7 @@ import { getSectionContent } from "@/lib/markdown";
 // Necessário para exportação estática
 export function generateStaticParams() {
   return SECTIONS.map((section) => ({
-    section: encodeURIComponent(section),
+    section: section,
   }));
 }
 
@@ -18,12 +18,12 @@ interface EstudoPageProps {
 
 export default async function EstudoPage({ params }: EstudoPageProps) {
   const { section: sectionParam } = await params;
-  const decodedSection = decodeURIComponent(sectionParam);
   
   // Verificar se a seção existe
-  const section = SECTIONS.find(s => s === decodedSection) as Section | undefined;
+  const section = SECTIONS.find(s => s === sectionParam) as Section | undefined;
   
   if (!section) {
+    console.error(`Seção não encontrada: "${sectionParam}"`);
     notFound();
   }
 

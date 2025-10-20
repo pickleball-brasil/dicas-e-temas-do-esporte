@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { getSectionLevel, type Section } from "@/lib/sections";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { SectionContent } from "@/lib/markdown";
+import { getDisplayName } from "@/lib/displayNames";
 import Sidebar from "./Sidebar";
 
 const levelColors = {
@@ -35,8 +36,8 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
     setSidebarOpen(true);
   }, [section]);
   
-  // Usar conteúdo do Markdown se disponível, senão usar o sistema antigo
-  const sectionName = content?.title || getSectionName(section);
+  // Usar conteúdo do Markdown se disponível, senão usar o nome de exibição
+  const sectionName = content?.title || getDisplayName(section);
   const description = content?.description || getSectionDescription(section);
   const level = content?.level || getSectionLevel(section);
   const gradientColor = levelColors[level];
