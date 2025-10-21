@@ -27,6 +27,14 @@ export interface SectionFile {
 
 const contentDirectory = path.join(process.cwd(), 'content', 'sections');
 
+// Mapeamento de categorias para pastas
+const categoryFolders = {
+  'Básico': 'basico',
+  'Intermediário': 'intermediario', 
+  'Avançado': 'avancado',
+  'Táticas': 'taticas'
+} as const;
+
 // Debug para ambiente CI
 if (process.env.CI) {
   console.log(`[CI DEBUG] process.cwd(): ${process.cwd()}`);
@@ -36,15 +44,29 @@ if (process.env.CI) {
 
 export async function getSectionContent(section: Section): Promise<SectionContent | null> {
   try {
-    // Tentar primeiro com o nome original (minúsculas)
-    let filePath = path.join(contentDirectory, `${section}.md`);
+    // Importar getSectionLevel para determinar a categoria
+    const { getSectionLevel } = await import('./sections');
+    const level = getSectionLevel(section);
+    const categoryFolder = categoryFolders[level];
+    
+    // Construir caminho baseado na categoria
+    let filePath = path.join(contentDirectory, categoryFolder, `${section}.md`);
     let fileName = `${section}.md`;
+    
+    // Se não existir, tentar no diretório raiz (fallback)
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(contentDirectory, `${section}.md`);
+    }
     
     // Se não existir e estivermos no CI, tentar com primeira letra maiúscula
     if (!fs.existsSync(filePath) && process.env.CI) {
       const capitalizedSection = section.charAt(0).toUpperCase() + section.slice(1);
-      filePath = path.join(contentDirectory, `${capitalizedSection}.md`);
+      filePath = path.join(contentDirectory, categoryFolder, `${capitalizedSection}.md`);
       fileName = `${capitalizedSection}.md`;
+      
+      if (!fs.existsSync(filePath)) {
+        filePath = path.join(contentDirectory, `${capitalizedSection}.md`);
+      }
     }
     
     // Log específico para páginas problemáticas
@@ -226,21 +248,52 @@ export async function getSectionContent(section: Section): Promise<SectionConten
 
 export async function getAllSections(): Promise<SectionFile[]> {
   try {
-    const files = fs.readdirSync(contentDirectory);
     const sections: SectionFile[] = [];
-
-    for (const file of files) {
-      if (file.endsWith('.md')) {
-        const sectionName = file.replace('.md', '') as Section;
-        const content = await getSectionContent(sectionName);
+    
+    // Buscar arquivos em todas as pastas de categoria
+    for (const [, folder] of Object.entries(categoryFolders)) {
+      const categoryPath = path.join(contentDirectory, folder);
+      
+      try {
+        const files = fs.readdirSync(categoryPath);
         
-        if (content) {
-          sections.push({
-            section: sectionName,
-            content
-          });
+        for (const file of files) {
+          if (file.endsWith('.md')) {
+            const sectionName = file.replace('.md', '') as Section;
+            const content = await getSectionContent(sectionName);
+            
+            if (content) {
+              sections.push({
+                section: sectionName,
+                content
+              });
+            }
+          }
+        }
+      } catch (error) {
+        console.warn(`Erro ao ler pasta ${folder}:`, error instanceof Error ? error.message : String(error));
+      }
+    }
+    
+    // Buscar também no diretório raiz (fallback)
+    try {
+      const files = fs.readdirSync(contentDirectory);
+      
+      for (const file of files) {
+        if (file.endsWith('.md')) {
+          const sectionName = file.replace('.md', '') as Section;
+          const content = await getSectionContent(sectionName);
+          
+          if (content) {
+            sections.push({
+              section: sectionName,
+              content
+            });
+          }
         }
       }
+    } catch (error) {
+      console.warn('Erro ao ler diretório raiz:', error instanceof Error ? error.message : String(error));
     }
 
     return sections;
@@ -252,10 +305,35 @@ export async function getAllSections(): Promise<SectionFile[]> {
 
 export function getSectionFileList(): string[] {
   try {
-    const files = fs.readdirSync(contentDirectory);
-    return files
-      .filter(file => file.endsWith('.md'))
-      .map(file => file.replace('.md', ''));
+    const files: string[] = [];
+    
+    // Buscar arquivos em todas as pastas de categoria
+    for (const [, folder] of Object.entries(categoryFolders)) {
+      const categoryPath = path.join(contentDirectory, folder);
+      
+      try {
+        const categoryFiles = fs.readdirSync(categoryPath);
+        const mdFiles = categoryFiles
+          .filter(file => file.endsWith('.md'))
+          .map(file => file.replace('.md', ''));
+        files.push(...mdFiles);
+      } catch (error) {
+        console.warn(`Erro ao listar pasta ${folder}:`, error instanceof Error ? error.message : String(error));
+      }
+    }
+    
+    // Buscar também no diretório raiz (fallback)
+    try {
+      const rootFiles = fs.readdirSync(contentDirectory);
+      const mdFiles = rootFiles
+        .filter(file => file.endsWith('.md'))
+        .map(file => file.replace('.md', ''));
+      files.push(...mdFiles);
+    } catch (error) {
+      console.warn('Erro ao listar diretório raiz:', error instanceof Error ? error.message : String(error));
+    }
+    
+    return [...new Set(files)]; // Remove duplicatas
   } catch (error) {
     console.error('Erro ao listar arquivos de seção:', error instanceof Error ? error.message : String(error));
     return [];

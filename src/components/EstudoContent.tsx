@@ -1,6 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { SectionContent } from "@/lib/markdown";
@@ -27,7 +26,6 @@ interface EstudoContentProps {
 }
 
 export default function EstudoContent({ section, content }: EstudoContentProps) {
-  const router = useRouter();
   const { getSectionDescription, t } = useLanguageContext();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

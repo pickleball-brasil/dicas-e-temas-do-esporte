@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
@@ -149,7 +150,7 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
 export default function Home() {
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
   const router = useRouter();
-  const { t, getSectionName } = useLanguageContext();
+  const { t } = useLanguageContext();
 
   // Carregar links visitados do localStorage
   useEffect(() => {
@@ -221,7 +222,18 @@ export default function Home() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
               1
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
+            <div className="flex items-center gap-4">
+              <h2 className="text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
+              <Link 
+                href="/categoria/basico"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-700 hover:text-green-800 transition-colors text-sm font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                Ver categoria
+              </Link>
+            </div>
           </div>
           {(() => {
             const visitedCount = BASIC_SECTIONS.filter(s => isVisited(s)).length;
@@ -262,7 +274,18 @@ export default function Home() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
               2
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
+            <div className="flex items-center gap-4">
+              <h2 className="text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
+              <Link 
+                href="/categoria/intermediario"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-100 hover:bg-orange-200 text-orange-700 hover:text-orange-800 transition-colors text-sm font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                Ver categoria
+              </Link>
+            </div>
           </div>
           {(() => {
             const visitedCount = INTERMEDIATE_SECTIONS.filter(s => isVisited(s)).length;
@@ -303,7 +326,18 @@ export default function Home() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
               3
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
+            <div className="flex items-center gap-4">
+              <h2 className="text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
+              <Link 
+                href="/categoria/avancado"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-800 transition-colors text-sm font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                Ver categoria
+              </Link>
+            </div>
           </div>
           {(() => {
             const visitedCount = ADVANCED_SECTIONS.filter(s => isVisited(s)).length;
@@ -344,7 +378,18 @@ export default function Home() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
               4
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
+            <div className="flex items-center gap-4">
+              <h2 className="text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
+              <Link 
+                href="/categoria/taticas"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-700 hover:text-purple-800 transition-colors text-sm font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                Ver categoria
+              </Link>
+            </div>
           </div>
           {(() => {
             const visitedCount = TACTICS_SECTIONS.filter(s => isVisited(s)).length;

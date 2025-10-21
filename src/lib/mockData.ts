@@ -1,5 +1,3 @@
-import { type Section } from "./sections";
-
 // Mock data - substitui Firebase temporariamente
 export const mockLinks: Record<string, string[]> = {
     "Regras": [
