@@ -88,7 +88,7 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       .use(rehypeStringify)
       .process(content);
     
-    const htmlContent = processedContent.toString();
+    let htmlContent = processedContent.toString();
     
     if (process.env.CI) {
       console.log(`[CI DEBUG] Remark processado para ${section}: ${htmlContent.length} chars`);

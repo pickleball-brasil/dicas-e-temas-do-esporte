@@ -11,8 +11,6 @@ Aprenda sobre exploração de ângulos no pickleball.
 
 ## Dicas e Técnicas
 
-
-
 ## Conteúdo Adicional
 
 *Esta seção está em desenvolvimento. Mais conteúdo será adicionado em breve.*

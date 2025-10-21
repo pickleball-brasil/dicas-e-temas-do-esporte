@@ -12,10 +12,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  trailingSlash: true,
-  generateBuildId: async () => {
-    return 'build-' + Date.now();
-  },
 };
 
 export default withPWA(nextConfig);
