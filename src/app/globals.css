@@ -108,7 +108,7 @@ body {
 }
 
 .markdown-content h1 {
-  @apply text-5xl font-bold mb-12 text-gray-900 leading-tight;
+  @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 md:mb-12 text-gray-900 leading-tight;
   background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -125,9 +125,8 @@ body {
 }
 
 .markdown-content h2 {
-  @apply text-4xl font-bold mt-16 mb-8 text-gray-900 leading-tight;
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold mt-8 sm:mt-12 md:mt-16 mb-4 sm:mb-6 md:mb-8 text-gray-900 leading-tight pl-4 sm:pl-6;
   position: relative;
-  padding-left: 1.5rem;
   letter-spacing: -0.02em;
 }
 
@@ -139,7 +138,7 @@ body {
 }
 
 .markdown-content h3 {
-  @apply text-3xl font-semibold mt-12 mb-6 text-gray-800 leading-tight;
+  @apply text-xl sm:text-2xl md:text-3xl font-semibold mt-6 sm:mt-8 md:mt-12 mb-3 sm:mb-4 md:mb-6 text-gray-800 leading-tight;
   position: relative;
   letter-spacing: -0.015em;
 }
@@ -151,19 +150,18 @@ body {
 }
 
 .markdown-content h4 {
-  @apply text-2xl font-semibold mt-10 mb-5 text-gray-800 leading-tight;
-  @apply border-l-4 border-blue-300 pl-6;
+  @apply text-lg sm:text-xl md:text-2xl font-semibold mt-5 sm:mt-7 md:mt-10 mb-3 sm:mb-4 md:mb-5 text-gray-800 leading-tight;
+  @apply border-l-4 border-blue-300 pl-4 sm:pl-6;
   letter-spacing: -0.01em;
 }
 
 .markdown-content p {
-  @apply mb-8 text-gray-700 leading-8;
-  font-size: 1.125rem;
+  @apply mb-4 sm:mb-6 md:mb-8 text-gray-700 leading-6 sm:leading-7 md:leading-8 text-base sm:text-lg;
   text-align: justify;
 }
 
 .markdown-content ul, .markdown-content ol {
-  @apply my-6 pl-6 space-y-3;
+  @apply my-3 sm:my-4 md:my-6 pl-4 sm:pl-5 md:pl-6 space-y-2 sm:space-y-2.5 md:space-y-3;
 }
 
 .markdown-content ul {
@@ -171,7 +169,7 @@ body {
 }
 
 .markdown-content ul li {
-  @apply relative pl-6 text-gray-700 leading-7;
+  @apply relative pl-4 sm:pl-5 md:pl-6 text-gray-700 leading-6 sm:leading-7;
 }
 
 .markdown-content ul li::before {
@@ -180,31 +178,32 @@ body {
 }
 
 .markdown-content ol {
-  @apply my-6 pl-6 space-y-3;
+  @apply my-3 sm:my-4 md:my-6 pl-4 sm:pl-5 md:pl-6 space-y-2 sm:space-y-2.5 md:space-y-3;
   list-style: none;
   counter-reset: custom-counter;
 }
 
 .markdown-content ol li {
-  @apply text-gray-700 leading-7 mb-2 relative pl-8;
+  @apply text-gray-700 leading-6 sm:leading-7 mb-1 sm:mb-1.5 md:mb-2 relative pl-5 sm:pl-6 md:pl-7;
   counter-increment: custom-counter;
 }
 
 .markdown-content ol li::before {
   content: counter(custom-counter) ".";
-  @apply absolute left-0 top-0 text-blue-600 font-bold text-lg;
-  width: 1.5rem;
+  @apply absolute left-0 text-blue-600 font-semibold text-lg sm:text-lg md:text-xl;
+  width: 1.25rem;
   text-align: right;
+  line-height: 1.5;
 }
 
 /* Corrigir listas mistas - bullets dentro de listas numeradas */
 .markdown-content ol ul {
-  @apply mt-2 ml-4;
+  @apply mt-1 sm:mt-1.5 md:mt-2 ml-2 sm:ml-3 md:ml-4;
   counter-reset: none;
 }
 
 .markdown-content ol ul li {
-  @apply relative pl-6 text-gray-700 leading-7 mb-1;
+  @apply relative pl-4 sm:pl-5 md:pl-6 text-gray-700 leading-6 sm:leading-7 mb-0.5 sm:mb-1;
   counter-increment: none;
 }
 
@@ -216,7 +215,7 @@ body {
 }
 
 .markdown-content ul ul, .markdown-content ol ol, .markdown-content ul ol, .markdown-content ol ul {
-  @apply mt-3 ml-4;
+  @apply mt-1.5 sm:mt-2 md:mt-3 ml-2 sm:ml-3 md:ml-4;
 }
 
 .markdown-content ul ul li::before {
@@ -240,7 +239,10 @@ body {
 
 .markdown-content ol ol li::before {
   content: counter(custom-counter) "." counter(custom-counter-nested) ".";
-  @apply text-blue-500;
+  @apply text-blue-500 text-base sm:text-lg md:text-lg font-semibold absolute left-0;
+  width: 1.25rem;
+  text-align: right;
+  line-height: 1.5;
 }
 
 .markdown-content ol ol ol {
@@ -253,7 +255,10 @@ body {
 
 .markdown-content ol ol ol li::before {
   content: counter(custom-counter) "." counter(custom-counter-nested) "." counter(custom-counter-nested-2) ".";
-  @apply text-blue-400;
+  @apply text-blue-400 text-base sm:text-lg md:text-lg font-semibold absolute left-0;
+  width: 1.25rem;
+  text-align: right;
+  line-height: 1.5;
 }
 
 .markdown-content strong {
@@ -289,7 +294,7 @@ body {
 }
 
 .markdown-content pre {
-  @apply bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto my-8;
+  @apply bg-gray-900 text-gray-100 p-3 sm:p-4 md:p-6 rounded-xl overflow-x-auto my-4 sm:my-6 md:my-8;
   border: 1px solid #374151;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
@@ -299,7 +304,7 @@ body {
 }
 
 .markdown-content blockquote {
-  @apply border-l-4 border-blue-500 pl-6 py-4 my-8 bg-blue-50 rounded-r-lg;
+  @apply border-l-4 border-blue-500 pl-4 sm:pl-5 md:pl-6 py-3 sm:py-3.5 md:py-4 my-4 sm:my-6 md:my-8 bg-blue-50 rounded-r-lg;
   position: relative;
 }
 
@@ -313,19 +318,19 @@ body {
 }
 
 .markdown-content hr {
-  @apply border-0 my-12;
+  @apply border-0 my-6 sm:my-8 md:my-12;
   height: 2px;
   background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
 }
 
 .markdown-content table {
-  @apply w-full border-collapse my-8 rounded-lg overflow-hidden shadow-lg;
+  @apply w-full border-collapse my-4 sm:my-6 md:my-8 rounded-lg overflow-hidden shadow-lg;
   border: 1px solid #e5e7eb;
   min-width: 100%;
 }
 
 .markdown-content th, .markdown-content td {
-  @apply px-6 py-4 text-left border-b border-gray-200;
+  @apply px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left border-b border-gray-200 text-sm sm:text-base;
 }
 
 .markdown-content th {
@@ -347,10 +352,10 @@ body {
   max-width: 100% !important;
   height: 0;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  margin: 2rem 0;
-  border-radius: 1rem;
+  margin: 1rem 0 1.5rem 0;
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
   transition: all 0.3s ease;
 }
@@ -376,10 +381,10 @@ body {
   max-width: 100% !important;
   height: 0;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  margin: 2rem 0;
-  border-radius: 1rem;
+  margin: 1rem 0 1.5rem 0;
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
   transition: all 0.3s ease;
 }
@@ -405,10 +410,10 @@ body {
   max-width: 100% !important;
   height: 0;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  margin: 2rem 0;
-  border-radius: 1rem;
+  margin: 1rem 0 1.5rem 0;
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
   transition: all 0.3s ease;
 }
@@ -429,13 +434,13 @@ body {
 
 /* Estilos modernos para links externos */
 .markdown-content .external-link {
-  @apply inline-flex items-center gap-3 text-blue-600 font-medium no-underline;
-  padding: 1rem 1.5rem;
+  @apply inline-flex items-center gap-2 sm:gap-3 text-blue-600 font-medium no-underline;
+  padding: 0.75rem 1rem;
   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   border: 1px solid #bfdbfe;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   transition: all 0.3s ease;
-  margin: 0.75rem 0;
+  margin: 0.5rem 0;
   position: relative;
   overflow: hidden;
   width: 100%;

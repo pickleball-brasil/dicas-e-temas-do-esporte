@@ -50,15 +50,15 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
         <div className="min-h-screen overflow-y-auto bg-gradient-to-br from-gray-100/40 to-gray-50/60">
           {/* Header da página */}
           <div className="sticky top-0 z-30 bg-white/90 backdrop-blur-xl border-b border-gray-200/50 shadow-sm">
-            <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
                   {/* Menu Button */}
                   <button
                     onClick={() => setSidebarOpen(true)}
-                    className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="lg:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 transition-colors"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                   </button>
@@ -66,12 +66,12 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                   {/* Back Button */}
                   <button
                     onClick={() => router.push("/")}
-                    className="inline-flex cursor-pointer items-center gap-2 text-black/90 hover:text-green-600 transition-colors"
+                    className="inline-flex cursor-pointer items-center gap-1.5 sm:gap-2 text-black/90 hover:text-green-600 transition-colors text-sm sm:text-base"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    {t('common.back')}
+                    <span className="hidden xs:inline">{t('common.back')}</span>
                   </button>
                 </div>
                 
@@ -81,28 +81,28 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                  <span className="font-medium text-gray-900">{sectionName}</span>
+                  <span className="font-medium text-gray-900 truncate max-w-32 sm:max-w-48 md:max-w-none">{sectionName}</span>
                 </div>
               </div>
             </div>
           </div>
           
           {/* Hero Section */}
-          <div className={`relative bg-gradient-to-br ${gradientColor} text-white py-20 px-6`}>
+          <div className={`relative bg-gradient-to-br ${gradientColor} text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6`}>
             <div className="max-w-7xl mx-auto">
-              <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold mb-4 border ${badgeColor.replace('bg-', 'bg-white/90 ')}`}>
+              <div className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-semibold mb-3 sm:mb-4 border ${badgeColor.replace('bg-', 'bg-white/90 ')}`}>
                 {level}
               </div>
               
-              <h1 className="text-5xl font-bold mb-4 drop-shadow-sm">{sectionName}</h1>
-              <p className="text-white/90 text-lg leading-relaxed max-w-2xl">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 drop-shadow-sm leading-tight">{sectionName}</h1>
+              <p className="text-white/90 text-base sm:text-lg leading-relaxed max-w-2xl">
                 {description}
               </p>
             </div>
           </div>
 
           {/* Conteúdo principal */}
-          <div className="w-full px-6 py-16">
+          <div className="w-full px-4 sm:px-6 py-8 sm:py-12 md:py-16">
             <div className="max-w-7xl mx-auto">
               {/* Conteúdo Markdown */}
               {content ? (
