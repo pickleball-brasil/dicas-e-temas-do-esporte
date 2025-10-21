@@ -38,6 +38,15 @@ export async function getSectionContent(section: Section): Promise<SectionConten
   try {
     const filePath = path.join(contentDirectory, `${section}.md`);
     
+    // Log específico para páginas problemáticas
+    if (section === 'saque' || section === 'regras') {
+      console.log(`[DEBUG] === PROCESSANDO ${section.toUpperCase()} ===`);
+      console.log(`[DEBUG] Caminho: ${filePath}`);
+      console.log(`[DEBUG] Existe: ${fs.existsSync(filePath)}`);
+      console.log(`[DEBUG] process.cwd(): ${process.cwd()}`);
+      console.log(`[DEBUG] contentDirectory: ${contentDirectory}`);
+    }
+    
     if (process.env.CI) {
       console.log(`[CI DEBUG] Tentando carregar: ${section}`);
       console.log(`[CI DEBUG] Caminho: ${filePath}`);
@@ -65,6 +74,13 @@ export async function getSectionContent(section: Section): Promise<SectionConten
     
     const { data, content } = matter(normalizedContent);
     
+    // Log específico para páginas problemáticas
+    if (section === 'saque' || section === 'regras') {
+      console.log(`[DEBUG] Frontmatter para ${section}:`, data);
+      console.log(`[DEBUG] Content length para ${section}: ${content.length}`);
+      console.log(`[DEBUG] Content preview para ${section}: ${content.substring(0, 100)}...`);
+    }
+    
     if (process.env.CI) {
       console.log(`[CI DEBUG] Arquivo lido: ${fileContents.length} chars`);
       console.log(`[CI DEBUG] Frontmatter: ${JSON.stringify(data, null, 2)}`);
@@ -82,13 +98,32 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       console.log(`[CI DEBUG] Content preview: ${content.substring(0, 100)}...`);
     }
     
-    const processedContent = await remark()
-      .use(remarkRehype, { allowDangerousHtml: true })
-      .use(rehypeRaw)
-      .use(rehypeStringify)
-      .process(content);
-    
-    let htmlContent = processedContent.toString();
+    let htmlContent = '';
+    try {
+      // Processar markdown para HTML usando remark
+      const processor = remark()
+        .use(remarkRehype, { allowDangerousHtml: true })
+        .use(rehypeRaw)
+        .use(rehypeStringify);
+      
+      const processedContent = await processor.process(content);
+      htmlContent = String(processedContent);
+      
+      // Log específico para páginas problemáticas
+      if (section === 'saque' || section === 'regras') {
+        console.log(`[DEBUG] Remark processado para ${section}: ${htmlContent.length} chars`);
+        console.log(`[DEBUG] HTML preview para ${section}: ${htmlContent.substring(0, 100)}...`);
+      }
+    } catch (remarkError) {
+      console.error(`[ERROR] Erro no processamento remark para ${section}:`, remarkError);
+      if (section === 'saque' || section === 'regras') {
+        console.log(`[DEBUG] Usando fallback para ${section}`);
+        console.log(`[DEBUG] Erro específico para ${section}:`, remarkError instanceof Error ? remarkError.message : String(remarkError));
+      }
+      // Fallback: usar o conteúdo markdown original com quebras de linha
+      htmlContent = content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+      htmlContent = `<p>${htmlContent}</p>`;
+    }
     
     if (process.env.CI) {
       console.log(`[CI DEBUG] Remark processado para ${section}: ${htmlContent.length} chars`);
@@ -107,8 +142,17 @@ export async function getSectionContent(section: Section): Promise<SectionConten
           tips = [data.tips.trim()];
         }
       }
+      
+      // Log específico para páginas problemáticas
+      if (section === 'saque' || section === 'regras') {
+        console.log(`[DEBUG] Tips processados para ${section}: ${tips.length} items`);
+        console.log(`[DEBUG] Tips preview para ${section}:`, tips.slice(0, 3));
+      }
     } catch (error) {
       console.error(`[CI DEBUG] Erro ao processar tips para ${section}:`, error);
+      if (section === 'saque' || section === 'regras') {
+        console.log(`[DEBUG] Erro ao processar tips para ${section}:`, error.message);
+      }
       tips = [];
     }
     
@@ -142,6 +186,17 @@ export async function getSectionContent(section: Section): Promise<SectionConten
         tags: data.tags || []
       }
     };
+    
+    // Log específico para páginas problemáticas
+    if (section === 'saque' || section === 'regras') {
+      console.log(`[DEBUG] === RESULTADO PARA ${section.toUpperCase()} ===`);
+      console.log(`[DEBUG] HTML length: ${htmlContent.length}`);
+      console.log(`[DEBUG] Tips count: ${tips.length}`);
+      console.log(`[DEBUG] Result valid: ${!!result.content && result.content.length > 0}`);
+      console.log(`[DEBUG] Title: ${result.title}`);
+      console.log(`[DEBUG] Description: ${result.description}`);
+      console.log(`[DEBUG] Level: ${result.level}`);
+    }
     
     if (process.env.CI) {
       console.log(`[CI DEBUG] Seção ${section} processada com sucesso`);
