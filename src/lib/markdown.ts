@@ -52,7 +52,7 @@ export async function getSectionContent(section: Section): Promise<SectionConten
           const files = fs.readdirSync(contentDirectory);
           console.log(`[CI DEBUG] Arquivos disponíveis: ${files.join(', ')}`);
         } catch (e) {
-          console.log(`[CI DEBUG] Erro ao listar diretório: ${e.message}`);
+          console.log(`[CI DEBUG] Erro ao listar diretório: ${e instanceof Error ? e.message : String(e)}`);
         }
       }
       return null;
@@ -113,7 +113,7 @@ export async function getSectionContent(section: Section): Promise<SectionConten
   } catch (error) {
     console.error(`Erro ao ler conteúdo da seção ${section}:`, error);
     if (process.env.CI) {
-      console.log(`[CI DEBUG] Stack trace:`, error.stack);
+      console.log(`[CI DEBUG] Stack trace:`, error instanceof Error ? error.stack : String(error));
     }
     return null;
   }
