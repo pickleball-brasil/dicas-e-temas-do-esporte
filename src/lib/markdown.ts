@@ -151,7 +151,7 @@ export async function getSectionContent(section: Section): Promise<SectionConten
     } catch (error) {
       console.error(`[CI DEBUG] Erro ao processar tips para ${section}:`, error);
       if (section === 'saque' || section === 'regras') {
-        console.log(`[DEBUG] Erro ao processar tips para ${section}:`, error.message);
+        console.log(`[DEBUG] Erro ao processar tips para ${section}:`, error instanceof Error ? error.message : String(error));
       }
       tips = [];
     }
@@ -236,7 +236,7 @@ export async function getAllSections(): Promise<SectionFile[]> {
 
     return sections;
   } catch (error) {
-    console.error('Erro ao ler todas as seções:', error);
+    console.error('Erro ao ler todas as seções:', error instanceof Error ? error.message : String(error));
     return [];
   }
 }
@@ -248,7 +248,7 @@ export function getSectionFileList(): string[] {
       .filter(file => file.endsWith('.md'))
       .map(file => file.replace('.md', ''));
   } catch (error) {
-    console.error('Erro ao listar arquivos de seção:', error);
+    console.error('Erro ao listar arquivos de seção:', error instanceof Error ? error.message : String(error));
     return [];
   }
 }
@@ -287,6 +287,6 @@ ${content.content}
 
     fs.writeFileSync(filePath, frontmatter, 'utf8');
   } catch (error) {
-    console.error(`Erro ao criar arquivo da seção ${section}:`, error);
+    console.error(`Erro ao criar arquivo da seção ${section}:`, error instanceof Error ? error.message : String(error));
   }
 }
