@@ -108,7 +108,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
           <div className="w-full px-6 py-16">
             <div className="max-w-7xl mx-auto">
               {/* Conteúdo Markdown */}
-              {content?.content ? (
+              {content ? (
                 <div 
                   className="markdown-content w-full"
                   dangerouslySetInnerHTML={{ __html: content.content }}
