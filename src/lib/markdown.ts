@@ -36,7 +36,16 @@ if (process.env.CI) {
 
 export async function getSectionContent(section: Section): Promise<SectionContent | null> {
   try {
-    const filePath = path.join(contentDirectory, `${section}.md`);
+    // Tentar primeiro com o nome original (minúsculas)
+    let filePath = path.join(contentDirectory, `${section}.md`);
+    let fileName = `${section}.md`;
+    
+    // Se não existir e estivermos no CI, tentar com primeira letra maiúscula
+    if (!fs.existsSync(filePath) && process.env.CI) {
+      const capitalizedSection = section.charAt(0).toUpperCase() + section.slice(1);
+      filePath = path.join(contentDirectory, `${capitalizedSection}.md`);
+      fileName = `${capitalizedSection}.md`;
+    }
     
     // Log específico para páginas problemáticas
     if (section === 'saque' || section === 'regras') {
@@ -48,7 +57,7 @@ export async function getSectionContent(section: Section): Promise<SectionConten
     }
     
     if (process.env.CI) {
-      console.log(`[CI DEBUG] Tentando carregar: ${section}`);
+      console.log(`[CI DEBUG] Tentando carregar: ${section} (${fileName})`);
       console.log(`[CI DEBUG] Caminho: ${filePath}`);
       console.log(`[CI DEBUG] Existe: ${fs.existsSync(filePath)}`);
     }
