@@ -59,14 +59,29 @@ export async function getSectionContent(section: Section): Promise<SectionConten
     }
 
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContents);
+    
+    // Normalizar quebras de linha para compatibilidade entre sistemas
+    const normalizedContent = fileContents.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    
+    const { data, content } = matter(normalizedContent);
     
     if (process.env.CI) {
       console.log(`[CI DEBUG] Arquivo lido: ${fileContents.length} chars`);
       console.log(`[CI DEBUG] Frontmatter: ${JSON.stringify(data, null, 2)}`);
+      console.log(`[CI DEBUG] Tips type: ${typeof data.tips}`);
+      console.log(`[CI DEBUG] Tips is array: ${Array.isArray(data.tips)}`);
+      if (Array.isArray(data.tips)) {
+        console.log(`[CI DEBUG] Tips length: ${data.tips.length}`);
+        console.log(`[CI DEBUG] Tips valid: ${data.tips.filter(tip => tip && tip.trim()).length}`);
+      }
     }
 
     // Processar o conteúdo Markdown para HTML
+    if (process.env.CI) {
+      console.log(`[CI DEBUG] Iniciando processamento remark para ${section}`);
+      console.log(`[CI DEBUG] Content preview: ${content.substring(0, 100)}...`);
+    }
+    
     const processedContent = await remark()
       .use(remarkRehype, { allowDangerousHtml: true })
       .use(rehypeRaw)
@@ -74,20 +89,45 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       .process(content);
     
     const htmlContent = processedContent.toString();
+    
+    if (process.env.CI) {
+      console.log(`[CI DEBUG] Remark processado para ${section}: ${htmlContent.length} chars`);
+      console.log(`[CI DEBUG] HTML preview: ${htmlContent.substring(0, 100)}...`);
+    }
 
-    // Processar tips do frontmatter
+    // Processar tips do frontmatter com validação robusta
     let tips = [];
-    if (data.tips) {
-      if (Array.isArray(data.tips)) {
-        tips = data.tips.filter(tip => tip && tip.trim().length > 0);
-      } else if (typeof data.tips === 'string' && data.tips.trim()) {
-        tips = [data.tips.trim()];
+    try {
+      if (data.tips) {
+        if (Array.isArray(data.tips)) {
+          tips = data.tips
+            .filter(tip => tip && typeof tip === 'string' && tip.trim().length > 0)
+            .map(tip => tip.trim());
+        } else if (typeof data.tips === 'string' && data.tips.trim()) {
+          tips = [data.tips.trim()];
+        }
       }
+    } catch (error) {
+      console.error(`[CI DEBUG] Erro ao processar tips para ${section}:`, error);
+      tips = [];
     }
     
     // Se não há tips no frontmatter, extrair do conteúdo
     if (tips.length === 0) {
-      tips = extractTipsFromContent(htmlContent);
+      try {
+        tips = extractTipsFromContent(htmlContent);
+      } catch (error) {
+        console.error(`[CI DEBUG] Erro ao extrair tips do conteúdo para ${section}:`, error);
+        tips = [];
+      }
+    }
+
+    // Verificar se o HTML foi processado corretamente
+    if (!htmlContent || htmlContent.trim().length === 0) {
+      console.error(`[CI DEBUG] HTML vazio para ${section}, usando conteúdo markdown como fallback`);
+      // Fallback: usar o conteúdo markdown original se o HTML estiver vazio
+      const fallbackHtml = content.replace(/\n/g, '<br>');
+      htmlContent = fallbackHtml;
     }
 
     const result = {
@@ -107,6 +147,7 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       console.log(`[CI DEBUG] Seção ${section} processada com sucesso`);
       console.log(`[CI DEBUG] HTML length: ${htmlContent.length}`);
       console.log(`[CI DEBUG] Tips count: ${tips.length}`);
+      console.log(`[CI DEBUG] Result valid: ${!!result.content && result.content.length > 0}`);
     }
     
     return result;

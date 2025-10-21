@@ -31,10 +31,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
   const { getSectionDescription, t } = useLanguageContext();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Abrir sidebar automaticamente ao carregar a página
-  useEffect(() => {
-    setSidebarOpen(true);
-  }, [section]);
+  console.log('content', content);
   
   // Usar conteúdo do Markdown se disponível, senão usar o nome de exibição
   const sectionName = content?.title || getDisplayName(section);
