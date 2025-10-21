@@ -88,33 +88,56 @@ const sectionColors: Record<string, string> = {
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
   <button
     onClick={onClick}
-    className="card block p-4 group hover:scale-[1.02] active:scale-100 transition-transform duration-300 w-full text-left"
+    className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left ${
+      isVisited 
+        ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100' 
+        : 'hover:shadow-md'
+    }`}
   >
     <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative`}>
+            <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative ${
+              isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
+            }`}>
               {section.charAt(0)}
               {isVisited && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full flex items-center justify-center">
-                  <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
+                  <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
               )}
             </div>
                    <div className="flex flex-col">
-                     <span className={`font-semibold text-sm ${isVisited ? 'text-gray-700' : 'text-gray-900'}`}>{getDisplayName(section)}</span>
-                     <span className="text-xs text-gray-500">
-                       {isVisited ? 'Visitado' : 'Clique para estudar'}
+                     <span className={`font-semibold text-sm ${
+                       isVisited 
+                         ? 'text-green-800' 
+                         : 'text-gray-900'
+                     }`}>{getDisplayName(section)}</span>
+                     <span className={`text-xs ${
+                       isVisited 
+                         ? 'text-green-600' 
+                         : 'text-gray-500'
+                     }`}>
+                       {isVisited ? '✓ Concluído' : 'Clique para estudar'}
                      </span>
                    </div>
           </div>
           <div className="flex items-center gap-2">
             {isVisited && (
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <div className="flex items-center gap-1.5 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                Concluído
+              </div>
             )}
-            <svg className="w-4 h-4 text-gray-400 group-hover:text-sky-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-4 h-4 transition-all duration-300 flex-shrink-0 ${
+              isVisited 
+                ? 'text-green-500 group-hover:text-green-600' 
+                : 'text-gray-400 group-hover:text-sky-600'
+            } group-hover:translate-x-1`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </div>
@@ -199,7 +222,6 @@ export default function Home() {
               1
             </div>
             <h2 className="text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
-            <span className="badge badge-primary text-xs">{t('sections.beginner')}</span>
           </div>
           {(() => {
             const visitedCount = BASIC_SECTIONS.filter(s => isVisited(s)).length;
@@ -241,7 +263,6 @@ export default function Home() {
               2
             </div>
             <h2 className="text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
-            <span className="badge badge-secondary text-xs">{t('sections.progress')}</span>
           </div>
           {(() => {
             const visitedCount = INTERMEDIATE_SECTIONS.filter(s => isVisited(s)).length;
@@ -283,7 +304,6 @@ export default function Home() {
               3
             </div>
             <h2 className="text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
-            <span className="badge bg-red-100 text-red-700 text-xs">{t('sections.expert')}</span>
           </div>
           {(() => {
             const visitedCount = ADVANCED_SECTIONS.filter(s => isVisited(s)).length;
@@ -325,7 +345,6 @@ export default function Home() {
               4
             </div>
             <h2 className="text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
-            <span className="badge bg-purple-100 text-purple-700 text-xs">{t('sections.strategy')}</span>
           </div>
           {(() => {
             const visitedCount = TACTICS_SECTIONS.filter(s => isVisited(s)).length;
