@@ -1,30 +1,45 @@
 "use client";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 // import LanguageSelector from "./LanguageSelector";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const { t } = useLanguageContext();
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  // Verificar se estamos na página de estudo
+  const isStudyPage = pathname?.includes('/estudo/');
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-gray-200/50 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-gray-200/60 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo e branding */}
-          <Link href="/" className="group flex items-center gap-3 hover:opacity-90 transition-opacity duration-200">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-sky-500 to-purple-600 rounded-2xl blur-sm opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-purple-600 text-white shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:rotate-3">
-                <span className="text-2xl">🏓</span>
+          <div className="flex items-center gap-4">
+            {/* Botão de voltar - apenas na página de estudo */}
+            {isStudyPage && (
+              <button
+                onClick={() => router.push("/")}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-sky-50 to-purple-50 hover:from-sky-100 hover:to-purple-100 text-sky-700 hover:text-sky-800 transition-all duration-200 text-sm font-medium border border-sky-200 hover:border-sky-300"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>{t('common.back')}</span>
+              </button>
+            )}
+            
+            <Link href="/" className="group flex items-center hover:opacity-90 transition-all duration-300">
+              <div className="flex flex-col">
+                <span className="font-bold text-2xl text-gray-900 tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
+                  {t('header.title')}
+                </span>
+                <span className="text-sm text-gray-600 font-medium hidden sm:block">{t('header.subtitle')}</span>
               </div>
-            </div>
-            <div className="hidden sm:flex flex-col">
-              <span className="font-bold text-xl text-gray-900 tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
-                {t('header.title')}
-              </span>
-              <span className="text-xs text-gray-600 font-medium">{t('header.subtitle')}</span>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Controles */}
           <div className="flex items-center gap-3">

@@ -62,17 +62,6 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                   </button>
-                  
-                  {/* Back Button */}
-                  <button
-                    onClick={() => router.push("/")}
-                    className="inline-flex cursor-pointer items-center gap-1.5 sm:gap-2 text-black/90 hover:text-green-600 transition-colors text-sm sm:text-base"
-                  >
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    <span className="hidden xs:inline">{t('common.back')}</span>
-                  </button>
                 </div>
                 
                 {/* Breadcrumb */}
