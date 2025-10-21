@@ -27,16 +27,44 @@ export interface SectionFile {
 
 const contentDirectory = path.join(process.cwd(), 'content', 'sections');
 
+// Debug para ambiente CI
+if (process.env.CI) {
+  console.log(`[CI DEBUG] process.cwd(): ${process.cwd()}`);
+  console.log(`[CI DEBUG] contentDirectory: ${contentDirectory}`);
+  console.log(`[CI DEBUG] NODE_ENV: ${process.env.NODE_ENV}`);
+}
+
 export async function getSectionContent(section: Section): Promise<SectionContent | null> {
   try {
     const filePath = path.join(contentDirectory, `${section}.md`);
     
+    if (process.env.CI) {
+      console.log(`[CI DEBUG] Tentando carregar: ${section}`);
+      console.log(`[CI DEBUG] Caminho: ${filePath}`);
+      console.log(`[CI DEBUG] Existe: ${fs.existsSync(filePath)}`);
+    }
+    
     if (!fs.existsSync(filePath)) {
+      console.error(`Arquivo não encontrado: ${filePath}`);
+      if (process.env.CI) {
+        // Listar arquivos disponíveis no CI para debug
+        try {
+          const files = fs.readdirSync(contentDirectory);
+          console.log(`[CI DEBUG] Arquivos disponíveis: ${files.join(', ')}`);
+        } catch (e) {
+          console.log(`[CI DEBUG] Erro ao listar diretório: ${e.message}`);
+        }
+      }
       return null;
     }
 
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
+    
+    if (process.env.CI) {
+      console.log(`[CI DEBUG] Arquivo lido: ${fileContents.length} chars`);
+      console.log(`[CI DEBUG] Frontmatter: ${JSON.stringify(data, null, 2)}`);
+    }
 
     // Processar o conteúdo Markdown para HTML
     const processedContent = await remark()
@@ -47,10 +75,22 @@ export async function getSectionContent(section: Section): Promise<SectionConten
     
     const htmlContent = processedContent.toString();
 
-    // Extrair dicas do conteúdo (se não estiverem no frontmatter)
-    const tips = data.tips || extractTipsFromContent(htmlContent);
+    // Processar tips do frontmatter
+    let tips = [];
+    if (data.tips) {
+      if (Array.isArray(data.tips)) {
+        tips = data.tips.filter(tip => tip && tip.trim().length > 0);
+      } else if (typeof data.tips === 'string' && data.tips.trim()) {
+        tips = [data.tips.trim()];
+      }
+    }
+    
+    // Se não há tips no frontmatter, extrair do conteúdo
+    if (tips.length === 0) {
+      tips = extractTipsFromContent(htmlContent);
+    }
 
-    return {
+    const result = {
       title: data.title || section,
       description: data.description || '',
       level: data.level || 'Básico',
@@ -62,8 +102,19 @@ export async function getSectionContent(section: Section): Promise<SectionConten
         tags: data.tags || []
       }
     };
+    
+    if (process.env.CI) {
+      console.log(`[CI DEBUG] Seção ${section} processada com sucesso`);
+      console.log(`[CI DEBUG] HTML length: ${htmlContent.length}`);
+      console.log(`[CI DEBUG] Tips count: ${tips.length}`);
+    }
+    
+    return result;
   } catch (error) {
     console.error(`Erro ao ler conteúdo da seção ${section}:`, error);
+    if (process.env.CI) {
+      console.log(`[CI DEBUG] Stack trace:`, error.stack);
+    }
     return null;
   }
 }

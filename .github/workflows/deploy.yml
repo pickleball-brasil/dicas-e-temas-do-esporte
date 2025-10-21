@@ -34,6 +34,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Debug content files
+        run: |
+          echo "=== Verificando arquivos de conteúdo ==="
+          ls -la content/sections/ | head -10
+          echo "=== Verificando regras.md ==="
+          if [ -f "content/sections/regras.md" ]; then
+            echo "regras.md existe"
+            head -5 content/sections/regras.md
+          else
+            echo "regras.md NÃO existe"
+          fi
+          echo "=== Verificando saque.md ==="
+          if [ -f "content/sections/saque.md" ]; then
+            echo "saque.md existe"
+            head -5 content/sections/saque.md
+          else
+            echo "saque.md NÃO existe"
+          fi
+
       - name: Build with Next.js
         run: npm run build
 
