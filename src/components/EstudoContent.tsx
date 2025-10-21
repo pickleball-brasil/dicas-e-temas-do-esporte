@@ -53,12 +53,12 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 sm:gap-4">
-                  {/* Menu Button */}
+                  {/* Menu Button - Mobile */}
                   <button
                     onClick={() => setSidebarOpen(true)}
-                    className="lg:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700"
                   >
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                   </button>
@@ -112,6 +112,16 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
               )}
             </div>
           </div>
+
+          {/* Botão flutuante para menu mobile */}
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="lg:hidden fixed bottom-6 right-6 z-40 p-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
