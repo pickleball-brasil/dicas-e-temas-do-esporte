@@ -24,6 +24,19 @@ const sectionColors: Record<string, string> = {
   "tecnica-de-base": "bg-gradient-to-br from-emerald-500 to-emerald-600",
   "concentracao": "bg-gradient-to-br from-green-400 to-emerald-500",
   "respiracao": "bg-gradient-to-br from-green-500 to-emerald-600",
+  "pontuacao-detalhada": "bg-gradient-to-br from-emerald-400 to-green-500",
+  "etiqueta-em-quadra": "bg-gradient-to-br from-green-500 to-emerald-600",
+  "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-emerald-500 to-green-600",
+  "selecao-de-golpes": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "lidar-com-bangers": "bg-gradient-to-br from-orange-500 to-amber-600",
+  "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
+  "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
+  "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-500",
+  "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
+  "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
+  "transicao-defesa-ataque": "bg-gradient-to-br from-purple-400 to-indigo-500",
+  "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-indigo-500 to-purple-600",
   
   // Intermediário - LARANJA
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
@@ -223,10 +236,18 @@ export default function Home() {
               1
             </div>
             <div className="flex items-center gap-4">
-              <h2 className="text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
+              {/* Mobile: título como link */}
               <Link 
                 href="/categoria/basico"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-700 hover:text-green-800 transition-colors text-sm font-medium"
+                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-green-600 transition-colors"
+              >
+                {t('sections.basic')}
+              </Link>
+              {/* Desktop: título normal + botão */}
+              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
+              <Link 
+                href="/categoria/basico"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-700 hover:text-green-800 transition-colors text-sm font-medium"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -275,10 +296,18 @@ export default function Home() {
               2
             </div>
             <div className="flex items-center gap-4">
-              <h2 className="text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
+              {/* Mobile: título como link */}
               <Link 
                 href="/categoria/intermediario"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-100 hover:bg-orange-200 text-orange-700 hover:text-orange-800 transition-colors text-sm font-medium"
+                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors"
+              >
+                {t('sections.intermediate')}
+              </Link>
+              {/* Desktop: título normal + botão */}
+              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
+              <Link 
+                href="/categoria/intermediario"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-100 hover:bg-orange-200 text-orange-700 hover:text-orange-800 transition-colors text-sm font-medium"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -327,10 +356,18 @@ export default function Home() {
               3
             </div>
             <div className="flex items-center gap-4">
-              <h2 className="text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
+              {/* Mobile: título como link */}
               <Link 
                 href="/categoria/avancado"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-800 transition-colors text-sm font-medium"
+                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-red-600 transition-colors"
+              >
+                {t('sections.advanced')}
+              </Link>
+              {/* Desktop: título normal + botão */}
+              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
+              <Link 
+                href="/categoria/avancado"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-800 transition-colors text-sm font-medium"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -379,10 +416,18 @@ export default function Home() {
               4
             </div>
             <div className="flex items-center gap-4">
-              <h2 className="text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
+              {/* Mobile: título como link */}
               <Link 
                 href="/categoria/taticas"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-700 hover:text-purple-800 transition-colors text-sm font-medium"
+                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-purple-600 transition-colors"
+              >
+                {t('sections.tactics')}
+              </Link>
+              {/* Desktop: título normal + botão */}
+              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
+              <Link 
+                href="/categoria/taticas"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-700 hover:text-purple-800 transition-colors text-sm font-medium"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

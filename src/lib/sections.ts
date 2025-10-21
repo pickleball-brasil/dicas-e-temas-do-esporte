@@ -16,6 +16,9 @@ export const BASIC_SECTIONS = [
   "tecnica-de-base",
   "concentracao",
   "respiracao",
+  "pontuacao-detalhada",
+  "etiqueta-em-quadra",
+  "seguranca-e-prevencao-lesoes",
 ] as const;
 
 // Intermediário
@@ -38,6 +41,11 @@ export const INTERMEDIATE_SECTIONS = [
   "leitura-de-jogo",
   "adaptacao",
   "consistencia",
+  "selecao-de-golpes",
+  "lidar-com-bangers",
+  "variacoes-de-saque-intermediario",
+  "tipos-de-voleios-pickleball",
+  "tipos-de-dink-pickleball",
 ] as const;
 
 // Avançado
@@ -60,6 +68,9 @@ export const ADVANCED_SECTIONS = [
   "pressao-mental",
   "execucao-sob-pressao",
   "lideranca-em-quadra",
+  "tecnicas-de-decepcao-engano",
+  "recuperacao-e-cobertura-quadra-avancada",
+  "quimica-e-sinergia-duplas-avancadas",
 ] as const;
 
 // Táticas
@@ -82,6 +93,8 @@ export const TACTICS_SECTIONS = [
   "exploracao-de-angulos",
   "jogos-mentais",
   "adaptacao-tatica",
+  "transicao-defesa-ataque",
+  "gerenciamento-momentum-timeouts",
 ] as const;
 
 // Todas as seções
@@ -114,6 +127,9 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "tecnica-de-base": "Básico",
   "concentracao": "Básico",
   "respiracao": "Básico",
+  "pontuacao-detalhada": "Básico",
+  "etiqueta-em-quadra": "Básico",
+  "seguranca-e-prevencao-lesoes": "Básico",
   "drop-shot": "Intermediário",
   "terceira-bola": "Intermediário",
   "lob": "Intermediário",
@@ -132,6 +148,11 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "leitura-de-jogo": "Intermediário",
   "adaptacao": "Intermediário",
   "consistencia": "Intermediário",
+  "selecao-de-golpes": "Intermediário",
+  "lidar-com-bangers": "Intermediário",
+  "variacoes-de-saque-intermediario": "Intermediário",
+  "tipos-de-voleios-pickleball": "Intermediário",
+  "tipos-de-dink-pickleball": "Intermediário",
   "smash": "Avançado",
   "acelerar-as-bolas": "Avançado",
   "reset": "Avançado",
@@ -150,6 +171,9 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "pressao-mental": "Avançado",
   "execucao-sob-pressao": "Avançado",
   "lideranca-em-quadra": "Avançado",
+  "tecnicas-de-decepcao-engano": "Avançado",
+  "recuperacao-e-cobertura-quadra-avancada": "Avançado",
+  "quimica-e-sinergia-duplas-avancadas": "Avançado",
   "controle-de-ritmo": "Táticas",
   "jogo-no-meio": "Táticas",
   "explorar-fraquezas": "Táticas",
@@ -168,6 +192,8 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "exploracao-de-angulos": "Táticas",
   "jogos-mentais": "Táticas",
   "adaptacao-tatica": "Táticas",
+  "transicao-defesa-ataque": "Táticas",
+  "gerenciamento-momentum-timeouts": "Táticas",
 };
 
 export function getSectionLevel(section: Section): SectionLevel {
