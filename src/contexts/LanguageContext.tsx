@@ -1634,6 +1634,8 @@ const translations = {
       "Pressão Mental": "Mental Pressure",
       "Execução Sob Pressão": "Execution Under Pressure",
       "Liderança em Quadra": "Court Leadership",
+      "Seleção de Golpes": "Shot Selection",
+      "Mecânicas Fundamentais": "Fundamental Mechanics",
       "Controle de Ritmo": "Pace Control",
       "Jogo no Meio": "Middle Play",
       "Explorar Fraquezas": "Exploit Weaknesses",

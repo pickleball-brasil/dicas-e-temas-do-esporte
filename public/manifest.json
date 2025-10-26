@@ -1,15 +1,26 @@
 {
-  "name": "Ziliotti Favorites",
-  "short_name": "ZiliottiFavs",
-  "start_url": "/",
+  "name": "PickleBook - Domine o Pickleball",
+  "short_name": "PickleBook",
+  "description": "Domine o Pickleball com conhecimento",
+  "start_url": "/dicas-e-temas-do-esporte/",
+  "scope": "/dicas-e-temas-do-esporte/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "categories": ["sports", "education"],
+  "lang": "pt-BR",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "/dicas-e-temas-do-esporte/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/dicas-e-temas-do-esporte/next.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }

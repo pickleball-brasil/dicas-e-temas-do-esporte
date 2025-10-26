@@ -128,6 +128,8 @@ export const sectionDescriptions: Record<string, string> = {
   
   "Liderança em Quadra": "Seja líder positivo em duplas através de comunicação eficaz, motivação do parceiro, tomada de decisões, energia positiva, e exemplo de comportamento. Liderança em quadra eleva o nível de toda a dupla.",
   
+  "Seleção de Golpes Avançada": "Domine a tomada de decisão tática em alto nível: análise multicamadas da situação, leitura de tendências do oponente, antecipação de próximos golpes, balanceamento entre porcentagens e oportunidade, e uso estratégico da decepção. A seleção avançada é o xadrez por trás da batida.",
+  
   "Estratégias de Abertura": "Desenvolva planos para começar pontos com vantagem através de saques bem colocados, devoluções estratégicas, e transição eficiente para a rede. Boa abertura estabelece controle do ponto desde o início.",
   
   "Controle de Ponto": "Mantenha domínio tático durante todo o ponto através de iniciativa constante, pressão controlada, variação estratégica, e forçar adversários a reagir às suas jogadas. Controle de ponto maximiza chances de vitória.",
@@ -138,6 +140,8 @@ export const sectionDescriptions: Record<string, string> = {
   
   "Jogos Mentais": "Use psicologia do jogo para confundir adversários através de linguagem corporal, variação de tempo, fakes, mudanças estratégicas, e pressão mental constante. Jogos mentais podem ser decisivos em partidas equilibradas.",
   
-  "Adaptação Tática": "Seja flexível estrategicamente e adapte táticas conforme necessário: mudança de adversário, placar, condições, ou estratégia que não funciona. Adaptação tática é essencial para jogadores de alto nível."
+  "Adaptação Tática": "Seja flexível estrategicamente e adapte táticas conforme necessário: mudança de adversário, placar, condições, ou estratégia que não funciona. Adaptação tática é essencial para jogadores de alto nível.",
+  
+  "mecanicas-fundamentais": "Domine os princípios biomecânicos essenciais: posição atlética, trabalho de pés, transferência de peso, rotação do tronco, ponto de contato consistente, swing compacto e follow-through. Boas mecânicas garantem consistência, controle, potência natural e prevenção de lesões."
 };
 

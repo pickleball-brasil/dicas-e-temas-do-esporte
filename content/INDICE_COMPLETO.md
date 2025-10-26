@@ -32,7 +32,7 @@ Este arquivo contém todos os temas e tópicos disponíveis no sistema de estudo
 
 ---
 
-## 🟡 **NÍVEL INTERMEDIÁRIO** (18 tópicos)
+## 🟡 **NÍVEL INTERMEDIÁRIO** (19 tópicos)
 
 ### Técnicas Avançadas
 - **[Drop Shot](./Drop%20Shot.md)** - Golpe suave para controlar o ritmo
@@ -57,10 +57,11 @@ Este arquivo contém todos os temas e tópicos disponíveis no sistema de estudo
 - **[Leitura de Jogo](./Leitura%20de%20Jogo.md)** - Analisar situações
 - **[Adaptação](./Adaptação.md)** - Adaptar-se às situações
 - **[Consistência](./Consistência.md)** - Manter performance constante
+- **[Mecânicas Fundamentais](./Mecânicas%20Fundamentais.md)** - Biomecânica correta para consistência e controle
 
 ---
 
-## 🔴 **NÍVEL AVANÇADO** (18 tópicos)
+## 🔴 **NÍVEL AVANÇADO** (19 tópicos)
 
 ### Golpes Avançados
 - **[Smash](./Smash.md)** - Golpe de finalização
@@ -85,6 +86,7 @@ Este arquivo contém todos os temas e tópicos disponíveis no sistema de estudo
 - **[Pressão Mental](./Pressão%20Mental.md)** - Lidar com pressão
 - **[Execução Sob Pressão](./Execução%20Sob%20Pressão.md)** - Performance em situações difíceis
 - **[Liderança em Quadra](./Liderança%20em%20Quadra.md)** - Liderar em quadra
+- **[Seleção de Golpes Avançada](./Seleção%20de%20Golpes%20Avançada.md)** - Tomada de decisão tática em alto nível
 
 ---
 

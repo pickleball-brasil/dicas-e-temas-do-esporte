@@ -32,6 +32,7 @@ const sectionColors: Record<string, string> = {
   "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-500 to-orange-600",
   "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
   "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
+  "mecanicas-fundamentais": "bg-gradient-to-br from-amber-500 to-orange-600",
   "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-500",
   "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
@@ -77,6 +78,7 @@ const sectionColors: Record<string, string> = {
   "pressao-mental": "bg-gradient-to-br from-red-500 to-red-600",
   "execucao-sob-pressao": "bg-gradient-to-br from-red-400 to-rose-500",
   "lideranca-em-quadra": "bg-gradient-to-br from-rose-400 to-rose-600",
+  "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   
   // Táticas - ROXO
   "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",
@@ -466,6 +468,31 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Theme Selector Section */}
+      <section className="mb-10">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 text-white">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1">
+              <h2 className="text-lg font-bold mb-1">
+                🎯 Seletor de Temas Personalizado
+              </h2>
+              <p className="text-blue-100 text-sm">
+                Crie sua coleção personalizada e compartilhe com outros jogadores
+              </p>
+            </div>
+            <Link
+              href="/selecionar-temas"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+              </svg>
+              Criar Seleção
+            </Link>
+          </div>
+        </div>
       </section>
 
     </main>

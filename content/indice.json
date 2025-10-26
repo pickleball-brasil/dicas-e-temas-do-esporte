@@ -93,8 +93,8 @@
     "intermediario": {
       "nome": "Intermediário",
       "cor": "🟡",
-      "quantidade": 18,
-      "percentual": 26,
+      "quantidade": 19,
+      "percentual": 27,
       "topicos": [
         {
           "nome": "Drop Shot",
@@ -185,14 +185,19 @@
           "nome": "Consistência",
           "arquivo": "Consistência.md",
           "descricao": "Manter performance constante"
+        },
+        {
+          "nome": "Mecânicas Fundamentais",
+          "arquivo": "Mecânicas Fundamentais.md",
+          "descricao": "Biomecânica correta para consistência e controle"
         }
       ]
     },
     "avancado": {
       "nome": "Avançado",
       "cor": "🔴",
-      "quantidade": 18,
-      "percentual": 26,
+      "quantidade": 19,
+      "percentual": 27,
       "topicos": [
         {
           "nome": "Smash",
@@ -283,6 +288,11 @@
           "nome": "Liderança em Quadra",
           "arquivo": "Liderança em Quadra.md",
           "descricao": "Liderar em quadra"
+        },
+        {
+          "nome": "Seleção de Golpes Avançada",
+          "arquivo": "Seleção de Golpes Avançada.md",
+          "descricao": "Tomada de decisão tática em alto nível"
         }
       ]
     },
@@ -400,17 +410,17 @@
     }
   ],
   "estatisticas": {
-    "total_topicos": 71,
+    "total_topicos": 73,
     "distribuicao": {
       "basico": 17,
-      "intermediario": 18,
-      "avancado": 18,
+      "intermediario": 19,
+      "avancado": 19,
       "taticas": 18
     },
     "percentuais": {
       "basico": 25,
-      "intermediario": 26,
-      "avancado": 26,
+      "intermediario": 27,
+      "avancado": 27,
       "taticas": 26
     }
   },

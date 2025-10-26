@@ -15,12 +15,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PickleBook",
-  description: "Material de estudo para o Pickleball",
-  manifest: "/manifest.json",
+  title: "PickleMaster - Domine o Pickleball",
+  description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
+  manifest: "/dicas-e-temas-do-esporte/manifest.json",
   themeColor: "#0ea5e9",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "PickleMaster",
+  },
+  openGraph: {
+    title: "PickleMaster - Domine o Pickleball",
+    description: "Domine o Pickleball com conhecimento",
+    type: "website",
+    locale: "pt_BR",
   },
 };
 
@@ -41,24 +54,32 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
             {children}
             
-            {/* Footer moderno */}
+            {/* Footer padronizado */}
             <footer className="mt-20 py-10 text-center border-t border-gray-200/50">
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex items-center gap-2 text-gray-600">
-                  <span className="text-2xl">🏓</span>
-                  <span className="font-semibold">Ziliotti Picklebook</span>
-                </div>
-                <p className="text-sm text-gray-500">
-                  Feito com <span className="text-red-500">♥</span> por Fabrício Ziliotti
-                </p>
-                <div className="flex items-center gap-4 text-xs text-gray-400 mt-2">
-                  <span>© 2025</span>
-                  <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>Todos os direitos reservados</span>
-                </div>
-              </div>
+              <p className="text-sm text-gray-500">
+                Desenvolvido por Fabrício Ziliotti @2025
+              </p>
             </footer>
           </div>
+          
+          {/* PWA Service Worker Registration */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                if ('serviceWorker' in navigator) {
+                  window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/dicas-e-temas-do-esporte/sw.js')
+                      .then(function(registration) {
+                        console.log('SW registered: ', registration);
+                      })
+                      .catch(function(registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                      });
+                  });
+                }
+              `,
+            }}
+          />
         </Providers>
       </body>
     </html>

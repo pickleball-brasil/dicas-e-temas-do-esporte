@@ -1,3 +1,104 @@
+// Mapeamento de IDs únicos para cada seção (baseado no nome, sem numeração sequencial)
+export const SECTION_IDS: Record<string, string> = {
+  // Básico
+  "regras": "rules",
+  "saque": "serve", 
+  "devolucao": "return",
+  "dink": "dink",
+  "voleio": "volley",
+  "footwork": "footwork",
+  "posicionamento": "positioning",
+  "empunhadura": "grip",
+  "aquecimento": "warmup",
+  "erros-comuns": "common-mistakes",
+  "dicas": "tips",
+  "equipamentos": "equipment",
+  "golpes-fundamentais": "fundamental-shots",
+  "tecnica-de-base": "basic-technique",
+  "concentracao": "concentration",
+  "respiracao": "breathing",
+  "pontuacao-detalhada": "scoring",
+  "etiqueta-em-quadra": "court-etiquette",
+  "seguranca-e-prevencao-lesoes": "safety-injury-prevention",
+  
+  // Intermediário
+  "drop-shot": "drop-shot",
+  "terceira-bola": "third-shot",
+  "lob": "lob",
+  "transicao": "transition",
+  "jogo-de-duplas": "doubles-play",
+  "defesa": "defense",
+  "bloqueio": "blocking",
+  "spin": "spin",
+  "contra-ataque": "counter-attack",
+  "comunicacao": "communication",
+  "drills-e-treinos": "drills-training",
+  "preparacao-fisica": "physical-prep",
+  "estrategia-de-jogo": "game-strategy",
+  "tempo-de-reacao": "reaction-time",
+  "antecipacao": "anticipation",
+  "leitura-de-jogo": "game-reading",
+  "adaptacao": "adaptation",
+  "consistencia": "consistency",
+  "selecao-de-golpes": "shot-selection",
+  "lidar-com-bangers": "handling-bangers",
+  "variacoes-de-saque-intermediario": "intermediate-serve-variations",
+  "tipos-de-voleios-pickleball": "volley-types",
+  "tipos-de-dink-pickleball": "dink-types",
+  "mecanicas-fundamentais": "fundamental-mechanics",
+  
+  // Avançado
+  "tecnicas-de-decepcao-engano": "deception-techniques",
+  "recuperacao-e-cobertura-quadra-avancada": "advanced-court-coverage",
+  "quimica-e-sinergia-duplas-avancadas": "advanced-doubles-synergy",
+  "selecao-de-golpes-avancada": "advanced-shot-selection",
+  "transicao-defesa-ataque": "defense-to-attack-transition",
+  "gerenciamento-momentum-timeouts": "momentum-timeout-management",
+  "acelerar-as-bolas": "speeding-up-balls",
+  "ataque": "attack",
+  "atp-around-the-post": "atp-around-post",
+  "erne": "erne",
+  "execucao-sob-pressao": "execution-under-pressure",
+  "finalizacoes": "finishes",
+  "golpes-especiais": "special-shots",
+  "jogo-singles": "singles-play",
+  "lideranca-em-quadra": "court-leadership",
+  "mental-game": "mental-game",
+  "poaching": "poaching",
+  "pressao-mental": "mental-pressure",
+  "reset": "reset",
+  "smash": "smash",
+  "stacking": "stacking",
+  "switching": "switching",
+  "tecnicas-avancadas": "advanced-techniques",
+  "torneios": "tournaments",
+  
+  // Táticas
+  "pressao-constante": "constant-pressure",
+  "jogo-cruzado": "cross-court-play",
+  "isolamento-de-jogador": "player-isolation",
+  "variação-de-altura": "height-variation",
+  "variação-de-velocidade": "speed-variation",
+  "variação-de-direção": "direction-variation",
+  "variação-de-spin": "spin-variation",
+  "variação-de-tempo": "timing-variation",
+  "variação-de-posição": "position-variation",
+  "variação-de-ritmo": "rhythm-variation",
+  "variação-de-estratégia": "strategy-variation",
+  "variação-de-formação": "formation-variation",
+  "variação-de-cobertura": "coverage-variation",
+  "variação-de-comunicação": "communication-variation",
+  "variação-de-mental": "mental-variation",
+  "variação-de-física": "physical-variation",
+  "variação-de-técnica": "technique-variation",
+  "variação-de-tática": "tactical-variation",
+};
+
+// Mapeamento reverso: ID -> Section
+export const ID_TO_SECTION: Record<string, string> = Object.fromEntries(
+  Object.entries(SECTION_IDS).map(([section, id]) => [id, section])
+);
+
 // Básico
 export const BASIC_SECTIONS = [
   "regras",
@@ -46,6 +147,7 @@ export const INTERMEDIATE_SECTIONS = [
   "variacoes-de-saque-intermediario",
   "tipos-de-voleios-pickleball",
   "tipos-de-dink-pickleball",
+  "mecanicas-fundamentais",
 ] as const;
 
 // Avançado
@@ -71,6 +173,7 @@ export const ADVANCED_SECTIONS = [
   "tecnicas-de-decepcao-engano",
   "recuperacao-e-cobertura-quadra-avancada",
   "quimica-e-sinergia-duplas-avancadas",
+  "selecao-de-golpes-avancada",
 ] as const;
 
 // Táticas
@@ -153,6 +256,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "variacoes-de-saque-intermediario": "Intermediário",
   "tipos-de-voleios-pickleball": "Intermediário",
   "tipos-de-dink-pickleball": "Intermediário",
+  "mecanicas-fundamentais": "Intermediário",
   "smash": "Avançado",
   "acelerar-as-bolas": "Avançado",
   "reset": "Avançado",
@@ -174,6 +278,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "tecnicas-de-decepcao-engano": "Avançado",
   "recuperacao-e-cobertura-quadra-avancada": "Avançado",
   "quimica-e-sinergia-duplas-avancadas": "Avançado",
+  "selecao-de-golpes-avancada": "Avançado",
   "controle-de-ritmo": "Táticas",
   "jogo-no-meio": "Táticas",
   "explorar-fraquezas": "Táticas",
