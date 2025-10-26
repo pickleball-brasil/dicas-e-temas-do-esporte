@@ -122,9 +122,10 @@ export default function ThemeSelector() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-        {/* Sticky Controls Bar */}
+      {/* Sticky Controls Bar - Only show when themes are selected */}
+      {selectedSections.size > 0 && (
         <div className="sticky top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-        <div className="max-w-4xl mx-auto px-4 py-3">
+          <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             {/* Left side - Controls */}
             <div className="flex flex-wrap items-center gap-2">
@@ -172,9 +173,10 @@ export default function ThemeSelector() {
                 </span>
               </div>
             )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
