@@ -2,7 +2,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, SECTION_IDS, ID_TO_SECTION, type Section } from "@/lib/sections";
+import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, ID_TO_SECTION, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
 

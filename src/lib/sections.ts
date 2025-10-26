@@ -52,6 +52,7 @@ export const SECTION_IDS: Record<string, string> = {
   "recuperacao-e-cobertura-quadra-avancada": "advanced-court-coverage",
   "quimica-e-sinergia-duplas-avancadas": "advanced-doubles-synergy",
   "selecao-de-golpes-avancada": "advanced-shot-selection",
+  "construcao-de-pontos": "point-construction",
   "transicao-defesa-ataque": "defense-to-attack-transition",
   "gerenciamento-momentum-timeouts": "momentum-timeout-management",
   "acelerar-as-bolas": "speeding-up-balls",
@@ -174,6 +175,7 @@ export const ADVANCED_SECTIONS = [
   "recuperacao-e-cobertura-quadra-avancada",
   "quimica-e-sinergia-duplas-avancadas",
   "selecao-de-golpes-avancada",
+  "construcao-de-pontos",
 ] as const;
 
 // Táticas
@@ -279,6 +281,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "recuperacao-e-cobertura-quadra-avancada": "Avançado",
   "quimica-e-sinergia-duplas-avancadas": "Avançado",
   "selecao-de-golpes-avancada": "Avançado",
+  "construcao-de-pontos": "Avançado",
   "controle-de-ritmo": "Táticas",
   "jogo-no-meio": "Táticas",
   "explorar-fraquezas": "Táticas",

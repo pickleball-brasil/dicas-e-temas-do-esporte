@@ -1,203 +1,81 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, SECTION_IDS, type Section } from "@/lib/sections";
-import { getDisplayName } from '@/lib/displayNames';
+import { 
+  CONTENT_REGISTRY, 
+  getSectionsByCategory, 
+  getSectionColors,
+  getDisplayNames,
+  getSectionIds,
+  type SectionConfig 
+} from "@/lib/contentRegistry";
 
-const sectionColors: Record<string, string> = {
-  // Básico - VERDE
-  "regras": "bg-gradient-to-br from-green-500 to-green-600",
-  "saque": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "devolucao": "bg-gradient-to-br from-emerald-400 to-emerald-600",
-  "dink": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "voleio": "bg-gradient-to-br from-green-500 to-green-600",
-  "footwork": "bg-gradient-to-br from-green-400 to-green-600",
-  "posicionamento": "bg-gradient-to-br from-green-500 to-green-600",
-  "empunhadura": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "aquecimento": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "erros-comuns": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "dicas": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "equipamentos": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "golpes-fundamentais": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "tecnica-de-base": "bg-gradient-to-br from-emerald-500 to-emerald-600",
-  "concentracao": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "respiracao": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "pontuacao-detalhada": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "etiqueta-em-quadra": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "selecao-de-golpes": "bg-gradient-to-br from-amber-400 to-orange-500",
-  "lidar-com-bangers": "bg-gradient-to-br from-orange-500 to-amber-600",
-  "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
-  "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "mecanicas-fundamentais": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-500",
-  "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
-  "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
-  "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
-  "transicao-defesa-ataque": "bg-gradient-to-br from-purple-400 to-indigo-500",
-  "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-indigo-500 to-purple-600",
-  
-  // Intermediário - LARANJA
-  "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "lob": "bg-gradient-to-br from-amber-400 to-amber-600",
-  "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-orange-600",
-  "defesa": "bg-gradient-to-br from-orange-500 to-orange-600",
-  "bloqueio": "bg-gradient-to-br from-orange-400 to-orange-600",
-  "spin": "bg-gradient-to-br from-orange-400 to-amber-500",
-  "contra-ataque": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "comunicacao": "bg-gradient-to-br from-amber-400 to-amber-600",
-  "drills-e-treinos": "bg-gradient-to-br from-orange-400 to-orange-600",
-  "preparacao-fisica": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "estrategia-de-jogo": "bg-gradient-to-br from-orange-500 to-amber-600",
-  "tempo-de-reacao": "bg-gradient-to-br from-amber-400 to-orange-500",
-  "antecipacao": "bg-gradient-to-br from-amber-400 to-amber-600",
-  "leitura-de-jogo": "bg-gradient-to-br from-amber-400 to-orange-500",
-  "adaptacao": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "consistencia": "bg-gradient-to-br from-amber-400 to-orange-600",
-  
-  // Avançado - VERMELHO
-  "smash": "bg-gradient-to-br from-rose-500 to-red-600",
-  "acelerar-as-bolas": "bg-gradient-to-br from-rose-400 to-red-600",
-  "reset": "bg-gradient-to-br from-rose-500 to-red-600",
-  "ataque": "bg-gradient-to-br from-red-500 to-red-600",
-  "mental-game": "bg-gradient-to-br from-rose-400 to-rose-600",
-  "erne": "bg-gradient-to-br from-red-400 to-rose-500",
-  "atp-around-the-post": "bg-gradient-to-br from-rose-500 to-red-600",
-  "stacking": "bg-gradient-to-br from-red-400 to-red-600",
-  "switching": "bg-gradient-to-br from-rose-400 to-red-600",
-  "poaching": "bg-gradient-to-br from-red-400 to-red-600",
-  "finalizacoes": "bg-gradient-to-br from-red-400 to-rose-500",
-  "jogo-singles": "bg-gradient-to-br from-red-400 to-rose-500",
-  "torneios": "bg-gradient-to-br from-red-400 to-red-600",
-  "golpes-especiais": "bg-gradient-to-br from-red-400 to-red-600",
-  "tecnicas-avancadas": "bg-gradient-to-br from-red-500 to-rose-600",
-  "pressao-mental": "bg-gradient-to-br from-red-500 to-red-600",
-  "execucao-sob-pressao": "bg-gradient-to-br from-red-400 to-rose-500",
-  "lideranca-em-quadra": "bg-gradient-to-br from-rose-400 to-rose-600",
-  
-  // Táticas - ROXO
-  "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",
-  "jogo-no-meio": "bg-gradient-to-br from-purple-400 to-violet-500",
-  "explorar-fraquezas": "bg-gradient-to-br from-purple-500 to-violet-600",
-  "variacao-de-altura": "bg-gradient-to-br from-purple-500 to-violet-600",
-  "pressao-constante": "bg-gradient-to-br from-violet-400 to-purple-600",
-  "jogo-cruzado": "bg-gradient-to-br from-purple-400 to-violet-500",
-  "isolamento-de-jogador": "bg-gradient-to-br from-violet-500 to-purple-600",
-  "mudanca-de-direcao": "bg-gradient-to-br from-purple-500 to-violet-600",
-  "jogo-de-paciencia": "bg-gradient-to-br from-violet-400 to-purple-600",
-  "ataque-ao-corpo": "bg-gradient-to-br from-violet-400 to-purple-500",
-  "uso-do-lob-tatico": "bg-gradient-to-br from-violet-400 to-purple-600",
-  "forcar-erros": "bg-gradient-to-br from-purple-400 to-violet-500",
-  "estrategias-de-abertura": "bg-gradient-to-br from-violet-400 to-purple-500",
-  "controle-de-ponto": "bg-gradient-to-br from-violet-400 to-purple-600",
-  "quebra-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-500",
-  "exploracao-de-angulos": "bg-gradient-to-br from-violet-500 to-purple-600",
-  "jogos-mentais": "bg-gradient-to-br from-violet-500 to-purple-600",
-  "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
-};
+// Usar cores do sistema centralizado
+const sectionColors = getSectionColors();
 
-const SectionCard = ({ section, isSelected, onToggle }: { 
-  section: Section; 
+// Usar nomes de exibição do sistema centralizado
+const displayNames = getDisplayNames();
+
+// Obter seções por categoria do sistema centralizado
+const basicSections = getSectionsByCategory('basico');
+const intermediateSections = getSectionsByCategory('intermediario');
+const advancedSections = getSectionsByCategory('avancado');
+const tacticsSections = getSectionsByCategory('taticas');
+
+// Obter todas as seções
+const allSections = Object.keys(CONTENT_REGISTRY);
+
+// Obter IDs das seções
+const sectionIds = getSectionIds();
+
+// Componente para cartão de seção
+function SectionCard({ sectionId, isSelected, onToggle }: { 
+  sectionId: string; 
   isSelected: boolean; 
-  onToggle: (section: Section) => void;
-}) => (
-  <button
-    onClick={() => onToggle(section)}
-    className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left ${
-      isSelected 
-        ? 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 shadow-blue-100' 
-        : 'hover:shadow-md'
-    }`}
-  >
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative ${
-            isSelected ? 'ring-2 ring-blue-300 ring-offset-2' : ''
-          }`}>
-            {section.charAt(0)}
-            {isSelected && (
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center shadow-sm">
-                <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col">
-            <span className={`font-semibold text-sm ${
-              isSelected 
-                ? 'text-blue-800' 
-                : 'text-gray-900'
-            }`}>{getDisplayName(section)}</span>
-            <span className={`text-xs ${
-              isSelected 
-                ? 'text-blue-600' 
-                : 'text-gray-500'
-            }`}>
-              {isSelected ? '✓ Selecionado' : 'Clique para selecionar'}
-            </span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={isSelected}
-            onChange={() => onToggle(section)}
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-          />
-        </div>
-      </div>
-    </div>
-  </button>
-);
+  onToggle: () => void; 
+}) {
+  const config = CONTENT_REGISTRY[sectionId];
+  if (!config) return null;
 
-const LevelSection = ({ 
-  title, 
-  sections, 
-  selectedSections, 
-  onToggle 
-}: { 
-  title: string; 
-  sections: readonly Section[]; 
-  selectedSections: Set<Section>; 
-  onToggle: (section: Section) => void;
-}) => (
-  <div className="mb-8">
-    <h2 className="text-xl font-bold text-gray-800 mb-4">{title}</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {sections.map((section) => (
-        <SectionCard
-          key={section}
-          section={section}
-          isSelected={selectedSections.has(section)}
-          onToggle={onToggle}
+  const displayName = displayNames[sectionId] || config.name;
+  const color = sectionColors[sectionId] || 'bg-gradient-to-br from-gray-500 to-gray-600';
+
+  return (
+    <li>
+      <label className="flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-md bg-white cursor-pointer">
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={onToggle}
+          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
         />
-      ))}
-    </div>
-  </div>
-);
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm ${color}`}>
+          {config.level === 'Básico' ? '1' : 
+           config.level === 'Intermediário' ? '2' : 
+           config.level === 'Avançado' ? '3' : '4'}
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-gray-900 text-sm">{displayName}</h3>
+          <p className="text-gray-600 text-xs mt-1">{config.description}</p>
+        </div>
+      </label>
+    </li>
+  );
+}
 
 export default function ThemeSelector() {
-  const [selectedSections, setSelectedSections] = useState<Set<Section>>(new Set());
+  const [selectedSections, setSelectedSections] = useState<Set<string>>(new Set());
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [customTitle, setCustomTitle] = useState("");
 
-  const toggleSection = (section: Section) => {
+  const toggleSection = (sectionId: string) => {
     const newSelected = new Set(selectedSections);
-    if (newSelected.has(section)) {
-      newSelected.delete(section);
+    if (newSelected.has(sectionId)) {
+      newSelected.delete(sectionId);
     } else {
-      newSelected.add(section);
+      newSelected.add(sectionId);
     }
     setSelectedSections(newSelected);
-  };
-
-  const selectAll = () => {
-    setSelectedSections(new Set(SECTIONS));
   };
 
   const selectNone = () => {
@@ -209,7 +87,7 @@ export default function ThemeSelector() {
     
     // Converter seções selecionadas para IDs únicos
     const selectedIds = Array.from(selectedSections)
-      .map(section => SECTION_IDS[section])
+      .map(sectionId => sectionIds[sectionId])
       .filter(id => id !== undefined) // Filtrar IDs válidos
       .sort(); // Ordenar alfabeticamente para consistência
     
@@ -224,141 +102,203 @@ export default function ThemeSelector() {
 
   const copyToClipboard = async () => {
     const link = generateShareLink();
-    if (link) {
-      try {
-        await navigator.clipboard.writeText(link);
-        alert('Link copiado para a área de transferência!');
-      } catch (err) {
-        console.error('Erro ao copiar:', err);
-        alert('Erro ao copiar o link. Tente novamente.');
-      }
+    if (!link) return;
+    
+    try {
+      await navigator.clipboard.writeText(link);
+      alert('Link copiado para a área de transferência!');
+    } catch (err) {
+      console.error('Erro ao copiar link:', err);
+      alert('Erro ao copiar link. Tente novamente.');
     }
   };
 
   const openSharedPage = () => {
     const link = generateShareLink();
-    if (link) {
-      window.open(link, '_blank');
-    }
+    if (!link) return;
+    
+    window.open(link, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              Seletor de Temas
-            </h1>
-            <p className="text-lg text-gray-600 mb-6">
-              Selecione os temas que deseja incluir e compartilhe um link personalizado
-            </p>
-            
-            {/* Controls */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
-              <button
-                onClick={selectAll}
-                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
-              >
-                Selecionar Todos
-              </button>
+        {/* Sticky Controls Bar */}
+        <div className="sticky top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+        <div className="max-w-4xl mx-auto px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            {/* Left side - Controls */}
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={selectNone}
-                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                className="px-3 py-1.5 bg-gray-500 text-white text-sm rounded-md hover:bg-gray-600 transition-colors"
               >
-                Limpar Seleção
+                Limpar
               </button>
-              <button
-                onClick={copyToClipboard}
-                disabled={selectedSections.size === 0}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                Copiar Link
-              </button>
-              <button
-                onClick={openSharedPage}
-                disabled={selectedSections.size === 0}
-                className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                Abrir Página Compartilhada
-              </button>
+              {selectedSections.size > 0 && (
+                <>
+                  <button
+                    onClick={copyToClipboard}
+                    className="px-3 py-1.5 bg-green-500 text-white text-sm rounded-md hover:bg-green-600 transition-colors"
+                  >
+                    Copiar Link
+                  </button>
+                  <button
+                    onClick={openSharedPage}
+                    className="px-3 py-1.5 bg-purple-500 text-white text-sm rounded-md hover:bg-purple-600 transition-colors"
+                  >
+                    Abrir Página
+                  </button>
+                </>
+              )}
             </div>
 
-            {/* Custom Title Input */}
+            {/* Right side - Title Input */}
             {selectedSections.size > 0 && (
-              <div className="bg-white rounded-lg p-4 shadow-md mb-6 max-w-md mx-auto">
-                <label htmlFor="customTitle" className="block text-sm font-medium text-gray-700 mb-2">
-                  Título Personalizado (Opcional)
+              <div className="flex items-center gap-2">
+                <label htmlFor="customTitle" className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                  Título:
                 </label>
                 <input
                   id="customTitle"
                   type="text"
                   value={customTitle}
                   onChange={(e) => setCustomTitle(e.target.value)}
-                  placeholder="Ex: Meus Temas Favoritos de Pickleball"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500"
+                  placeholder="Ex: Meus Temas Favoritos"
+                  className="px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-sm min-w-[200px] max-w-[300px]"
                   maxLength={50}
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  {customTitle.length}/50 caracteres
-                </p>
+                <span className="text-xs text-gray-500 whitespace-nowrap">
+                  {customTitle.length}/50
+                </span>
               </div>
             )}
+          </div>
+        </div>
+      </div>
 
-            {/* Selection Summary */}
-            <div className="bg-white rounded-lg p-4 shadow-md">
-              <p className="text-gray-700">
-                <strong>{selectedSections.size}</strong> de <strong>{SECTIONS.length}</strong> temas selecionados
-              </p>
-              {selectedSections.size > 0 && (
-                <p className="text-sm text-gray-500 mt-1">
-                  Link gerado: {generateShareLink()?.substring(0, 50)}...
-                </p>
-              )}
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-3xl font-bold tracking-tight mb-3 flex items-center justify-center gap-3">
+              <span className="text-4xl">🎯</span>
+              <span className="bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
+                Seletor de Temas Personalizado
+              </span>
+            </h1>
+            <p className="text-gray-600 text-base max-w-2xl mx-auto">
+              Crie sua coleção personalizada de temas de pickleball e compartilhe com outros jogadores.
+            </p>
+          </div>
+
+
+          {/* Basic Sections */}
+          <section className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
+                  1
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">Básico</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">
+                  {basicSections.filter(s => selectedSections.has(s)).length}/{basicSections.length} selecionados
+                </span>
+              </div>
             </div>
-          </div>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {basicSections.map((s) => (
+                <SectionCard 
+                  key={s}
+                  sectionId={s} 
+                  isSelected={selectedSections.has(s)}
+                  onToggle={() => toggleSection(s)} 
+                />
+              ))}
+            </ul>
+          </section>
 
-          {/* Sections by Level */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <LevelSection
-              title="🟢 Nível Básico"
-              sections={BASIC_SECTIONS}
-              selectedSections={selectedSections}
-              onToggle={toggleSection}
-            />
-            
-            <LevelSection
-              title="🟡 Nível Intermediário"
-              sections={INTERMEDIATE_SECTIONS}
-              selectedSections={selectedSections}
-              onToggle={toggleSection}
-            />
-            
-            <LevelSection
-              title="🔴 Nível Avançado"
-              sections={ADVANCED_SECTIONS}
-              selectedSections={selectedSections}
-              onToggle={toggleSection}
-            />
-            
-            <LevelSection
-              title="🟣 Táticas"
-              sections={TACTICS_SECTIONS}
-              selectedSections={selectedSections}
-              onToggle={toggleSection}
-            />
-          </div>
+          {/* Intermediate Sections */}
+          <section className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
+                  2
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">Intermediário</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">
+                  {intermediateSections.filter(s => selectedSections.has(s)).length}/{intermediateSections.length} selecionados
+                </span>
+              </div>
+            </div>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {intermediateSections.map((s) => (
+                <SectionCard 
+                  key={s}
+                  sectionId={s} 
+                  isSelected={selectedSections.has(s)}
+                  onToggle={() => toggleSection(s)} 
+                />
+              ))}
+            </ul>
+          </section>
 
-          {/* Back to Home */}
-          <div className="text-center mt-8">
-            <Link
-              href="/"
-              className="inline-flex items-center px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-            >
-              ← Voltar ao Início
-            </Link>
-          </div>
+          {/* Advanced Sections */}
+          <section className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
+                  3
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">Avançado</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">
+                  {advancedSections.filter(s => selectedSections.has(s)).length}/{advancedSections.length} selecionados
+                </span>
+              </div>
+            </div>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {advancedSections.map((s) => (
+                <SectionCard 
+                  key={s}
+                  sectionId={s} 
+                  isSelected={selectedSections.has(s)}
+                  onToggle={() => toggleSection(s)} 
+                />
+              ))}
+            </ul>
+          </section>
+
+          {/* Tactics Sections */}
+          <section className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
+                  4
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">Táticas</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">
+                  {tacticsSections.filter(s => selectedSections.has(s)).length}/{tacticsSections.length} selecionados
+                </span>
+              </div>
+            </div>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {tacticsSections.map((s) => (
+                <SectionCard 
+                  key={s}
+                  sectionId={s} 
+                  isSelected={selectedSections.has(s)}
+                  onToggle={() => toggleSection(s)} 
+                />
+              ))}
+            </ul>
+          </section>
         </div>
       </div>
 

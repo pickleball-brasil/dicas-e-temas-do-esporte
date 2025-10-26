@@ -129,6 +129,7 @@ export const sectionDescriptions: Record<string, string> = {
   "Liderança em Quadra": "Seja líder positivo em duplas através de comunicação eficaz, motivação do parceiro, tomada de decisões, energia positiva, e exemplo de comportamento. Liderança em quadra eleva o nível de toda a dupla.",
   
   "Seleção de Golpes Avançada": "Domine a tomada de decisão tática em alto nível: análise multicamadas da situação, leitura de tendências do oponente, antecipação de próximos golpes, balanceamento entre porcentagens e oportunidade, e uso estratégico da decepção. A seleção avançada é o xadrez por trás da batida.",
+  "Construção de Pontos": "Vá além de rebater: aprenda sistemas táticos para construir pontos e controlar o jogo. Domine sequências estratégicas como 'Drop e Transição', 'Drive e Quinto Golpe', e 'Dink, Mova e Ataque' para mover sua dupla de posições defensivas para ofensivas, criando oportunidades de finalização.",
   
   "Estratégias de Abertura": "Desenvolva planos para começar pontos com vantagem através de saques bem colocados, devoluções estratégicas, e transição eficiente para a rede. Boa abertura estabelece controle do ponto desde o início.",
   

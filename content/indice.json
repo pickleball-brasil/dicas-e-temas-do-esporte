@@ -1,6 +1,6 @@
 {
   "titulo": "Índice Completo - Pickleball Study Guide",
-  "total_topicos": 71,
+    "total_topicos": 73,
   "categorias": {
     "basico": {
       "nome": "Básico",
@@ -196,8 +196,8 @@
     "avancado": {
       "nome": "Avançado",
       "cor": "🔴",
-      "quantidade": 19,
-      "percentual": 27,
+      "quantidade": 20,
+      "percentual": 28,
       "topicos": [
         {
           "nome": "Smash",
@@ -293,6 +293,11 @@
           "nome": "Seleção de Golpes Avançada",
           "arquivo": "Seleção de Golpes Avançada.md",
           "descricao": "Tomada de decisão tática em alto nível"
+        },
+        {
+          "nome": "Construção de Pontos",
+          "arquivo": "Construção de Pontos.md",
+          "descricao": "Sistemas táticos para construir pontos e controlar o jogo"
         }
       ]
     },
@@ -414,13 +419,13 @@
     "distribuicao": {
       "basico": 17,
       "intermediario": 19,
-      "avancado": 19,
+      "avancado": 20,
       "taticas": 18
     },
     "percentuais": {
       "basico": 25,
       "intermediario": 27,
-      "avancado": 27,
+      "avancado": 28,
       "taticas": 26
     }
   },

@@ -79,6 +79,7 @@ const sectionColors: Record<string, string> = {
   "execucao-sob-pressao": "bg-gradient-to-br from-red-400 to-rose-500",
   "lideranca-em-quadra": "bg-gradient-to-br from-rose-400 to-rose-600",
   "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
+  "construcao-de-pontos": "bg-gradient-to-br from-red-600 to-red-700",
   
   // Táticas - ROXO
   "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",

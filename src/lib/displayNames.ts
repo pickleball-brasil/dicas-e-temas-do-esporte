@@ -61,6 +61,7 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "recuperacao-e-cobertura-quadra-avancada": "Recuperação e Cobertura de Quadra",
   "quimica-e-sinergia-duplas-avancadas": "Química e Sinergia em Duplas",
   "selecao-de-golpes-avancada": "Seleção de Golpes",
+  "construcao-de-pontos": "Construção de Pontos",
   "transicao-defesa-ataque": "Transição Defesa-Ataque",
   "gerenciamento-momentum-timeouts": "Gerenciamento de Momentum e Timeouts",
   "posicionamento": "Posicionamento",
