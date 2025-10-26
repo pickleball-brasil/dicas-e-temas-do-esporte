@@ -4,24 +4,48 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { SECTIONS, getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
 import { getDisplayName } from "@/lib/displayNames";
+import { CONTENT_REGISTRY, getSectionsByCategory } from "@/lib/contentRegistry";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const levelColors: Record<SectionLevel, string> = {
-  "Básico": "text-green-600 bg-green-50 border-green-200",
-  "Intermediário": "text-orange-600 bg-orange-50 border-orange-200", 
-  "Avançado": "text-red-600 bg-red-50 border-red-200",
-  "Táticas": "text-purple-600 bg-purple-50 border-purple-200"
-};
-
-const levelIcons: Record<SectionLevel, string> = {
-  "Básico": "🟢",
-  "Intermediário": "🟡", 
-  "Avançado": "🔴",
-  "Táticas": "🟣"
+const levelConfig: Record<SectionLevel, { 
+  color: string; 
+  bgColor: string; 
+  borderColor: string; 
+  icon: string; 
+  gradient: string;
+}> = {
+  "Básico": { 
+    color: "text-green-700", 
+    bgColor: "bg-green-50", 
+    borderColor: "border-green-200",
+    icon: "🟢",
+    gradient: "from-green-500 to-emerald-600"
+  },
+  "Intermediário": { 
+    color: "text-orange-700", 
+    bgColor: "bg-orange-50", 
+    borderColor: "border-orange-200",
+    icon: "🟡",
+    gradient: "from-orange-500 to-amber-600"
+  },
+  "Avançado": { 
+    color: "text-red-700", 
+    bgColor: "bg-red-50", 
+    borderColor: "border-red-200",
+    icon: "🔴",
+    gradient: "from-red-500 to-rose-600"
+  },
+  "Táticas": { 
+    color: "text-purple-700", 
+    bgColor: "bg-purple-50", 
+    borderColor: "border-purple-200",
+    icon: "🟣",
+    gradient: "from-purple-500 to-violet-600"
+  }
 };
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
@@ -30,8 +54,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedLevels, setExpandedLevels] = useState<Set<string>>(new Set());
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-  // Agrupar seções por nível
+  // Agrupar seções por nível usando o sistema antigo (compatibilidade)
   const sectionsByLevel = SECTIONS.reduce((acc, section) => {
     const level = getSectionLevel(section);
     if (!acc[level]) {
@@ -41,7 +66,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return acc;
   }, {} as Record<SectionLevel, Section[]>);
 
-  // Carregar links visitados do localStorage
+  // Carregar links visitados e estado do toggle do localStorage
   useEffect(() => {
     const saved = localStorage.getItem('visitedSections');
     if (saved) {
@@ -52,6 +77,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         console.error('Erro ao carregar links visitados:', error);
       }
     }
+
+    // Carregar estado do toggle
+    const savedToggle = localStorage.getItem('sidebarCollapsed');
+    if (savedToggle) {
+      setIsCollapsed(JSON.parse(savedToggle));
+    }
   }, []);
 
   // Salvar links visitados no localStorage
@@ -60,6 +91,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
     }
   }, [visitedSections]);
+
+  // Salvar estado do toggle no localStorage
+  useEffect(() => {
+    localStorage.setItem('sidebarCollapsed', JSON.stringify(isCollapsed));
+  }, [isCollapsed]);
 
   // Expandir automaticamente apenas a categoria do estudo atual
   useEffect(() => {
@@ -81,10 +117,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   }, [pathname]);
 
   // Filtrar seções baseado na busca
-  const filteredSections = (Object.entries(sectionsByLevel) as [SectionLevel, Section[]][]) 
+  const filteredSections = (Object.entries(sectionsByLevel) as [SectionLevel, Section[]][])
     .map(([level, sections]) => [
       level,
       sections.filter(section => 
+        getDisplayName(section).toLowerCase().includes(searchTerm.toLowerCase()) ||
         section.toLowerCase().includes(searchTerm.toLowerCase())
       )
     ] as [SectionLevel, Section[]])
@@ -100,6 +137,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       }
       return newExpanded;
     });
+  };
+
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
   };
 
   const handleSectionClick = (section: string) => {
@@ -146,181 +187,245 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       {/* Overlay para mobile */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-sm z-40 lg:hidden animate-fade-in"
+          className="fixed inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70 backdrop-blur-md z-40 lg:hidden"
           onClick={onClose}
         />
       )}
 
       {/* Sidebar */}
       <div className={`
-        fixed top-0 left-0 h-full w-72 bg-white/95 backdrop-blur-xl border-r border-gray-200/60 z-50
+        fixed top-0 left-0 h-full bg-white/98 backdrop-blur-xl border-r border-gray-200/80 z-50
         transform transition-all duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:static lg:z-auto
-        shadow-2xl lg:shadow-xl
-        overflow-x-hidden overflow-y-auto
+        shadow-2xl lg:shadow-lg
+        overflow-hidden
+        ${isCollapsed ? 'w-16' : 'w-72'}
       `}>
         {/* Header */}
-        <div className="px-3 py-4 border-b border-gray-200/40 bg-gradient-to-r from-slate-50 to-gray-50/80">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-sm">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        <div className={`px-4 py-5 border-b border-gray-200/60 bg-gradient-to-br from-white to-gray-50/50 ${isCollapsed ? 'flex flex-col items-center justify-center' : ''}`}>
+          {isCollapsed ? (
+            <div className="flex flex-col items-center space-y-4">
+              {/* Menu Icon */}
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </div>
-              <h2 className="text-lg font-semibold text-gray-800">
-                Navegação
-              </h2>
-            </div>
-            <button
-              onClick={onClose}
-              className="lg:hidden p-1.5 rounded-lg hover:bg-gray-100 transition-all duration-200"
-            >
-              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          {/* Search */}
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <input
-              type="text"
-              placeholder="Buscar tópicos..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-white border border-gray-200/60 rounded-lg focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/60 focus:bg-white transition-all duration-200 placeholder-gray-400 text-sm"
-            />
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden py-3">
-          {filteredSections.map(([level, sections]) => (
-            <div key={level} className="mb-4">
-              {/* Level Header */}
+              {/* Toggle Button */}
               <button
-                onClick={() => toggleLevel(level)}
-                className={`
-                  w-full flex items-center justify-between px-3 py-3 text-left
-                  hover:bg-gray-50 transition-all duration-200 rounded-lg mx-2
-                  ${expandedLevels.has(level) ? 'bg-gray-50/80 shadow-sm' : ''}
-                  group
-                `}
+                onClick={toggleCollapse}
+                className="hidden lg:flex p-2 rounded-xl hover:bg-gray-100 transition-all duration-200"
+                title="Expandir sidebar"
               >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-6 h-6 rounded-md bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                    <span className="text-sm">{levelIcons[level as keyof typeof levelIcons]}</span>
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
                   </div>
-                  <div className="flex flex-col">
-                    <span className="font-medium text-gray-800 text-sm">{level}</span>
-                    <span className="text-xs text-gray-500">{sections.length} tópicos</span>
-                    {(() => {
-                      const visitedInLevel = sections.filter(section => isVisited(section)).length;
-                      return visitedInLevel > 0 && (
-                        <span className="text-xs text-green-600 font-medium">
-                          {visitedInLevel} de {sections.length} visitados
-                        </span>
-                      );
-                    })()}
+                  <div>
+                    <h2 className="text-lg font-bold text-gray-800">Navegação</h2>
+                    <p className="text-xs text-gray-500">Guia de Estudo</p>
                   </div>
                 </div>
-                <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors duration-200">
-                  <svg 
-                    className={`w-2.5 h-2.5 text-gray-600 transition-transform duration-200 ${
-                      expandedLevels.has(level) ? 'rotate-180' : ''
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
+                <div className="flex items-center gap-2">
+                  {/* Toggle Button - Desktop only */}
+                  <button
+                    onClick={toggleCollapse}
+                    className="hidden lg:flex p-2 rounded-xl hover:bg-gray-100 transition-all duration-200"
+                    title="Colapsar sidebar"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  {/* Close Button - Mobile only */}
+                  <button
+                    onClick={onClose}
+                    className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-all duration-200"
+                  >
+                    <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              {/* Search */}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-              </button>
-
-              {/* Sections List */}
-              {expandedLevels.has(level) && (
-                <div className="mt-1.5">
-                  {sections.map((section) => (
-                    <button
-                      key={section}
-                      onClick={() => handleSectionClick(section)}
-                      className={`
-                        w-full text-left px-3 py-2.5 mx-2 rounded-md transition-all duration-200 group
-                        ${isActive(section) 
-                          ? `bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 shadow-sm ${levelColors[level as keyof typeof levelColors]}`
-                          : isVisited(section)
-                          ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50/80 bg-gray-50/30'
-                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/60'
-                        }
-                      `}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <div className={`
-                          w-1.5 h-1.5 rounded-full transition-all duration-200
-                          ${isActive(section) 
-                            ? 'bg-blue-500 scale-125' 
-                            : isVisited(section)
-                            ? 'bg-green-400 group-hover:bg-green-500 group-hover:scale-110'
-                            : 'bg-gray-300 group-hover:bg-gray-400 group-hover:scale-110'
-                          }
-                        `} />
-                        <span className="text-sm font-medium flex-1 truncate">{getDisplayName(section)}</span>
-                        {isActive(section) && (
-                          <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse" />
-                        )}
-                        {isVisited(section) && !isActive(section) && (
-                          <div className="w-3.5 h-3.5 text-green-500 flex items-center justify-center">
-                            <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                        )}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-
-          {/* Empty State */}
-          {filteredSections.length === 0 && (
-            <div className="px-4 py-6 text-center">
-              <svg className="w-8 h-8 text-gray-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <p className="text-gray-500 text-sm">Nenhum tópico encontrado</p>
-            </div>
+                <input
+                  type="text"
+                  placeholder="Buscar tópicos..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200/80 rounded-xl focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400/80 focus:bg-white transition-all duration-200 placeholder-gray-400 text-sm shadow-sm"
+                />
+              </div>
+            </>
           )}
         </div>
 
-        {/* Footer */}
-        <div className="px-3 py-4 border-t border-gray-200/40 bg-gradient-to-r from-slate-50 to-gray-50/80">
-          <div className="text-center space-y-1.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 rounded-lg shadow-sm">
-              <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-              <p className="text-xs font-medium text-gray-600">
-                {SECTIONS.length} tópicos disponíveis
-              </p>
-            </div>
-            {visitedSections.size > 0 && (
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-blue-50/80 rounded-lg shadow-sm">
-                <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                <p className="text-xs font-medium text-blue-700">
-                  {visitedSections.size} visitados
-                </p>
+        {/* Navigation */}
+        {!isCollapsed && (
+          <div className="flex-1 overflow-y-auto py-4 px-3">
+            {filteredSections.map(([level, sections]) => {
+              const config = levelConfig[level];
+              const visitedInLevel = sections.filter(section => isVisited(section)).length;
+              const progressPercentage = sections.length > 0 ? (visitedInLevel / sections.length) * 100 : 0;
+              
+              return (
+                <div key={level} className="mb-5">
+                  {/* Level Header */}
+                  <button
+                    onClick={() => toggleLevel(level)}
+                    className={`
+                      w-full flex items-center justify-between px-4 py-4 text-left
+                      hover:bg-gray-50/80 transition-all duration-200 rounded-xl
+                      ${expandedLevels.has(level) ? `${config.bgColor} shadow-sm border ${config.borderColor}` : 'hover:shadow-sm'}
+                      group border border-transparent
+                    `}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex flex-col items-start">
+                        <span className={`font-bold text-sm ${config.color}`}>{level}</span>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs text-gray-500">{sections.length} tópicos</span>
+                          {visitedInLevel > 0 && (
+                            <span className="text-xs text-green-600 font-medium">
+                              • {visitedInLevel} visitados
+                            </span>
+                          )}
+                        </div>
+                        {/* Progress Bar */}
+                        <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                          <div 
+                            className={`h-1.5 rounded-full bg-gradient-to-r ${config.gradient} transition-all duration-300`}
+                            style={{ width: `${progressPercentage}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`w-6 h-6 rounded-lg ${config.bgColor} flex items-center justify-center group-hover:scale-105 transition-all duration-200`}>
+                      <svg 
+                        className={`w-3 h-3 ${config.color} transition-transform duration-200 ${
+                          expandedLevels.has(level) ? 'rotate-180' : ''
+                        }`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  {/* Sections List */}
+                  {expandedLevels.has(level) && (
+                    <div className="mt-3 ml-2 space-y-1">
+                      {sections.map((section) => (
+                        <button
+                          key={section}
+                          onClick={() => handleSectionClick(section)}
+                          className={`
+                            w-full text-left px-4 py-3 rounded-lg transition-all duration-200 group
+                            ${isActive(section) 
+                              ? `bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 shadow-sm ${config.color}`
+                              : isVisited(section)
+                              ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50/80 bg-gray-50/30'
+                              : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/60'
+                            }
+                          `}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className={`
+                              w-2 h-2 rounded-full transition-all duration-200
+                              ${isActive(section) 
+                                ? 'bg-blue-500 scale-125' 
+                                : isVisited(section)
+                                ? 'bg-green-400 group-hover:bg-green-500 group-hover:scale-110'
+                                : 'bg-gray-300 group-hover:bg-gray-400 group-hover:scale-110'
+                              }
+                            `} />
+                            <span className="text-sm font-medium flex-1 truncate">{getDisplayName(section)}</span>
+                            {isActive(section) && (
+                              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                            )}
+                            {isVisited(section) && !isActive(section) && (
+                              <div className="w-4 h-4 text-green-500 flex items-center justify-center">
+                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Empty State */}
+            {filteredSections.length === 0 && (
+              <div className="px-6 py-12 text-center">
+                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-sm font-medium">Nenhum tópico encontrado</p>
+                <p className="text-gray-400 text-xs mt-1">Tente uma busca diferente</p>
               </div>
             )}
           </div>
-        </div>
+        )}
+
+        {/* Footer */}
+        {!isCollapsed && (
+          <div className="px-4 py-5 border-t border-gray-200/60 bg-gradient-to-br from-white to-gray-50/50">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between px-3 py-2 bg-white/80 rounded-xl shadow-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <p className="text-xs font-medium text-gray-600">
+                    {SECTIONS.length} tópicos disponíveis
+                  </p>
+                </div>
+                <div className="text-xs text-gray-500 font-medium">
+                  {Math.round((visitedSections.size / SECTIONS.length) * 100)}%
+                </div>
+              </div>
+              {visitedSections.size > 0 && (
+                <div className="flex items-center justify-between px-3 py-2 bg-blue-50/80 rounded-xl shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                    <p className="text-xs font-medium text-blue-700">
+                      {visitedSections.size} visitados
+                    </p>
+                  </div>
+                  <div className="text-xs text-blue-600 font-medium">
+                    {visitedSections.size}/{SECTIONS.length}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
