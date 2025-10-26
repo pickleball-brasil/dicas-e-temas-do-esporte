@@ -105,7 +105,7 @@ const sectionColors: Record<string, string> = {
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
   <button
     onClick={onClick}
-    className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left ${
+    className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left cursor-pointer ${
       isVisited 
         ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100' 
         : 'hover:shadow-md'

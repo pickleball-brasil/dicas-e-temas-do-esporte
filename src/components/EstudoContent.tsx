@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
+import { useRouter } from "next/navigation";
+import { SECTIONS, getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { SectionContent } from "@/lib/markdown";
 import { getDisplayName } from "@/lib/displayNames";
@@ -28,6 +29,7 @@ interface EstudoContentProps {
 export default function EstudoContent({ section, content }: EstudoContentProps) {
   const { getSectionDescription, t } = useLanguageContext();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
 
   console.log('content', content);
   
@@ -37,6 +39,29 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
   const level = content?.level || getSectionLevel(section);
   const gradientColor = levelColors[level];
   const badgeColor = levelBadgeColors[level];
+
+  // Encontrar seções anterior e próxima
+  const currentIndex = SECTIONS.indexOf(section);
+  const prevSection = currentIndex > 0 ? SECTIONS[currentIndex - 1] : null;
+  const nextSection = currentIndex < SECTIONS.length - 1 ? SECTIONS[currentIndex + 1] : null;
+  
+  const prevSectionName = prevSection ? getDisplayName(prevSection) : null;
+  const nextSectionName = nextSection ? getDisplayName(nextSection) : null;
+  
+  const prevSectionLevel = prevSection ? getSectionLevel(prevSection) : null;
+  const nextSectionLevel = nextSection ? getSectionLevel(nextSection) : null;
+
+  const handlePrevSection = () => {
+    if (prevSection) {
+      router.push(`/estudo/${prevSection}`);
+    }
+  };
+
+  const handleNextSection = () => {
+    if (nextSection) {
+      router.push(`/estudo/${nextSection}`);
+    }
+  };
 
   return (
     <div className="min-h-screen flex">
@@ -122,10 +147,54 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
             </div>
           </div>
 
+          {/* Botão de navegação flutuante */}
+          {(prevSection || nextSection) && (
+            <div className="fixed bottom-6 right-6 z-40">
+              <div className="flex items-center justify-center gap-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-2 w-24 sm:w-80">
+                {/* Botão Anterior */}
+                {prevSection && (
+                  <button
+                    onClick={handlePrevSection}
+                    className="flex items-center gap-1 px-2 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-colors duration-200 cursor-pointer sm:gap-2 sm:px-3 sm:w-36"
+                  >
+                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <div className="flex flex-col items-center text-center hidden sm:flex flex-1 min-w-0">
+                      <span className="text-xs text-gray-500">Anterior</span>
+                      <span className="text-sm font-medium truncate w-full" title={prevSectionName || ''}>{prevSectionName}</span>
+                    </div>
+                  </button>
+                )}
+
+                {/* Separador */}
+                {prevSection && nextSection && (
+                  <div className="w-px h-6 bg-gray-200 hidden sm:block"></div>
+                )}
+
+                {/* Botão Próximo */}
+                {nextSection && (
+                  <button
+                    onClick={handleNextSection}
+                    className="flex items-center gap-1 px-2 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-colors duration-200 cursor-pointer sm:gap-2 sm:px-3 sm:w-36"
+                  >
+                    <div className="flex flex-col items-center text-center hidden sm:flex flex-1 min-w-0">
+                      <span className="text-xs text-gray-500">Próximo</span>
+                      <span className="text-sm font-medium truncate w-full" title={nextSectionName || ''}>{nextSectionName}</span>
+                    </div>
+                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Botão flutuante para menu mobile */}
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden fixed bottom-6 right-6 z-40 p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
+            className="lg:hidden fixed bottom-6 left-6 z-40 p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />

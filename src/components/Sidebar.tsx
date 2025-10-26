@@ -294,7 +294,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     onClick={() => toggleLevel(level)}
                     className={`
                       w-full flex items-center justify-between px-4 py-4 text-left
-                      hover:bg-gray-50/80 transition-all duration-200 rounded-xl
+                      hover:bg-gray-50/80 transition-all duration-200 rounded-xl cursor-pointer
                       ${expandedLevels.has(level) ? `${config.bgColor} shadow-sm border ${config.borderColor}` : 'hover:shadow-sm'}
                       group border border-transparent
                     `}
@@ -341,7 +341,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           key={section}
                           onClick={() => handleSectionClick(section)}
                           className={`
-                            w-full text-left px-4 py-3 rounded-lg transition-all duration-200 group
+                            w-full text-left px-4 py-3 rounded-lg transition-all duration-200 group cursor-pointer
                             ${isActive(section) 
                               ? `bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 shadow-sm ${config.color}`
                               : isVisited(section)
