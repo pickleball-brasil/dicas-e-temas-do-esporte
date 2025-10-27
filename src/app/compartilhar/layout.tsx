@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://ffzzi.github.io/dicas-e-temas-do-esporte/compartilhar",
+    url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/compartilhar",
     siteName: "Estudando o Pickleball",
     title: "Temas Compartilhados - Estudando o Pickleball",
     description: "Explore uma coleção personalizada de temas sobre pickleball",
     images: [
       {
-        url: "https://ffzzi.github.io/dicas-e-temas-do-esporte/logo.png",
+        url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png",
         width: 512,
         height: 512,
         alt: "Estudando o Pickleball Logo",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Temas Compartilhados - Estudando o Pickleball",
     description: "Explore uma coleção personalizada de temas sobre pickleball",
-    images: ["https://ffzzi.github.io/dicas-e-temas-do-esporte/logo.png"],
+    images: ["https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png"],
   },
 };
 

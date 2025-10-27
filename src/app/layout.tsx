@@ -35,13 +35,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://ffzzi.github.io/dicas-e-temas-do-esporte",
+    url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte",
     siteName: "Estudando o Pickleball",
     title: "Estudando o Pickleball - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
     images: [
       {
-        url: "https://ffzzi.github.io/dicas-e-temas-do-esporte/logo.png",
+        url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png",
         width: 512,
         height: 512,
         alt: "Estudando o Pickleball Logo",
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Estudando o Pickleball - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
-    images: ["https://ffzzi.github.io/dicas-e-temas-do-esporte/logo.png"],
+    images: ["https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png"],
   },
-  metadataBase: new URL("https://ffzzi.github.io/dicas-e-temas-do-esporte"),
+  metadataBase: new URL("https://pickleball-brasil.github.io/dicas-e-temas-do-esporte"),
 };
 
 export default function RootLayout({

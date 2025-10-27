@@ -3125,7 +3125,8 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: PropsWithChildren) {
-  const [language, setLanguage] = useState<Language>('pt');
+  // Inicializar com undefined para evitar mismatch entre server/client
+  const [language, setLanguage] = useState<Language | undefined>(undefined);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -3135,19 +3136,25 @@ export function LanguageProvider({ children }: PropsWithChildren) {
     const savedLanguage = localStorage.getItem('language') as Language;
     if (savedLanguage && (savedLanguage === 'pt' || savedLanguage === 'en')) {
       setLanguage(savedLanguage);
+    } else {
+      // Se não houver idioma salvo, usar pt como padrão
+      setLanguage('pt');
     }
   }, []);
 
   useEffect(() => {
-    // Salvar idioma no localStorage apenas no cliente
-    if (isClient) {
+    // Salvar idioma no localStorage apenas no cliente e quando já tiver valor
+    if (isClient && language) {
       localStorage.setItem('language', language);
     }
   }, [language, isClient]);
 
+  // Usar valor padrão 'pt' enquanto não está no cliente ou enquanto language é undefined
+  const currentLanguage = language || 'pt';
+
   const t = (key: string): string => {
     const keys = key.split('.');
-    let value: unknown = translations[language];
+    let value: unknown = translations[currentLanguage];
     
     for (const k of keys) {
       value = (value as Record<string, unknown>)?.[k];
@@ -3157,7 +3164,7 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   };
 
   const getTips = (section: string): string[] => {
-    if (language === 'en' && translations.en.tips[section as keyof typeof translations.en.tips]) {
+    if (currentLanguage === 'en' && translations.en.tips[section as keyof typeof translations.en.tips]) {
       return translations.en.tips[section as keyof typeof translations.en.tips];
     }
     // Fallback para português ou se não houver tradução
@@ -3165,7 +3172,7 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   };
 
   const getSectionName = (section: string): string => {
-    if (language === 'en' && translations.en.sectionNames[section as keyof typeof translations.en.sectionNames]) {
+    if (currentLanguage === 'en' && translations.en.sectionNames[section as keyof typeof translations.en.sectionNames]) {
       return translations.en.sectionNames[section as keyof typeof translations.en.sectionNames];
     }
     // Fallback para português
@@ -3173,15 +3180,19 @@ export function LanguageProvider({ children }: PropsWithChildren) {
   };
 
   const getSectionDescription = (section: string): string => {
-    if (language === 'en' && translations.en.sectionDescriptions[section as keyof typeof translations.en.sectionDescriptions]) {
+    if (currentLanguage === 'en' && translations.en.sectionDescriptions[section as keyof typeof translations.en.sectionDescriptions]) {
       return translations.en.sectionDescriptions[section as keyof typeof translations.en.sectionDescriptions];
     }
     // Fallback para português
     return translations.pt.sectionDescriptions[section as keyof typeof translations.pt.sectionDescriptions] || '';
   };
 
+  const setLanguageWrapper = (lang: Language) => {
+    setLanguage(lang);
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, getTips, getSectionName, getSectionDescription }}>
+    <LanguageContext.Provider value={{ language: currentLanguage, setLanguage: setLanguageWrapper, t, getTips, getSectionName, getSectionDescription }}>
       {children}
     </LanguageContext.Provider>
   );

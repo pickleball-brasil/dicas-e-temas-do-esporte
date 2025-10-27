@@ -14,10 +14,10 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <Link href="/" className="group flex items-center hover:opacity-90 transition-all duration-300">
               <div className="flex flex-col">
-                <span className="font-bold text-2xl text-gray-900 tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="font-bold text-lg sm:text-2xl text-gray-900 tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
                   {t('header.title')}
                 </span>
-                <span className="text-sm text-gray-600 font-medium hidden sm:block">{t('header.subtitle')}</span>
+                <span className="text-xs sm:text-sm text-gray-600 font-medium hidden sm:block">{t('header.subtitle')}</span>
               </div>
             </Link>
           </div>
