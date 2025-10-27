@@ -65,8 +65,9 @@ function SectionCard({ sectionId, isSelected, onToggle }: {
 
 export default function ThemeSelector() {
   const [selectedSections, setSelectedSections] = useState<Set<string>>(new Set());
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [customTitle, setCustomTitle] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [showFloatingMenu, setShowFloatingMenu] = useState(false);
 
   const toggleSection = (sectionId: string) => {
     const newSelected = new Set(selectedSections);
@@ -81,6 +82,7 @@ export default function ThemeSelector() {
 
   const selectNone = () => {
     setSelectedSections(new Set());
+    setCustomTitle("");
   };
 
   const generateShareLink = () => {
@@ -107,10 +109,10 @@ export default function ThemeSelector() {
     
     try {
       await navigator.clipboard.writeText(link);
-      alert('Link copiado para a área de transferência!');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Erro ao copiar link:', err);
-      alert('Erro ao copiar link. Tente novamente.');
     }
   };
 
@@ -122,77 +124,21 @@ export default function ThemeSelector() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Sticky Controls Bar - Only show when themes are selected */}
-      {selectedSections.size > 0 && (
-        <div className="sticky top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-          <div className="max-w-4xl mx-auto px-4 py-3">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            {/* Left side - Controls */}
-            <div className="flex flex-wrap items-center gap-2">
-              <button
-                onClick={selectNone}
-                className="px-3 py-1.5 bg-gray-500 text-white text-sm rounded-md hover:bg-gray-600 transition-colors"
-              >
-                Limpar
-              </button>
-              {selectedSections.size > 0 && (
-                <>
-                  <button
-                    onClick={copyToClipboard}
-                    className="px-3 py-1.5 bg-green-500 text-white text-sm rounded-md hover:bg-green-600 transition-colors"
-                  >
-                    Copiar Link
-                  </button>
-                  <button
-                    onClick={openSharedPage}
-                    className="px-3 py-1.5 bg-purple-500 text-white text-sm rounded-md hover:bg-purple-600 transition-colors"
-                  >
-                    Abrir Página
-                  </button>
-                </>
-              )}
-            </div>
+    <div>
+      {/* Floating Menu - Only shows when themes are selected */}
 
-            {/* Right side - Title Input */}
-            {selectedSections.size > 0 && (
-              <div className="flex items-center gap-2">
-                <label htmlFor="customTitle" className="text-sm font-medium text-gray-700 whitespace-nowrap">
-                  Título:
-                </label>
-                <input
-                  id="customTitle"
-                  type="text"
-                  value={customTitle}
-                  onChange={(e) => setCustomTitle(e.target.value)}
-                  placeholder="Ex: Meus Temas Favoritos"
-                  className="px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors text-gray-900 placeholder-gray-500 text-sm min-w-[200px] max-w-[300px]"
-                  maxLength={50}
-                />
-                <span className="text-xs text-gray-500 whitespace-nowrap">
-                  {customTitle.length}/50
-                </span>
-              </div>
-            )}
-            </div>
-          </div>
+      <main className="py-4">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-3">
+            Seletor de Temas Personalizado
+          </h1>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Crie sua coleção personalizada de temas de pickleball e compartilhe com outros jogadores.
+          </p>
         </div>
-      )}git 
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold tracking-tight mb-3 flex items-center justify-center gap-3">
-              <span className="text-4xl">🎯</span>
-              <span className="bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
-                Seletor de Temas Personalizado
-              </span>
-            </h1>
-            <p className="text-gray-600 text-base max-w-2xl mx-auto">
-              Crie sua coleção personalizada de temas de pickleball e compartilhe com outros jogadores.
-            </p>
-          </div>
 
 
           {/* Basic Sections */}
@@ -304,66 +250,125 @@ export default function ThemeSelector() {
           </section>
         </div>
       </div>
+      </main>
 
-      {/* Botão flutuante */}
+      {/* Floating Action Menu */}
       {selectedSections.size > 0 && (
         <div className="fixed bottom-6 right-6 z-50">
-          <div className="flex flex-col items-center gap-3">
-            {/* Botão principal com menu dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setShowMobileMenu(!showMobileMenu)}
-                className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center cursor-pointer"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-                </svg>
-              </button>
-              
-              {/* Menu dropdown */}
-              {showMobileMenu && (
-                <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[200px]">
+          {/* Menu Expandido */}
+          {showFloatingMenu && (
+            <div className="absolute bottom-20 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-bottom-4">
+              {/* Header */}
+              <div className="bg-gradient-to-r from-sky-500 to-purple-600 px-6 py-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold text-lg">
+                      {selectedSections.size}
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold">Temas Selecionados</p>
+                      <p className="text-white/80 text-sm">{selectedSections.size} de {allSections.length}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-4 space-y-4">
+                {/* Title Input */}
+                <div>
+                  <label htmlFor="floatingTitle" className="block text-xs font-medium text-gray-700 mb-2">
+                    Título personalizado (opcional)
+                  </label>
+                  <input
+                    id="floatingTitle"
+                    type="text"
+                    value={customTitle}
+                    onChange={(e) => setCustomTitle(e.target.value)}
+                    placeholder="Ex: Minha Seleção"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all text-sm text-gray-900 placeholder:text-gray-400"
+                    maxLength={50}
+                  />
+                  {customTitle.length > 0 && (
+                    <p className="text-xs text-gray-500 mt-1 text-right">{customTitle.length}/50</p>
+                  )}
+                </div>
+
+                {/* Actions */}
+                <div className="space-y-2">
                   <button
                     onClick={() => {
                       copyToClipboard();
-                      setShowMobileMenu(false);
                     }}
-                    className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center gap-3 text-gray-700"
+                    className={`w-full px-4 py-3 ${copied ? 'bg-green-500' : 'bg-blue-600 hover:bg-blue-700'} text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-sm`}
                   >
-                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    Copiar Link
+                    {copied ? (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Link Copiado!
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Copiar Link
+                      </>
+                    )}
                   </button>
+
                   <button
                     onClick={() => {
                       openSharedPage();
-                      setShowMobileMenu(false);
                     }}
-                    className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center gap-3 text-gray-700"
+                    className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-sky-600 hover:from-purple-700 hover:to-sky-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
                   >
-                    <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                    Abrir Página
+                    Abrir Página Compartilhada
                   </button>
-                  <div className="border-t border-gray-200 my-1"></div>
+
                   <button
-                    onClick={() => setShowMobileMenu(false)}
-                    className="w-full px-4 py-2 text-center text-gray-500 hover:bg-gray-50 text-sm"
+                    onClick={() => {
+                      selectNone();
+                      setShowFloatingMenu(false);
+                    }}
+                    className="w-full px-4 py-3 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-700 font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
                   >
-                    Fechar
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Limpar Seleção
                   </button>
                 </div>
-              )}
+              </div>
             </div>
-            
-            {/* Indicador de quantidade */}
-            <div className="bg-white rounded-full px-3 py-1 shadow-md border border-gray-200">
-              <span className="text-xs font-medium text-gray-600">
-                {selectedSections.size} tema{selectedSections.size !== 1 ? 's' : ''}
-              </span>
-            </div>
+          )}
+
+          {/* Main FAB Button */}
+          <button
+            onClick={() => setShowFloatingMenu(!showFloatingMenu)}
+            className={`w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center ${
+              showFloatingMenu ? 'rotate-45' : ''
+            }`}
+          >
+            {showFloatingMenu ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            )}
+          </button>
+
+          {/* Badge */}
+          <div className="absolute -top-2 -left-2 bg-white rounded-full px-3 py-1.5 shadow-lg border border-gray-200">
+            <span className="text-sm font-bold text-gray-900">{selectedSections.size}</span>
           </div>
         </div>
       )}

@@ -4,17 +4,28 @@ import { useRouter } from "next/navigation";
 import { TACTICS_SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
-import Link from "next/link";
 
 const sectionColors: Record<string, string> = {
   "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",
   "jogo-no-meio": "bg-gradient-to-br from-purple-400 to-violet-500",
-  "angulos-e-posicionamento": "bg-gradient-to-br from-violet-500 to-purple-600",
-  "pressao-e-controle": "bg-gradient-to-br from-purple-500 to-violet-600",
-  "jogos-psicologicos": "bg-gradient-to-br from-violet-400 to-purple-500",
-  "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
+  "explorar-fraquezas": "bg-gradient-to-br from-violet-500 to-purple-600",
+  "variacao-de-altura": "bg-gradient-to-br from-purple-400 to-purple-600",
+  "pressao-constante": "bg-gradient-to-br from-violet-400 to-purple-500",
+  "jogo-cruzado": "bg-gradient-to-br from-violet-500 to-purple-600",
+  "isolamento-de-jogador": "bg-gradient-to-br from-purple-500 to-violet-600",
+  "mudanca-de-direcao": "bg-gradient-to-br from-violet-400 to-purple-500",
+  "jogo-de-paciencia": "bg-gradient-to-br from-purple-400 to-purple-600",
+  "ataque-ao-corpo": "bg-gradient-to-br from-violet-500 to-purple-600",
+  "uso-do-lob-tatico": "bg-gradient-to-br from-violet-400 to-purple-500",
+  "forcar-erros": "bg-gradient-to-br from-purple-400 to-purple-600",
+  "estrategias-de-abertura": "bg-gradient-to-br from-violet-500 to-purple-600",
+  "controle-de-ponto": "bg-gradient-to-br from-violet-400 to-purple-500",
+  "quebra-de-ritmo": "bg-gradient-to-br from-purple-400 to-purple-600",
   "exploracao-de-angulos": "bg-gradient-to-br from-violet-500 to-purple-600",
   "jogos-mentais": "bg-gradient-to-br from-violet-500 to-purple-600",
+  "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
+  "transicao-defesa-ataque": "bg-gradient-to-br from-violet-400 to-purple-500",
+  "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-purple-400 to-purple-600",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
@@ -123,16 +134,6 @@ export default function TaticasPage() {
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-sky-50 to-purple-50 hover:from-sky-100 hover:to-purple-100 text-sky-700 hover:text-sky-800 transition-all duration-200 text-sm font-medium border border-sky-200 hover:border-sky-300"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Voltar</span>
-          </Link>
-          
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
               4

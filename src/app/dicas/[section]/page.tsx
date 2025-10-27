@@ -115,20 +115,8 @@ export default function DicasPage() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            <Link
-              href={`/estudo/${section}`}
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white hover:bg-gray-50 transition-colors text-gray-600 border border-gray-200"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Voltar
-            </Link>
-          </div>
-          
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            {getDisplayName(section)}
+            Dicas e Prova: {getDisplayName(section)}
           </h1>
           <p className="text-gray-600">Aprenda as principais dicas e teste seu conhecimento</p>
         </div>

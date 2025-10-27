@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { INTERMEDIATE_SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
-import Link from "next/link";
 
 const sectionColors: Record<string, string> = {
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
@@ -25,6 +24,12 @@ const sectionColors: Record<string, string> = {
   "leitura-de-jogo": "bg-gradient-to-br from-amber-400 to-orange-500",
   "adaptacao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "consistencia": "bg-gradient-to-br from-orange-400 to-amber-500",
+  "selecao-de-golpes": "bg-gradient-to-br from-amber-400 to-orange-600",
+  "lidar-com-bangers": "bg-gradient-to-br from-orange-500 to-amber-600",
+  "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
+  "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
+  "mecanicas-fundamentais": "bg-gradient-to-br from-orange-500 to-orange-600",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
@@ -133,16 +138,6 @@ export default function IntermediarioPage() {
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-sky-50 to-purple-50 hover:from-sky-100 hover:to-purple-100 text-sky-700 hover:text-sky-800 transition-all duration-200 text-sm font-medium border border-sky-200 hover:border-sky-300"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Voltar</span>
-          </Link>
-          
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
               2

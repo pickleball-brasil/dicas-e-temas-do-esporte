@@ -230,13 +230,13 @@ export default function Home() {
 
   return (
     <main className="py-4">
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <div className="mb-3">
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-4">
             {t('sections.title')}
           </h1>
           {visitedSections.size > 0 && (
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center justify-center gap-4 mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-sm font-medium text-gray-700">
@@ -254,7 +254,7 @@ export default function Home() {
             </div>
           )}
         </div>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
           Explore todos os tópicos de pickleball organizados por nível de dificuldade. Clique em qualquer tópico para começar a estudar.
         </p>
       </div>

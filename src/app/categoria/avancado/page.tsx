@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { ADVANCED_SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
-import Link from "next/link";
 
 const sectionColors: Record<string, string> = {
   "smash": "bg-gradient-to-br from-rose-500 to-red-600",
@@ -25,6 +24,13 @@ const sectionColors: Record<string, string> = {
   "pressao-mental": "bg-gradient-to-br from-red-500 to-red-600",
   "execucao-sob-pressao": "bg-gradient-to-br from-red-400 to-rose-500",
   "lideranca-em-quadra": "bg-gradient-to-br from-rose-400 to-rose-600",
+  "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-600",
+  "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
+  "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-400 to-rose-600",
+  "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-400 to-rose-500",
+  "construcao-de-pontos": "bg-gradient-to-br from-rose-500 to-red-600",
+  "transicao-defesa-ataque": "bg-gradient-to-br from-red-400 to-red-600",
+  "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-rose-400 to-red-600",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
@@ -133,16 +139,6 @@ export default function AvancadoPage() {
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-sky-50 to-purple-50 hover:from-sky-100 hover:to-purple-100 text-sky-700 hover:text-sky-800 transition-all duration-200 text-sm font-medium border border-sky-200 hover:border-sky-300"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Voltar</span>
-          </Link>
-          
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
               3
