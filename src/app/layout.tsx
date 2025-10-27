@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/dicas-e-temas-do-esporte/favicon.ico", sizes: "any" },
+      { url: "/dicas-e-temas-do-esporte/favicon.png", type: "image/png" },
     ],
-    apple: "/favicon.png",
+    apple: "/dicas-e-temas-do-esporte/favicon.png",
   },
   appleWebApp: {
     capable: true,
