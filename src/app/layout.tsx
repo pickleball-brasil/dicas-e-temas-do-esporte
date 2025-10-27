@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PickleMaster - Domine o Pickleball",
+  title: "Picklebook - Domine o Pickleball",
   description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
   manifest: "/dicas-e-temas-do-esporte/manifest.json",
   themeColor: "#0ea5e9",
@@ -27,10 +27,10 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "PickleMaster",
+    title: "Picklebook",
   },
   openGraph: {
-    title: "PickleMaster - Domine o Pickleball",
+    title: "Picklebook - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento",
     type: "website",
     locale: "pt_BR",
