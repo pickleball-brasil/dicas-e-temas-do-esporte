@@ -182,6 +182,49 @@ function SharedThemesContent() {
     setIsLoading(false);
   }, [searchParams]);
 
+  // Atualizar título do documento e meta tags quando customTitle mudar
+  useEffect(() => {
+    if (customTitle) {
+      // Atualizar título
+      document.title = `${customTitle} - Estudos Pickleball`;
+      
+      // Helper para atualizar ou criar meta tag
+      const updateOrCreateMeta = (nameOrProperty: string, value: string, isProperty: boolean = false) => {
+        const selector = isProperty 
+          ? `meta[property="${nameOrProperty}"]` 
+          : `meta[name="${nameOrProperty}"]`;
+        let meta = document.querySelector(selector);
+        
+        if (!meta) {
+          meta = document.createElement('meta');
+          if (isProperty) {
+            meta.setAttribute('property', nameOrProperty);
+          } else {
+            meta.setAttribute('name', nameOrProperty);
+          }
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', value);
+      };
+      
+      // Atualizar meta description
+      updateOrCreateMeta('description', `Coleção personalizada de estudos sobre ${customTitle} criado por Fabrício Ziliotti`);
+      
+      // Atualizar Open Graph tags
+      updateOrCreateMeta('og:title', `${customTitle} - Estudos Pickleball`, true);
+      updateOrCreateMeta('og:description', `Coleção personalizada de estudos sobre ${customTitle} criado por Fabrício Ziliotti`, true);
+      updateOrCreateMeta('og:type', 'website', true);
+      updateOrCreateMeta('og:url', window.location.href, true);
+      
+      // Twitter tags
+      updateOrCreateMeta('twitter:title', `${customTitle} - Estudos Pickleball`, true);
+      updateOrCreateMeta('twitter:description', `Coleção personalizada de estudos sobre ${customTitle} criado por Fabrício Ziliotti`, true);
+      updateOrCreateMeta('twitter:card', 'summary', true);
+    } else {
+      document.title = "Temas Compartilhados - Estudos Pickleball";
+    }
+  }, [customTitle, selectedSections.length]);
+
   const handleSectionClick = (section: Section) => {
     window.location.href = `/dicas-e-temas-do-esporte/estudo/${section}`;
   };
@@ -373,8 +416,8 @@ function SharedThemesContent() {
 
       {/* Theme Selector Section */}
       <section className="mb-10">
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 text-white">
-          <div className="flex items-center justify-between gap-4">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 sm:p-6 text-white">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex-1">
               <h2 className="text-lg font-bold mb-1">
                 🎯 Criar Minha Própria Seleção
@@ -385,7 +428,7 @@ function SharedThemesContent() {
             </div>
             <Link
               href="/selecionar-temas"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium text-sm w-full sm:w-auto"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />

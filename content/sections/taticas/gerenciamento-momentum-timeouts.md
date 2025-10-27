@@ -1,5 +1,5 @@
 ---
-title: "Gerenciamento de Momentum e Timeouts"
+title: "Momentum e Timeouts"
 description: "Como identificar mudanças de momentum durante um jogo e usar timeouts estrategicamente."
 level: "Táticas"
 lastModified: "2025-10-21T15:30:00.000Z"

@@ -35,12 +35,7 @@ const categoryFolders = {
   'Táticas': 'taticas'
 } as const;
 
-// Debug para ambiente CI
-if (process.env.CI) {
-  console.log(`[CI DEBUG] process.cwd(): ${process.cwd()}`);
-  console.log(`[CI DEBUG] contentDirectory: ${contentDirectory}`);
-  console.log(`[CI DEBUG] NODE_ENV: ${process.env.NODE_ENV}`);
-}
+// Debug para ambiente CI - removido
 
 export async function getSectionContent(section: Section): Promise<SectionContent | null> {
   try {
@@ -69,32 +64,8 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       }
     }
     
-    // Log específico para páginas problemáticas
-    if (section === 'saque' || section === 'regras') {
-      console.log(`[DEBUG] === PROCESSANDO ${section.toUpperCase()} ===`);
-      console.log(`[DEBUG] Caminho: ${filePath}`);
-      console.log(`[DEBUG] Existe: ${fs.existsSync(filePath)}`);
-      console.log(`[DEBUG] process.cwd(): ${process.cwd()}`);
-      console.log(`[DEBUG] contentDirectory: ${contentDirectory}`);
-    }
-    
-    if (process.env.CI) {
-      console.log(`[CI DEBUG] Tentando carregar: ${section} (${fileName})`);
-      console.log(`[CI DEBUG] Caminho: ${filePath}`);
-      console.log(`[CI DEBUG] Existe: ${fs.existsSync(filePath)}`);
-    }
-    
     if (!fs.existsSync(filePath)) {
       console.error(`Arquivo não encontrado: ${filePath}`);
-      if (process.env.CI) {
-        // Listar arquivos disponíveis no CI para debug
-        try {
-          const files = fs.readdirSync(contentDirectory);
-          console.log(`[CI DEBUG] Arquivos disponíveis: ${files.join(', ')}`);
-        } catch (e) {
-          console.log(`[CI DEBUG] Erro ao listar diretório: ${e instanceof Error ? e.message : String(e)}`);
-        }
-      }
       return null;
     }
 
@@ -104,31 +75,8 @@ export async function getSectionContent(section: Section): Promise<SectionConten
     const normalizedContent = fileContents.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     
     const { data, content } = matter(normalizedContent);
-    
-    // Log específico para páginas problemáticas
-    if (section === 'saque' || section === 'regras') {
-      console.log(`[DEBUG] Frontmatter para ${section}:`, data);
-      console.log(`[DEBUG] Content length para ${section}: ${content.length}`);
-      console.log(`[DEBUG] Content preview para ${section}: ${content.substring(0, 100)}...`);
-    }
-    
-    if (process.env.CI) {
-      console.log(`[CI DEBUG] Arquivo lido: ${fileContents.length} chars`);
-      console.log(`[CI DEBUG] Frontmatter: ${JSON.stringify(data, null, 2)}`);
-      console.log(`[CI DEBUG] Tips type: ${typeof data.tips}`);
-      console.log(`[CI DEBUG] Tips is array: ${Array.isArray(data.tips)}`);
-      if (Array.isArray(data.tips)) {
-        console.log(`[CI DEBUG] Tips length: ${data.tips.length}`);
-        console.log(`[CI DEBUG] Tips valid: ${data.tips.filter(tip => tip && tip.trim()).length}`);
-      }
-    }
 
     // Processar o conteúdo Markdown para HTML
-    if (process.env.CI) {
-      console.log(`[CI DEBUG] Iniciando processamento remark para ${section}`);
-      console.log(`[CI DEBUG] Content preview: ${content.substring(0, 100)}...`);
-    }
-    
     let htmlContent = '';
     try {
       // Processar markdown para HTML usando remark
@@ -139,26 +87,11 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       
       const processedContent = await processor.process(content);
       htmlContent = String(processedContent);
-      
-      // Log específico para páginas problemáticas
-      if (section === 'saque' || section === 'regras') {
-        console.log(`[DEBUG] Remark processado para ${section}: ${htmlContent.length} chars`);
-        console.log(`[DEBUG] HTML preview para ${section}: ${htmlContent.substring(0, 100)}...`);
-      }
     } catch (remarkError) {
       console.error(`[ERROR] Erro no processamento remark para ${section}:`, remarkError);
-      if (section === 'saque' || section === 'regras') {
-        console.log(`[DEBUG] Usando fallback para ${section}`);
-        console.log(`[DEBUG] Erro específico para ${section}:`, remarkError instanceof Error ? remarkError.message : String(remarkError));
-      }
       // Fallback: usar o conteúdo markdown original com quebras de linha
       htmlContent = content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
       htmlContent = `<p>${htmlContent}</p>`;
-    }
-    
-    if (process.env.CI) {
-      console.log(`[CI DEBUG] Remark processado para ${section}: ${htmlContent.length} chars`);
-      console.log(`[CI DEBUG] HTML preview: ${htmlContent.substring(0, 100)}...`);
     }
 
     // Processar tips do frontmatter com validação robusta
@@ -173,17 +106,8 @@ export async function getSectionContent(section: Section): Promise<SectionConten
           tips = [data.tips.trim()];
         }
       }
-      
-      // Log específico para páginas problemáticas
-      if (section === 'saque' || section === 'regras') {
-        console.log(`[DEBUG] Tips processados para ${section}: ${tips.length} items`);
-        console.log(`[DEBUG] Tips preview para ${section}:`, tips.slice(0, 3));
-      }
     } catch (error) {
-      console.error(`[CI DEBUG] Erro ao processar tips para ${section}:`, error);
-      if (section === 'saque' || section === 'regras') {
-        console.log(`[DEBUG] Erro ao processar tips para ${section}:`, error instanceof Error ? error.message : String(error));
-      }
+      console.error(`Erro ao processar tips para ${section}:`, error);
       tips = [];
     }
     
@@ -192,14 +116,14 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       try {
         tips = extractTipsFromContent(htmlContent);
       } catch (error) {
-        console.error(`[CI DEBUG] Erro ao extrair tips do conteúdo para ${section}:`, error);
+        console.error(`Erro ao extrair tips do conteúdo para ${section}:`, error);
         tips = [];
       }
     }
-
+    
     // Verificar se o HTML foi processado corretamente
     if (!htmlContent || htmlContent.trim().length === 0) {
-      console.error(`[CI DEBUG] HTML vazio para ${section}, usando conteúdo markdown como fallback`);
+      console.error(`HTML vazio para ${section}, usando conteúdo markdown como fallback`);
       // Fallback: usar o conteúdo markdown original se o HTML estiver vazio
       const fallbackHtml = content.replace(/\n/g, '<br>');
       htmlContent = fallbackHtml;
@@ -218,30 +142,9 @@ export async function getSectionContent(section: Section): Promise<SectionConten
       }
     };
     
-    // Log específico para páginas problemáticas
-    if (section === 'saque' || section === 'regras') {
-      console.log(`[DEBUG] === RESULTADO PARA ${section.toUpperCase()} ===`);
-      console.log(`[DEBUG] HTML length: ${htmlContent.length}`);
-      console.log(`[DEBUG] Tips count: ${tips.length}`);
-      console.log(`[DEBUG] Result valid: ${!!result.content && result.content.length > 0}`);
-      console.log(`[DEBUG] Title: ${result.title}`);
-      console.log(`[DEBUG] Description: ${result.description}`);
-      console.log(`[DEBUG] Level: ${result.level}`);
-    }
-    
-    if (process.env.CI) {
-      console.log(`[CI DEBUG] Seção ${section} processada com sucesso`);
-      console.log(`[CI DEBUG] HTML length: ${htmlContent.length}`);
-      console.log(`[CI DEBUG] Tips count: ${tips.length}`);
-      console.log(`[CI DEBUG] Result valid: ${!!result.content && result.content.length > 0}`);
-    }
-    
     return result;
   } catch (error) {
     console.error(`Erro ao ler conteúdo da seção ${section}:`, error);
-    if (process.env.CI) {
-      console.log(`[CI DEBUG] Stack trace:`, error instanceof Error ? error.stack : String(error));
-    }
     return null;
   }
 }

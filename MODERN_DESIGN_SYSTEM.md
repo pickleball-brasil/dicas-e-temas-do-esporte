@@ -1,8 +1,8 @@
-# Sistema de Design Moderno - Picklebook
+# Sistema de Design Moderno - Estudando o Pickleball
 
 ## Visão Geral
 
-O sistema de design moderno implementa uma interface sofisticada e responsiva para o Picklebook, com foco na experiência do usuário e na apresentação elegante do conteúdo Markdown.
+O sistema de design moderno implementa uma interface sofisticada e responsiva para o Estudando o Pickleball, com foco na experiência do usuário e na apresentação elegante do conteúdo Markdown.
 
 ## Características Principais
 
@@ -156,4 +156,4 @@ O sistema de design moderno implementa uma interface sofisticada e responsiva pa
 
 ---
 
-*Este sistema de design foi criado para proporcionar uma experiência moderna e elegante no Picklebook, mantendo a funcionalidade e acessibilidade como prioridades.*
+*Este sistema de design foi criado para proporcionar uma experiência moderna e elegante no Estudando o Pickleball, mantendo a funcionalidade e acessibilidade como prioridades.*

@@ -63,7 +63,7 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "selecao-de-golpes-avancada": "Seleção de Golpes",
   "construcao-de-pontos": "Construção de Pontos",
   "transicao-defesa-ataque": "Transição Defesa-Ataque",
-  "gerenciamento-momentum-timeouts": "Gerenciamento de Momentum e Timeouts",
+  "gerenciamento-momentum-timeouts": "Momentum e Timeouts",
   "posicionamento": "Posicionamento",
   "preparacao-fisica": "Preparação Física",
   "pressao-constante": "Pressão Constante",

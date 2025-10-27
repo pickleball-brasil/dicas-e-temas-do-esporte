@@ -222,7 +222,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:static lg:z-auto
         shadow-2xl lg:shadow-lg
-        overflow-hidden
+        flex flex-col
         ${isCollapsed ? 'w-16' : 'w-72'}
       `}>
         {/* Header */}
@@ -304,7 +304,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Navigation */}
         {!isCollapsed && (
-          <div className="flex-1 overflow-y-auto py-4 px-3">
+          <div className="flex-1 overflow-y-auto py-4 px-3 overscroll-contain">
             {filteredSections.map(([level, sections]) => {
               const config = levelConfig[level];
               const visitedInLevel = sections.filter(section => isVisited(section)).length;

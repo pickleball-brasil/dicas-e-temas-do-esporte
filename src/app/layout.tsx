@@ -15,26 +15,46 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Picklebook - Domine o Pickleball",
+  title: "Estudando o Pickleball - Domine o Pickleball",
   description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
   manifest: "/dicas-e-temas-do-esporte/manifest.json",
   themeColor: "#0ea5e9",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    apple: "/favicon.png",
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Picklebook",
+    title: "Estudando o Pickleball",
   },
   openGraph: {
-    title: "Picklebook - Domine o Pickleball",
-    description: "Domine o Pickleball com conhecimento",
     type: "website",
     locale: "pt_BR",
+    url: "https://ffzzi.github.io/dicas-e-temas-do-esporte",
+    siteName: "Estudando o Pickleball",
+    title: "Estudando o Pickleball - Domine o Pickleball",
+    description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
+    images: [
+      {
+        url: "https://ffzzi.github.io/dicas-e-temas-do-esporte/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Estudando o Pickleball Logo",
+      },
+    ],
   },
+  twitter: {
+    card: "summary",
+    title: "Estudando o Pickleball - Domine o Pickleball",
+    description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
+    images: ["https://ffzzi.github.io/dicas-e-temas-do-esporte/logo.png"],
+  },
+  metadataBase: new URL("https://ffzzi.github.io/dicas-e-temas-do-esporte"),
 };
 
 export default function RootLayout({
@@ -70,10 +90,10 @@ export default function RootLayout({
                   window.addEventListener('load', function() {
                     navigator.serviceWorker.register('/dicas-e-temas-do-esporte/sw.js')
                       .then(function(registration) {
-                        console.log('SW registered: ', registration);
+                        // Service worker registered
                       })
                       .catch(function(registrationError) {
-                        console.log('SW registration failed: ', registrationError);
+                        // Service worker registration failed
                       });
                   });
                 }

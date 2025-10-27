@@ -28,8 +28,8 @@ const translations = {
       close: "Fechar"
     },
     header: {
-      title: "Picklebook",
-      subtitle: "Material de estudo para o Pickleball"
+      title: "Estudando o Pickleball",
+      subtitle: "Material para jogadores e professores"
     },
     modes: {
       tracking: "Acompanhamento",
@@ -1559,7 +1559,7 @@ const translations = {
       close: "Close"
     },
     header: {
-      title: "Ziliotti Picklebook",
+      title: "Learning Pickleball",
       subtitle: "Study material for Pickleball"
     },
     modes: {

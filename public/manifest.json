@@ -1,6 +1,6 @@
 {
-  "name": "PickleBook - Domine o Pickleball",
-  "short_name": "PickleBook",
+  "name": "Estudando o Pickleball - Domine o Pickleball",
+  "short_name": "Estudando o Pickleball",
   "description": "Domine o Pickleball com conhecimento",
   "start_url": "/dicas-e-temas-do-esporte/",
   "scope": "/dicas-e-temas-do-esporte/",
@@ -17,9 +17,15 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/dicas-e-temas-do-esporte/next.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/dicas-e-temas-do-esporte/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/dicas-e-temas-do-esporte/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
