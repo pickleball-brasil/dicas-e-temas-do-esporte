@@ -66,31 +66,56 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return acc;
   }, {} as Record<SectionLevel, Section[]>);
 
-  // Carregar links visitados e estado do toggle do localStorage
+  // Carregar estado do toggle do localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('visitedSections');
-    if (saved) {
-      try {
-        const visited = JSON.parse(saved);
-        setVisitedSections(new Set(visited));
-      } catch (error) {
-        console.error('Erro ao carregar links visitados:', error);
-      }
-    }
-
-    // Carregar estado do toggle
     const savedToggle = localStorage.getItem('sidebarCollapsed');
     if (savedToggle) {
       setIsCollapsed(JSON.parse(savedToggle));
     }
-  }, []);
 
-  // Salvar links visitados no localStorage
-  useEffect(() => {
-    if (visitedSections.size > 0) {
-      localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
-    }
-  }, [visitedSections]);
+    // Função para carregar visitedSections do localStorage
+    const loadVisitedSections = () => {
+      const saved = localStorage.getItem('visitedSections');
+      if (saved) {
+        try {
+          const visited = JSON.parse(saved);
+          setVisitedSections(new Set(visited));
+        } catch (error) {
+          console.error('Erro ao carregar seções estudadas:', error);
+        }
+      }
+    };
+
+    // Carregar inicialmente
+    loadVisitedSections();
+
+    // Listener para mudanças no localStorage (de outras abas/components)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'visitedSections') {
+        loadVisitedSections();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    // Fallback: usar setInterval para verificar mudanças na mesma aba
+    let lastKnownValue = localStorage.getItem('visitedSections');
+    const interval = setInterval(() => {
+      const current = localStorage.getItem('visitedSections');
+      if (current !== lastKnownValue) {
+        lastKnownValue = current;
+        loadVisitedSections();
+      }
+    }, 500);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(interval);
+    };
+  }, []); // Sem visitedSections para evitar re-executar
+
+  // Note: visitedSections é agora gerenciado apenas pelo listener e não salvo pela Sidebar
+  // para evitar loops infinitos. A sincronização acontece automaticamente.
 
   // Salvar estado do toggle no localStorage
   useEffect(() => {
@@ -144,9 +169,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   };
 
   const handleSectionClick = (section: string) => {
-    // Marcar seção como visitada
-    setVisitedSections(prev => new Set([...prev, section]));
-    
+    // Navegar para a página de estudo (sem marcar automaticamente)
     router.push(`/estudo/${section}`);
     onClose();
   };
@@ -306,7 +329,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           <span className="text-xs text-gray-500">{sections.length} tópicos</span>
                           {visitedInLevel > 0 && (
                             <span className="text-xs text-green-600 font-medium">
-                              • {visitedInLevel} visitados
+                              • {visitedInLevel} estudados
                             </span>
                           )}
                         </div>
@@ -415,7 +438,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full" />
                     <p className="text-xs font-medium text-blue-700">
-                      {visitedSections.size} visitados
+                      {visitedSections.size} estudados
                     </p>
                   </div>
                   <div className="text-xs text-blue-600 font-medium">

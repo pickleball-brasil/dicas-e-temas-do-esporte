@@ -78,6 +78,7 @@ export default function ThemeSelector() {
     setSelectedSections(newSelected);
   };
 
+
   const selectNone = () => {
     setSelectedSections(new Set());
   };
@@ -176,7 +177,7 @@ export default function ThemeSelector() {
             </div>
           </div>
         </div>
-      )}
+      )}git 
 
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
@@ -215,7 +216,7 @@ export default function ThemeSelector() {
                   key={s}
                   sectionId={s} 
                   isSelected={selectedSections.has(s)}
-                  onToggle={() => toggleSection(s)} 
+                  onToggle={() => toggleSection(s)}
                 />
               ))}
             </ul>
@@ -242,7 +243,7 @@ export default function ThemeSelector() {
                   key={s}
                   sectionId={s} 
                   isSelected={selectedSections.has(s)}
-                  onToggle={() => toggleSection(s)} 
+                  onToggle={() => toggleSection(s)}
                 />
               ))}
             </ul>
@@ -269,7 +270,7 @@ export default function ThemeSelector() {
                   key={s}
                   sectionId={s} 
                   isSelected={selectedSections.has(s)}
-                  onToggle={() => toggleSection(s)} 
+                  onToggle={() => toggleSection(s)}
                 />
               ))}
             </ul>
@@ -296,7 +297,7 @@ export default function ThemeSelector() {
                   key={s}
                   sectionId={s} 
                   isSelected={selectedSections.has(s)}
-                  onToggle={() => toggleSection(s)} 
+                  onToggle={() => toggleSection(s)}
                 />
               ))}
             </ul>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { SECTIONS, getSectionLevel, type Section, type SectionLevel } from "@/lib/sections";
 import { useLanguageContext } from "@/contexts/LanguageContext";
@@ -33,6 +33,77 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
 
   console.log('content', content);
   
+  // Carregar estado de visitação do localStorage
+  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    const saved = localStorage.getItem('visitedSections');
+    if (saved) {
+      try {
+        const visited = JSON.parse(saved);
+        setVisitedSections(new Set(visited));
+      } catch (error) {
+        console.error('Erro ao carregar seções visitadas:', error);
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Salvar estado de visitação no localStorage (apenas após carregar do localStorage inicialmente)
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
+    }
+  }, [visitedSections, isLoaded]);
+
+  // Detectar quando chegou a 60% do scroll e marcar como visitado
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+    let hasMarkedAsVisited = visitedSections.has(section); // Verificar se já está marcado
+    
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (hasMarkedAsVisited) return;
+        
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Calcular a porcentagem de scroll atual
+        const totalScrollable = scrollHeight - clientHeight;
+        
+        // Se não há scroll (conteúdo menor que a viewport), não marcar
+        if (totalScrollable <= 0) {
+          return;
+        }
+        
+        const scrollPercentage = (scrollTop / totalScrollable) * 100;
+        
+        // Marcar como visitado quando chegar a 60% (apenas se o usuário realmente fez scroll)
+        if (scrollPercentage >= 60 && scrollTop > 0) {
+          hasMarkedAsVisited = true;
+          setVisitedSections(prev => {
+            if (!prev.has(section)) {
+              return new Set([...prev, section]);
+            }
+            return prev;
+          });
+        }
+      }, 100); // Debounce de 100ms
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isLoaded, section, visitedSections]);
+  
   // Usar conteúdo do Markdown se disponível, senão usar o nome de exibição
   const sectionName = content?.title || getDisplayName(section);
   const description = content?.description || getSectionDescription(section);
@@ -62,6 +133,18 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
       router.push(`/estudo/${nextSection}`);
     }
   };
+
+  const toggleStudiedStatus = () => {
+    const newVisited = new Set(visitedSections);
+    if (newVisited.has(section)) {
+      newVisited.delete(section);
+    } else {
+      newVisited.add(section);
+    }
+    setVisitedSections(newVisited);
+  };
+
+  const isVisited = visitedSections.has(section);
 
   return (
     <div className="min-h-screen flex">
@@ -96,9 +179,34 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                   </div>
                 </div>
                 
-                {/* Level Badge */}
-                <div className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border ${badgeColor}`}>
-                  {level}
+                {/* Botão de marcação de leitura e Level Badge */}
+                <div className="flex items-center gap-3">
+                  {/* Botão de marcação de estudo */}
+                  <button
+                    onClick={toggleStudiedStatus}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 hover:scale-105 ${
+                      isVisited 
+                        ? 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100' 
+                        : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'
+                    }`}
+                    title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
+                  >
+                    {isVisited ? (
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    )}
+                    <span className="hidden sm:inline">{isVisited ? 'Estudado' : 'Marcar como estudado'}</span>
+                  </button>
+                  
+                  {/* Level Badge */}
+                  <div className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border ${badgeColor}`}>
+                    {level}
+                  </div>
                 </div>
               </div>
             </div>
@@ -142,6 +250,36 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                   </div>
                   <p className="text-gray-600 font-semibold text-xl mb-2">{t('study.contentInDevelopment')}</p>
                   <p className="text-gray-500 text-base">{t('study.moreTipsSoon')}</p>
+                </div>
+              )}
+              
+              {/* Botão de marcação de estudo no final da página */}
+              {content && (
+                <div className="mt-16 py-8 border-t border-gray-200">
+                  <button
+                    onClick={toggleStudiedStatus}
+                    className={`w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl transition-all duration-200 hover:scale-[1.02] active:scale-100 ${
+                      isVisited
+                        ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg hover:shadow-xl'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-gray-300'
+                    }`}
+                  >
+                    {isVisited ? (
+                      <>
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-lg font-semibold">Marcado como Estudado</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span className="text-lg font-semibold">Marcar como Estudado</span>
+                      </>
+                    )}
+                  </button>
                 </div>
               )}
             </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
+import { CONTENT_REGISTRY } from '@/lib/contentRegistry';
 
 const sectionColors: Record<string, string> = {
   // Básico - VERDE
@@ -102,73 +103,86 @@ const sectionColors: Record<string, string> = {
   "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
 };
 
-const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
-  <button
-    onClick={onClick}
-    className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left cursor-pointer ${
+const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section: Section; onClick: () => void; isVisited: boolean; onToggleStudied: (event: React.MouseEvent) => void }) => (
+  <div className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left relative ${
       isVisited 
         ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100' 
         : 'hover:shadow-md'
-    }`}
-  >
-    <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative ${
-              isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
-            }`}>
-              {section.charAt(0)}
-              {isVisited && (
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
-                  <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              )}
-            </div>
-                   <div className="flex flex-col">
-                     <span className={`font-semibold text-sm ${
-                       isVisited 
-                         ? 'text-green-800' 
-                         : 'text-gray-900'
-                     }`}>{getDisplayName(section)}</span>
-                     <span className={`text-xs ${
-                       isVisited 
-                         ? 'text-green-600' 
-                         : 'text-gray-500'
-                     }`}>
-                       {isVisited ? '✓ Concluído' : 'Clique para estudar'}
-                     </span>
-                   </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {isVisited && (
-              <div className="flex items-center gap-1.5 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                Concluído
-              </div>
-            )}
-            <svg className={`w-4 h-4 transition-all duration-300 flex-shrink-0 ${
-              isVisited 
-                ? 'text-green-500 group-hover:text-green-600' 
-                : 'text-gray-400 group-hover:text-sky-600'
-            } group-hover:translate-x-1`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    }`}>
+    <div className="flex items-center gap-3">
+      <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative flex-shrink-0 ${
+        isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
+      }`}>
+        {section.charAt(0)}
+        {isVisited && (
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
+            <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           </div>
-        </div>
+        )}
+      </div>
+      <div className="flex-1 cursor-pointer" onClick={onClick}>
+        <span className={`font-semibold text-sm ${
+          isVisited ? 'text-green-800' : 'text-gray-900'
+        }`}>{getDisplayName(section)}</span>
+        <span className={`text-xs block line-clamp-2 ${
+          isVisited ? 'text-green-600' : 'text-gray-500'
+        }`}>
+          {CONTENT_REGISTRY[section]?.description || ''}
+        </span>
+      </div>
+      
+      {/* Dois botões separados */}
+      <div className="flex items-center gap-2 flex-shrink-0">
+        {/* Botão de visitar página */}
+        <button
+          onClick={onClick}
+          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer ${
+            isVisited 
+              ? 'bg-green-100 text-green-600 hover:bg-green-200' 
+              : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-sky-600'
+          }`}
+          title="Visitar página de estudo"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          <span className="text-xs font-medium">Estudar</span>
+        </button>
+        
+        {/* Botão de marcar como estudado */}
+        <button
+          onClick={onToggleStudied}
+          className={`p-2 rounded-lg transition-all duration-200 hover:scale-110 cursor-pointer ${
+            isVisited 
+              ? 'bg-green-100 text-green-600 hover:bg-green-200' 
+              : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'
+          }`}
+          title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
+        >
+          {isVisited ? (
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+          )}
+        </button>
+      </div>
     </div>
-  </button>
+  </div>
 );
 
 export default function Home() {
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
+  const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const { t } = useLanguageContext();
 
-  // Carregar links visitados do localStorage
+  // Carregar seções estudadas do localStorage na montagem
   useEffect(() => {
     const saved = localStorage.getItem('visitedSections');
     if (saved) {
@@ -176,21 +190,35 @@ export default function Home() {
         const visited = JSON.parse(saved);
         setVisitedSections(new Set(visited));
       } catch (error) {
-        console.error('Erro ao carregar links visitados:', error);
+        console.error('Erro ao carregar seções estudadas:', error);
       }
     }
+    setIsLoaded(true);
   }, []);
 
-  // Salvar links visitados no localStorage
+  // Salvar seções estudadas no localStorage (apenas após carregar inicialmente)
   useEffect(() => {
-    if (visitedSections.size > 0) {
+    if (isLoaded) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
     }
-  }, [visitedSections]);
+  }, [visitedSections, isLoaded]);
 
   // Função para verificar se uma seção foi visitada
   const isVisited = (section: string) => {
     return visitedSections.has(section);
+  };
+
+  // Função para alternar status de estudo (toggle visitedSections)
+  const toggleStudiedStatus = (section: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const newVisited = new Set(visitedSections);
+    if (newVisited.has(section)) {
+      newVisited.delete(section);
+    } else {
+      newVisited.add(section);
+    }
+    setVisitedSections(newVisited);
   };
 
   const handleSectionClick = (section: Section) => {
@@ -285,6 +313,7 @@ export default function Home() {
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
                 isVisited={isVisited(s)}
+                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
               />
             </li>
           ))}
@@ -345,6 +374,7 @@ export default function Home() {
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
                 isVisited={isVisited(s)}
+                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
               />
             </li>
           ))}
@@ -405,6 +435,7 @@ export default function Home() {
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
                 isVisited={isVisited(s)}
+                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
               />
             </li>
           ))}
@@ -465,6 +496,7 @@ export default function Home() {
                 section={s} 
                 onClick={() => handleSectionClick(s)} 
                 isVisited={isVisited(s)}
+                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
               />
             </li>
           ))}

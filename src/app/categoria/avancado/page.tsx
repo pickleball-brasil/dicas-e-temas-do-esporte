@@ -93,7 +93,7 @@ export default function AvancadoPage() {
   const router = useRouter();
   const { t } = useLanguageContext();
 
-  // Carregar links visitados do localStorage
+  // Carregar seções estudadas do localStorage
   useEffect(() => {
     const saved = localStorage.getItem('visitedSections');
     if (saved) {
@@ -101,12 +101,12 @@ export default function AvancadoPage() {
         const visited = JSON.parse(saved);
         setVisitedSections(new Set(visited));
       } catch (error) {
-        console.error('Erro ao carregar links visitados:', error);
+        console.error('Erro ao carregar seções estudadas:', error);
       }
     }
   }, []);
 
-  // Salvar links visitados no localStorage
+  // Salvar seções estudadas no localStorage
   useEffect(() => {
     if (visitedSections.size > 0) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
