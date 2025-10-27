@@ -76,9 +76,20 @@ export default function RootLayout({
             
             {/* Footer padronizado */}
             <footer className="mt-20 py-10 text-center border-t border-gray-200/50">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 mb-2">
                 Desenvolvido por Fabrício Ziliotti @2025
               </p>
+              <a 
+                href="https://pickleball-brasil.github.io/fabricio-ziliotti/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-sky-500 to-purple-600 hover:from-sky-600 hover:to-purple-700 shadow-md hover:shadow-lg transition-all duration-200"
+              >
+                <span>✨ Conheça o autor deste projeto</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </footer>
           </div>
           
