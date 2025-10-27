@@ -35,13 +35,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte",
+    url: "",
     siteName: "Estudando o Pickleball",
     title: "Estudando o Pickleball - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
     images: [
       {
-        url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png",
+        url: "/logo.png",
         width: 512,
         height: 512,
         alt: "Estudando o Pickleball Logo",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Estudando o Pickleball - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
-    images: ["https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png"],
+    images: ["/logo.png"],
   },
   metadataBase: new URL("https://pickleball-brasil.github.io/dicas-e-temas-do-esporte"),
 };
