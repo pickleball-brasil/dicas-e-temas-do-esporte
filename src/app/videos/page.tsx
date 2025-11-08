@@ -11,12 +11,30 @@ const categoryLabels: Record<RecommendedVideo['category'], string> = {
 };
 
 const categoryColors: Record<RecommendedVideo['category'], string> = {
+  'técnica': 'bg-blue-50 text-blue-900 border-blue-200',
+  'estratégia': 'bg-purple-50 text-purple-900 border-purple-200',
+  'drills': 'bg-orange-50 text-orange-900 border-orange-200',
+  'partidas': 'bg-green-50 text-green-900 border-green-200',
+  'dicas': 'bg-yellow-50 text-yellow-900 border-yellow-200',
+  'outros': 'bg-gray-50 text-gray-900 border-gray-200',
+};
+
+const categoryBadgeColors: Record<RecommendedVideo['category'], string> = {
   'técnica': 'bg-blue-100 text-blue-700 border-blue-200',
   'estratégia': 'bg-purple-100 text-purple-700 border-purple-200',
   'drills': 'bg-orange-100 text-orange-700 border-orange-200',
   'partidas': 'bg-green-100 text-green-700 border-green-200',
   'dicas': 'bg-yellow-100 text-yellow-700 border-yellow-200',
   'outros': 'bg-gray-100 text-gray-700 border-gray-200',
+};
+
+const categoryTextColors: Record<RecommendedVideo['category'], string> = {
+  'técnica': 'text-blue-900',
+  'estratégia': 'text-purple-900',
+  'drills': 'text-orange-900',
+  'partidas': 'text-green-900',
+  'dicas': 'text-yellow-900',
+  'outros': 'text-gray-900',
 };
 
 export default function VideosPage() {
@@ -61,15 +79,15 @@ export default function VideosPage() {
 
             return (
               <section key={category} className="mb-10">
-                <div className="mb-6 pb-3 border-b border-gray-300">
+                <div className={`mb-6 rounded-lg border ${categoryColors[category]} px-4 py-3`}>
                   <div className="flex items-center gap-3">
-                    <span className={`px-3 py-1 rounded text-xs font-semibold border ${categoryColors[category]}`}>
+                    <span className={`px-3 py-1 rounded text-xs font-semibold border ${categoryBadgeColors[category]}`}>
                       {categoryLabels[category]}
                     </span>
-                    <h2 className="text-xl font-semibold text-gray-900">
+                    <h2 className={`text-xl font-semibold ${categoryTextColors[category]}`}>
                       {categoryLabels[category]}
                     </h2>
-                    <span className="text-sm text-gray-500">
+                    <span className={`text-sm ${categoryTextColors[category]} opacity-75`}>
                       ({videos.length} {videos.length === 1 ? 'vídeo' : 'vídeos'})
                     </span>
                   </div>

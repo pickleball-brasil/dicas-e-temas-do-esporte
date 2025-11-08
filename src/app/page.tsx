@@ -8,6 +8,28 @@ import { useLayoutContext } from '@/contexts/LayoutContext';
 import { getDisplayName } from '@/lib/displayNames';
 import { CONTENT_REGISTRY } from '@/lib/contentRegistry';
 
+// Cores para os títulos das categorias
+const categoryHeaderColors = {
+  basico: 'bg-green-50 text-green-900 border-green-200',
+  intermediario: 'bg-orange-50 text-orange-900 border-orange-200',
+  avancado: 'bg-red-50 text-red-900 border-red-200',
+  taticas: 'bg-purple-50 text-purple-900 border-purple-200',
+};
+
+const categoryBadgeColors = {
+  basico: 'bg-green-100 text-green-700 border-green-200',
+  intermediario: 'bg-orange-100 text-orange-700 border-orange-200',
+  avancado: 'bg-red-100 text-red-700 border-red-200',
+  taticas: 'bg-purple-100 text-purple-700 border-purple-200',
+};
+
+const categoryTextColors = {
+  basico: 'text-green-900',
+  intermediario: 'text-orange-900',
+  avancado: 'text-red-900',
+  taticas: 'text-purple-900',
+};
+
 const sectionColors: Record<string, string> = {
   // Básico - VERDE
   "regras": "bg-gradient-to-br from-green-500 to-green-600",
@@ -321,50 +343,52 @@ export default function Home() {
       {/* Básico */}
       <section className="mb-10">
         <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
-                1
-              </div>
-              <div className="flex items-center gap-4">
-                {/* Mobile: título como link */}
-                <Link
-                  href="/categoria/basico"
-                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-green-600 transition-colors"
-                >
-                  {t('sections.basic')}
-                </Link>
-                {/* Desktop: título normal + botão */}
-                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
-                <Link
-                  href="/categoria/basico"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-700 hover:text-green-800 transition-colors text-sm font-medium"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  Ver categoria
-                </Link>
-              </div>
-            </div>
-            {(() => {
-              const visitedCount = BASIC_SECTIONS.filter(s => isVisited(s)).length;
-              const percentage = (visitedCount / BASIC_SECTIONS.length) * 100;
-              return (
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{BASIC_SECTIONS.length}</span>
-                  </div>
-                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                    <div
-                      className="bg-gradient-to-r from-green-500 to-emerald-500 h-1.5 rounded-full transition-all duration-500"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
-                  </div>
+          <div className={`rounded-lg border ${categoryHeaderColors.basico} px-4 py-3 mb-4`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.basico} font-semibold text-xs`}>
+                  1
                 </div>
-              );
-            })()}
+                <div className="flex items-center gap-4">
+                  {/* Mobile: título como link */}
+                  <Link
+                    href="/categoria/basico"
+                    className={`sm:hidden text-xl font-semibold ${categoryTextColors.basico} hover:opacity-80 transition-opacity`}
+                  >
+                    {t('sections.basic')}
+                  </Link>
+                  {/* Desktop: título normal + botão */}
+                  <h2 className={`hidden sm:block text-xl font-semibold ${categoryTextColors.basico}`}>{t('sections.basic')}</h2>
+                  <Link
+                    href="/categoria/basico"
+                    className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border ${categoryBadgeColors.basico} hover:opacity-80 transition-opacity text-xs font-medium`}
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    Ver categoria
+                  </Link>
+                </div>
+              </div>
+              {(() => {
+                const visitedCount = BASIC_SECTIONS.filter(s => isVisited(s)).length;
+                const percentage = (visitedCount / BASIC_SECTIONS.length) * 100;
+                return (
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className={`text-xs font-medium ${categoryTextColors.basico} opacity-75`}>{visitedCount}/{BASIC_SECTIONS.length}</span>
+                    </div>
+                    <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                      <div
+                        className="bg-gradient-to-r from-green-500 to-emerald-500 h-1.5 rounded-full transition-all duration-500"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
           </div>
         </div>
         {layout === "grid" ? (
@@ -400,50 +424,52 @@ export default function Home() {
       {/* Intermediário */}
       <section className="mb-10">
         <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
-                2
-              </div>
-              <div className="flex items-center gap-4">
-                {/* Mobile: título como link */}
-                <Link
-                  href="/categoria/intermediario"
-                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors"
-                >
-                  {t('sections.intermediate')}
-                </Link>
-                {/* Desktop: título normal + botão */}
-                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
-                <Link
-                  href="/categoria/intermediario"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-100 hover:bg-orange-200 text-orange-700 hover:text-orange-800 transition-colors text-sm font-medium"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  Ver categoria
-                </Link>
-              </div>
-            </div>
-            {(() => {
-              const visitedCount = INTERMEDIATE_SECTIONS.filter(s => isVisited(s)).length;
-              const percentage = (visitedCount / INTERMEDIATE_SECTIONS.length) * 100;
-              return (
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{INTERMEDIATE_SECTIONS.length}</span>
-                  </div>
-                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                    <div
-                      className="bg-gradient-to-r from-orange-500 to-amber-500 h-1.5 rounded-full transition-all duration-500"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
-                  </div>
+          <div className={`rounded-lg border ${categoryHeaderColors.intermediario} px-4 py-3 mb-4`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.intermediario} font-semibold text-xs`}>
+                  2
                 </div>
-              );
-            })()}
+                <div className="flex items-center gap-4">
+                  {/* Mobile: título como link */}
+                  <Link
+                    href="/categoria/intermediario"
+                    className={`sm:hidden text-xl font-semibold ${categoryTextColors.intermediario} hover:opacity-80 transition-opacity`}
+                  >
+                    {t('sections.intermediate')}
+                  </Link>
+                  {/* Desktop: título normal + botão */}
+                  <h2 className={`hidden sm:block text-xl font-semibold ${categoryTextColors.intermediario}`}>{t('sections.intermediate')}</h2>
+                  <Link
+                    href="/categoria/intermediario"
+                    className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border ${categoryBadgeColors.intermediario} hover:opacity-80 transition-opacity text-xs font-medium`}
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    Ver categoria
+                  </Link>
+                </div>
+              </div>
+              {(() => {
+                const visitedCount = INTERMEDIATE_SECTIONS.filter(s => isVisited(s)).length;
+                const percentage = (visitedCount / INTERMEDIATE_SECTIONS.length) * 100;
+                return (
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                      <span className={`text-xs font-medium ${categoryTextColors.intermediario} opacity-75`}>{visitedCount}/{INTERMEDIATE_SECTIONS.length}</span>
+                    </div>
+                    <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                      <div
+                        className="bg-gradient-to-r from-orange-500 to-amber-500 h-1.5 rounded-full transition-all duration-500"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
           </div>
         </div>
         {layout === "grid" ? (
@@ -479,50 +505,52 @@ export default function Home() {
       {/* Avançado */}
       <section className="mb-10">
         <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
-                3
-              </div>
-              <div className="flex items-center gap-4">
-                {/* Mobile: título como link */}
-                <Link
-                  href="/categoria/avancado"
-                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-red-600 transition-colors"
-                >
-                  {t('sections.advanced')}
-                </Link>
-                {/* Desktop: título normal + botão */}
-                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
-                <Link
-                  href="/categoria/avancado"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-800 transition-colors text-sm font-medium"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  Ver categoria
-                </Link>
-              </div>
-            </div>
-            {(() => {
-              const visitedCount = ADVANCED_SECTIONS.filter(s => isVisited(s)).length;
-              const percentage = (visitedCount / ADVANCED_SECTIONS.length) * 100;
-              return (
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{ADVANCED_SECTIONS.length}</span>
-                  </div>
-                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                    <div
-                      className="bg-gradient-to-r from-red-500 to-rose-500 h-1.5 rounded-full transition-all duration-500"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
-                  </div>
+          <div className={`rounded-lg border ${categoryHeaderColors.avancado} px-4 py-3 mb-4`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.avancado} font-semibold text-xs`}>
+                  3
                 </div>
-              );
-            })()}
+                <div className="flex items-center gap-4">
+                  {/* Mobile: título como link */}
+                  <Link
+                    href="/categoria/avancado"
+                    className={`sm:hidden text-xl font-semibold ${categoryTextColors.avancado} hover:opacity-80 transition-opacity`}
+                  >
+                    {t('sections.advanced')}
+                  </Link>
+                  {/* Desktop: título normal + botão */}
+                  <h2 className={`hidden sm:block text-xl font-semibold ${categoryTextColors.avancado}`}>{t('sections.advanced')}</h2>
+                  <Link
+                    href="/categoria/avancado"
+                    className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border ${categoryBadgeColors.avancado} hover:opacity-80 transition-opacity text-xs font-medium`}
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    Ver categoria
+                  </Link>
+                </div>
+              </div>
+              {(() => {
+                const visitedCount = ADVANCED_SECTIONS.filter(s => isVisited(s)).length;
+                const percentage = (visitedCount / ADVANCED_SECTIONS.length) * 100;
+                return (
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className={`text-xs font-medium ${categoryTextColors.avancado} opacity-75`}>{visitedCount}/{ADVANCED_SECTIONS.length}</span>
+                    </div>
+                    <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                      <div
+                        className="bg-gradient-to-r from-red-500 to-rose-500 h-1.5 rounded-full transition-all duration-500"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
           </div>
         </div>
         {layout === "grid" ? (
@@ -558,50 +586,52 @@ export default function Home() {
       {/* Táticas */}
       <section className="mb-10">
         <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
-                4
-              </div>
-              <div className="flex items-center gap-4">
-                {/* Mobile: título como link */}
-                <Link
-                  href="/categoria/taticas"
-                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-purple-600 transition-colors"
-                >
-                  {t('sections.tactics')}
-                </Link>
-                {/* Desktop: título normal + botão */}
-                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
-                <Link
-                  href="/categoria/taticas"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-700 hover:text-purple-800 transition-colors text-sm font-medium"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                  Ver categoria
-                </Link>
-              </div>
-            </div>
-            {(() => {
-              const visitedCount = TACTICS_SECTIONS.filter(s => isVisited(s)).length;
-              const percentage = (visitedCount / TACTICS_SECTIONS.length) * 100;
-              return (
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{TACTICS_SECTIONS.length}</span>
-                  </div>
-                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                    <div
-                      className="bg-gradient-to-r from-purple-500 to-violet-500 h-1.5 rounded-full transition-all duration-500"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
-                  </div>
+          <div className={`rounded-lg border ${categoryHeaderColors.taticas} px-4 py-3 mb-4`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.taticas} font-semibold text-xs`}>
+                  4
                 </div>
-              );
-            })()}
+                <div className="flex items-center gap-4">
+                  {/* Mobile: título como link */}
+                  <Link
+                    href="/categoria/taticas"
+                    className={`sm:hidden text-xl font-semibold ${categoryTextColors.taticas} hover:opacity-80 transition-opacity`}
+                  >
+                    {t('sections.tactics')}
+                  </Link>
+                  {/* Desktop: título normal + botão */}
+                  <h2 className={`hidden sm:block text-xl font-semibold ${categoryTextColors.taticas}`}>{t('sections.tactics')}</h2>
+                  <Link
+                    href="/categoria/taticas"
+                    className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border ${categoryBadgeColors.taticas} hover:opacity-80 transition-opacity text-xs font-medium`}
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    Ver categoria
+                  </Link>
+                </div>
+              </div>
+              {(() => {
+                const visitedCount = TACTICS_SECTIONS.filter(s => isVisited(s)).length;
+                const percentage = (visitedCount / TACTICS_SECTIONS.length) * 100;
+                return (
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <span className={`text-xs font-medium ${categoryTextColors.taticas} opacity-75`}>{visitedCount}/{TACTICS_SECTIONS.length}</span>
+                    </div>
+                    <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                      <div
+                        className="bg-gradient-to-r from-purple-500 to-violet-500 h-1.5 rounded-full transition-all duration-500"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
           </div>
         </div>
         {layout === "grid" ? (
