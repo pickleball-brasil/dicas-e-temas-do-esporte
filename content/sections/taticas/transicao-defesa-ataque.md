@@ -64,6 +64,16 @@ Nesse instante, você deve **reconhecer a oportunidade** e **converter** para o 
 
 ## Vídeo Demonstrativo
 
-A transição defesa-ataque depende crucialmente da leitura de jogo. Este vídeo sobre como ler a jogada na cozinha é essencial para identificar o momento certo de atacar.
-
-[Pickleball - Como escolher o golpe certo e fazer a leitura da jogada na Cozinha (YouTube)](https://www.youtube.com/watch?v=kR2m19oXJ1E)
+<div class="video-placeholder">
+  <div class="video-placeholder-content">
+    <svg class="video-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <div class="video-placeholder-text-container">
+      <p class="video-placeholder-text">Vídeo Explicativo</p>
+      <p class="video-placeholder-subtext">Será adicionado em breve</p>
+    </div>
+  </div>
+</div>
+</div>

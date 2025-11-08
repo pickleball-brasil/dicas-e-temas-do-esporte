@@ -23,6 +23,7 @@ export const SECTION_IDS: Record<string, string> = {
   
   // Intermediário
   "drop-shot": "drop-shot",
+  "drive": "drive",
   "terceira-bola": "third-shot",
   "lob": "lob",
   "transicao": "transition",
@@ -33,6 +34,7 @@ export const SECTION_IDS: Record<string, string> = {
   "contra-ataque": "counter-attack",
   "comunicacao": "communication",
   "drills-e-treinos": "drills-training",
+  "treino-com-paredao": "wall-training",
   "preparacao-fisica": "physical-prep",
   "estrategia-de-jogo": "game-strategy",
   "tempo-de-reacao": "reaction-time",
@@ -126,6 +128,7 @@ export const BASIC_SECTIONS = [
 // Intermediário
 export const INTERMEDIATE_SECTIONS = [
   "drop-shot",
+  "drive",
   "terceira-bola",
   "lob",
   "transicao",
@@ -136,6 +139,7 @@ export const INTERMEDIATE_SECTIONS = [
   "contra-ataque",
   "comunicacao",
   "drills-e-treinos",
+  "treino-com-paredao",
   "preparacao-fisica",
   "estrategia-de-jogo",
   "tempo-de-reacao",
@@ -236,6 +240,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "etiqueta-em-quadra": "Básico",
   "seguranca-e-prevencao-lesoes": "Básico",
   "drop-shot": "Intermediário",
+  "drive": "Intermediário",
   "terceira-bola": "Intermediário",
   "lob": "Intermediário",
   "transicao": "Intermediário",
@@ -246,6 +251,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "contra-ataque": "Intermediário",
   "comunicacao": "Intermediário",
   "drills-e-treinos": "Intermediário",
+  "treino-com-paredao": "Intermediário",
   "preparacao-fisica": "Intermediário",
   "estrategia-de-jogo": "Intermediário",
   "tempo-de-reacao": "Intermediário",

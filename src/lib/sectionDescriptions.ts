@@ -25,6 +25,8 @@ export const sectionDescriptions: Record<string, string> = {
   
   "Drop Shot": "O drop shot (ou third shot drop) é um golpe suave que cai na zona da cozinha, usado principalmente como terceira bola. É essencial para neutralizar a vantagem dos adversários na rede e permitir que você avance. Requer toque delicado e controle de trajetória.",
   
+  "Drive": "O drive é um golpe rápido e linear, geralmente executado na altura da cintura ou ombro, usado para acelerar o ritmo do jogo e criar pressão sobre os adversários. É uma alternativa ao drop shot na terceira bola, especialmente quando a bola está alta. Requer controle de direção, profundidade e timing para ser efetivo.",
+  
   "Bloqueio": "O bloqueio é uma técnica defensiva usada quando você está na rede e recebe uma bola rápida. Consiste em absorver a velocidade da bola com uma paddle firme mas relaxada, devolvendo-a suavemente. É crucial para defender contra drives e ataques agressivos.",
   
   "Transição": "A transição é o movimento do fundo da quadra para a rede após o saque ou devolução. É um dos momentos mais vulneráveis do ponto. Aprenda quando e como avançar, onde parar para o split step, e como se defender durante a transição.",
@@ -42,6 +44,8 @@ export const sectionDescriptions: Record<string, string> = {
   "Erros Comuns": "Aprenda a identificar e corrigir os erros mais frequentes no pickleball: bater muito forte, ficar no fundo da quadra, não se comunicar, empunhadura incorreta, falta de paciência, má seleção de golpes, e outros hábitos que limitam seu progresso.",
   
   "Drills e Treinos": "Exercícios estruturados para desenvolver habilidades específicas: drills de dink, voleio, transição, consistência, precisão, velocidade de reação, trabalho de pés, e simulações de jogo. Treinar com propósito acelera a evolução.",
+  
+  "Treino com Paredão": "Guia completo de treinos individuais usando parede para melhorar técnica e consistência. Inclui drills de voleio, dinks, reset, drop shot, footwork e posicionamento. Permite prática intensiva sem parceiro, desenvolvendo memória muscular e controle através de repetição constante.",
   
   "Regras": "Conheça as regras oficiais do pickleball: pontuação, zona da cozinha (non-volley zone), faltas, lets, ordem de saque, rotação em duplas, e situações especiais. Entender as regras evita penalidades e permite jogar com confiança.",
   

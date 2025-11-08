@@ -47,6 +47,16 @@ Em níveis avançados (4.0+), saber *como* executar cada golpe é apenas o pré-
 
 ## Vídeo Demonstrativo
 
-Este vídeo (em inglês) analisa a tomada de decisão de jogadores profissionais, focando em por que eles escolhem determinados golpes em situações complexas.
-
-[Pro Pickleball Analysis - Shot Selection and Strategy (YouTube - Exemplo de Busca)](https://www.youtube.com/results?search_query=pro+pickleball+analysis+shot+selection) *(Nota: Recomendo buscar vídeos específicos de análise de partidas profissionais para aprofundar neste tópico.)*
+<div class="video-placeholder">
+  <div class="video-placeholder-content">
+    <svg class="video-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <div class="video-placeholder-text-container">
+      <p class="video-placeholder-text">Vídeo Explicativo</p>
+      <p class="video-placeholder-subtext">Será adicionado em breve</p>
+    </div>
+  </div>
+</div>
+</div>

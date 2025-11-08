@@ -265,6 +265,18 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Soft shot to the kitchen",
     category: "intermediario"
   },
+  "drive": {
+    id: "drive",
+    name: "Drive",
+    displayName: "Drive",
+    description: "Golpe rápido e linear usado para acelerar o jogo e criar pressão",
+    level: "Intermediário",
+    fileName: "drive.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Drive",
+    englishDescription: "Fast, linear shot used to speed up the game and create pressure",
+    category: "intermediario"
+  },
   "terceira-bola": {
     id: "third-shot",
     name: "Terceira Bola",
@@ -383,6 +395,18 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     color: "bg-gradient-to-br from-amber-500 to-orange-600",
     englishName: "Drills and Training",
     englishDescription: "Specific exercises for improvement",
+    category: "intermediario"
+  },
+  "treino-com-paredao": {
+    id: "wall-training",
+    name: "Treino com Paredão",
+    displayName: "Treino com Paredão",
+    description: "Guia completo de treinos individuais usando parede para melhorar técnica e consistência",
+    level: "Intermediário",
+    fileName: "treino-com-paredao.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Wall Training",
+    englishDescription: "Complete guide to individual wall training to improve technique and consistency",
     category: "intermediario"
   },
   "preparacao-fisica": {

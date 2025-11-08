@@ -55,13 +55,16 @@ O pickleball é, em sua essência, um jogo de duplas. Quase todo o esporte é co
 
 ## Vídeo Demonstrativo
 
-Este vídeo dá dicas táticas fundamentais para o jogo de duplas.
-
-<div class="youtube-video">
-  <iframe 
-    src="https://www.youtube.com/embed/8zaSqxdMKO8?rel=0&modestbranding=1&fs=1&cc_load_policy=1" 
-    title="4 Estratégias Básicas de Duplas (YouTube)" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
+<div class="video-placeholder">
+  <div class="video-placeholder-content">
+    <svg class="video-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <div class="video-placeholder-text-container">
+      <p class="video-placeholder-text">Vídeo Explicativo</p>
+      <p class="video-placeholder-subtext">Será adicionado em breve</p>
+    </div>
+  </div>
+</div>
 </div>

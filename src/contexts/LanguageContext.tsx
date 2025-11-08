@@ -38,7 +38,7 @@ const translations = {
       studyDescription: "Explore conteúdos aprofundados de cada tema."
     },
     sections: {
-      title: "Principais Temas",
+      title: "Temas de Pickleball",
       basic: "Básico",
       intermediate: "Intermediário", 
       advanced: "Avançado",

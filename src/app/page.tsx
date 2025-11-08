@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
+import { useLayoutContext } from '@/contexts/LayoutContext';
 import { getDisplayName } from '@/lib/displayNames';
 import { CONTENT_REGISTRY } from '@/lib/contentRegistry';
 
@@ -39,9 +40,10 @@ const sectionColors: Record<string, string> = {
   "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
   "transicao-defesa-ataque": "bg-gradient-to-br from-purple-400 to-indigo-500",
   "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-indigo-500 to-purple-600",
-  
+
   // Intermediário - LARANJA
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
+  "drive": "bg-gradient-to-br from-amber-400 to-orange-600",
   "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
   "lob": "bg-gradient-to-br from-amber-400 to-amber-600",
   "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
@@ -52,6 +54,7 @@ const sectionColors: Record<string, string> = {
   "contra-ataque": "bg-gradient-to-br from-amber-500 to-orange-600",
   "comunicacao": "bg-gradient-to-br from-amber-400 to-amber-600",
   "drills-e-treinos": "bg-gradient-to-br from-orange-400 to-orange-600",
+  "treino-com-paredao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "preparacao-fisica": "bg-gradient-to-br from-amber-400 to-orange-600",
   "estrategia-de-jogo": "bg-gradient-to-br from-orange-500 to-amber-600",
   "tempo-de-reacao": "bg-gradient-to-br from-amber-400 to-orange-500",
@@ -59,7 +62,7 @@ const sectionColors: Record<string, string> = {
   "leitura-de-jogo": "bg-gradient-to-br from-amber-400 to-orange-500",
   "adaptacao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "consistencia": "bg-gradient-to-br from-orange-400 to-amber-500",
-  
+
   // Avançado - VERMELHO
   "smash": "bg-gradient-to-br from-rose-500 to-red-600",
   "acelerar-as-bolas": "bg-gradient-to-br from-rose-400 to-red-600",
@@ -81,7 +84,7 @@ const sectionColors: Record<string, string> = {
   "lideranca-em-quadra": "bg-gradient-to-br from-rose-400 to-rose-600",
   "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   "construcao-de-pontos": "bg-gradient-to-br from-red-600 to-red-700",
-  
+
   // Táticas - ROXO
   "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",
   "jogo-no-meio": "bg-gradient-to-br from-purple-400 to-violet-500",
@@ -104,15 +107,13 @@ const sectionColors: Record<string, string> = {
 };
 
 const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section: Section; onClick: () => void; isVisited: boolean; onToggleStudied: (event: React.MouseEvent) => void }) => (
-  <div className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left relative ${
-      isVisited 
-        ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100' 
-        : 'hover:shadow-md'
+  <div className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left relative ${isVisited
+     ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100'
+     : 'hover:shadow-md'
     }`}>
     <div className="flex items-center gap-3">
-      <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative flex-shrink-0 ${
-        isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
-      }`}>
+      <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative flex-shrink-0 ${isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
+        }`}>
         {section.charAt(0)}
         {isVisited && (
           <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
@@ -123,26 +124,23 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
         )}
       </div>
       <div className="flex-1 cursor-pointer" onClick={onClick}>
-        <span className={`font-semibold text-sm ${
-          isVisited ? 'text-green-800' : 'text-gray-900'
-        }`}>{getDisplayName(section)}</span>
-        <span className={`text-xs block line-clamp-2 ${
-          isVisited ? 'text-green-600' : 'text-gray-500'
-        }`}>
+        <span className={`font-semibold text-sm ${isVisited ? 'text-green-800' : 'text-gray-900'
+          }`}>{getDisplayName(section)}</span>
+        <span className={`text-xs block line-clamp-2 ${isVisited ? 'text-green-600' : 'text-gray-500'
+          }`}>
           {CONTENT_REGISTRY[section]?.description || ''}
         </span>
       </div>
-      
+
       {/* Dois botões separados */}
       <div className="flex items-center gap-2 flex-shrink-0">
         {/* Botão de visitar página */}
         <button
           onClick={onClick}
-          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer ${
-            isVisited 
-              ? 'bg-green-100 text-green-600 hover:bg-green-200' 
-              : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-sky-600'
-          }`}
+          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer ${isVisited
+             ? 'bg-green-100 text-green-600 hover:bg-green-200'
+             : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-sky-600'
+            }`}
           title="Visitar página de estudo"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,15 +148,14 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
           </svg>
           <span className="text-xs font-medium">Estudar</span>
         </button>
-        
+
         {/* Botão de marcar como estudado */}
         <button
           onClick={onToggleStudied}
-          className={`p-2 rounded-lg transition-all duration-200 hover:scale-110 cursor-pointer ${
-            isVisited 
-              ? 'bg-green-100 text-green-600 hover:bg-green-200' 
-              : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'
-          }`}
+          className={`p-2 rounded-lg transition-all duration-200 hover:scale-110 cursor-pointer ${isVisited
+             ? 'bg-green-100 text-green-600 hover:bg-green-200'
+             : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'
+            }`}
           title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
         >
           {isVisited ? (
@@ -176,11 +173,73 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
   </div>
 );
 
+// Função para determinar a categoria de uma seção
+const getSectionCategory = (section: Section): 'basic' | 'intermediate' | 'advanced' | 'tactics' => {
+  if ((BASIC_SECTIONS as readonly Section[]).includes(section)) return 'basic';
+  if ((INTERMEDIATE_SECTIONS as readonly Section[]).includes(section)) return 'intermediate';
+  if ((ADVANCED_SECTIONS as readonly Section[]).includes(section)) return 'advanced';
+  if ((TACTICS_SECTIONS as readonly Section[]).includes(section)) return 'tactics';
+  return 'basic'; // fallback
+};
+
+// Cores dos checkboxes por categoria
+const categoryCheckboxColors = {
+  basic: 'bg-green-500 border-green-500',
+  intermediate: 'bg-orange-500 border-orange-500',
+  advanced: 'bg-red-500 border-red-500',
+  tactics: 'bg-purple-500 border-purple-500',
+};
+
+// Componente simplificado em lista (checklist)
+const SectionListItem = ({ section, onClick, isVisited, onToggleStudied }: { section: Section; onClick: () => void; isVisited: boolean; onToggleStudied: (event: React.MouseEvent) => void }) => {
+  const category = getSectionCategory(section);
+  const checkboxColor = categoryCheckboxColors[category];
+
+  return (
+    <li>
+      <div
+        className={`flex items-center gap-3 py-2 px-1 transition-all duration-200 cursor-pointer ${isVisited ? 'opacity-60' : ''}`}
+        onClick={onClick}
+      >
+        {/* Checkbox */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleStudied(e);
+          }}
+          className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-200 ${isVisited
+              ? `${checkboxColor} text-white`
+              : 'border-gray-300 hover:border-gray-400'
+            }`}
+          title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
+        >
+          {isVisited && (
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          )}
+        </button>
+
+        {/* Título e Descrição lado a lado */}
+        <div className="flex-1 flex items-center gap-4 min-w-0">
+          <span className={`text-sm font-medium flex-shrink-0 ${isVisited ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
+            {getDisplayName(section)}
+          </span>
+          <span className={`text-xs flex-1 truncate ${isVisited ? 'text-gray-400' : 'text-gray-500'}`}>
+            {CONTENT_REGISTRY[section]?.description || ''}
+          </span>
+        </div>
+      </div>
+    </li>
+  );
+};
+
 export default function Home() {
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set());
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   const { t } = useLanguageContext();
+  const { layout } = useLayoutContext();
 
   // Carregar seções estudadas do localStorage na montagem
   useEffect(() => {
@@ -224,7 +283,7 @@ export default function Home() {
   const handleSectionClick = (section: Section) => {
     // Marcar seção como visitada
     setVisitedSections(prev => new Set([...prev, section]));
-    
+
     router.push(`/estudo/${section}`);
   };
 
@@ -245,7 +304,7 @@ export default function Home() {
               </div>
               <div className="flex-1 max-w-xs">
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${(visitedSections.size / SECTIONS.length) * 100}%` }}
                   ></div>
@@ -255,256 +314,328 @@ export default function Home() {
           )}
         </div>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-          Explore todos os tópicos de pickleball organizados por nível de dificuldade. Clique em qualquer tópico para começar a estudar.
+          Explore os tópicos de pickleball organizados por nível de dificuldade. Clique no tópico para começar a estudar.
         </p>
       </div>
 
       {/* Básico */}
       <section className="mb-10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
-              1
-            </div>
-            <div className="flex items-center gap-4">
-              {/* Mobile: título como link */}
-              <Link 
-                href="/categoria/basico"
-                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-green-600 transition-colors"
-              >
-                {t('sections.basic')}
-              </Link>
-              {/* Desktop: título normal + botão */}
-              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
-              <Link 
-                href="/categoria/basico"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-700 hover:text-green-800 transition-colors text-sm font-medium"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Ver categoria
-              </Link>
-            </div>
-          </div>
-          {(() => {
-            const visitedCount = BASIC_SECTIONS.filter(s => isVisited(s)).length;
-            const percentage = (visitedCount / BASIC_SECTIONS.length) * 100;
-            return (
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-gray-600">{visitedCount}/{BASIC_SECTIONS.length}</span>
-                </div>
-                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                  <div 
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 h-1.5 rounded-full transition-all duration-500"
-                    style={{ width: `${percentage}%` }}
-                  ></div>
-                </div>
+        <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
+                1
               </div>
-            );
-          })()}
+              <div className="flex items-center gap-4">
+                {/* Mobile: título como link */}
+                <Link
+                  href="/categoria/basico"
+                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-green-600 transition-colors"
+                >
+                  {t('sections.basic')}
+                </Link>
+                {/* Desktop: título normal + botão */}
+                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.basic')}</h2>
+                <Link
+                  href="/categoria/basico"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-700 hover:text-green-800 transition-colors text-sm font-medium"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  Ver categoria
+                </Link>
+              </div>
+            </div>
+            {(() => {
+              const visitedCount = BASIC_SECTIONS.filter(s => isVisited(s)).length;
+              const percentage = (visitedCount / BASIC_SECTIONS.length) * 100;
+              return (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{BASIC_SECTIONS.length}</span>
+                  </div>
+                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-gradient-to-r from-green-500 to-emerald-500 h-1.5 rounded-full transition-all duration-500"
+                      style={{ width: `${percentage}%` }}
+                    ></div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
         </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BASIC_SECTIONS.map((s) => (
-            <li key={s}>
-              <SectionCard 
-                section={s} 
-                onClick={() => handleSectionClick(s)} 
-                isVisited={isVisited(s)}
-                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
-              />
-            </li>
-          ))}
-        </ul>
+        {layout === "grid" ? (
+          <ul className="columns-1 sm:columns-2 lg:columns-3 gap-3">
+            {BASIC_SECTIONS.map((s) => (
+              <li key={s} className="break-inside-avoid mb-3">
+                <SectionCard
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <ul className="space-y-1">
+              {BASIC_SECTIONS.map((s) => (
+                <SectionListItem
+                  key={s}
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {/* Intermediário */}
       <section className="mb-10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
-              2
-            </div>
-            <div className="flex items-center gap-4">
-              {/* Mobile: título como link */}
-              <Link 
-                href="/categoria/intermediario"
-                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors"
-              >
-                {t('sections.intermediate')}
-              </Link>
-              {/* Desktop: título normal + botão */}
-              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
-              <Link 
-                href="/categoria/intermediario"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-100 hover:bg-orange-200 text-orange-700 hover:text-orange-800 transition-colors text-sm font-medium"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Ver categoria
-              </Link>
-            </div>
-          </div>
-          {(() => {
-            const visitedCount = INTERMEDIATE_SECTIONS.filter(s => isVisited(s)).length;
-            const percentage = (visitedCount / INTERMEDIATE_SECTIONS.length) * 100;
-            return (
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-gray-600">{visitedCount}/{INTERMEDIATE_SECTIONS.length}</span>
-                </div>
-                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                  <div 
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 h-1.5 rounded-full transition-all duration-500"
-                    style={{ width: `${percentage}%` }}
-                  ></div>
-                </div>
+        <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
+                2
               </div>
-            );
-          })()}
+              <div className="flex items-center gap-4">
+                {/* Mobile: título como link */}
+                <Link
+                  href="/categoria/intermediario"
+                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-orange-600 transition-colors"
+                >
+                  {t('sections.intermediate')}
+                </Link>
+                {/* Desktop: título normal + botão */}
+                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.intermediate')}</h2>
+                <Link
+                  href="/categoria/intermediario"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-100 hover:bg-orange-200 text-orange-700 hover:text-orange-800 transition-colors text-sm font-medium"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  Ver categoria
+                </Link>
+              </div>
+            </div>
+            {(() => {
+              const visitedCount = INTERMEDIATE_SECTIONS.filter(s => isVisited(s)).length;
+              const percentage = (visitedCount / INTERMEDIATE_SECTIONS.length) * 100;
+              return (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{INTERMEDIATE_SECTIONS.length}</span>
+                  </div>
+                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-gradient-to-r from-orange-500 to-amber-500 h-1.5 rounded-full transition-all duration-500"
+                      style={{ width: `${percentage}%` }}
+                    ></div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
         </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {INTERMEDIATE_SECTIONS.map((s) => (
-            <li key={s}>
-              <SectionCard 
-                section={s} 
-                onClick={() => handleSectionClick(s)} 
-                isVisited={isVisited(s)}
-                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
-              />
-            </li>
-          ))}
-        </ul>
+        {layout === "grid" ? (
+          <ul className="columns-1 sm:columns-2 lg:columns-3 gap-3">
+            {INTERMEDIATE_SECTIONS.map((s) => (
+              <li key={s} className="break-inside-avoid mb-3">
+                <SectionCard
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <ul className="space-y-1">
+              {INTERMEDIATE_SECTIONS.map((s) => (
+                <SectionListItem
+                  key={s}
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {/* Avançado */}
       <section className="mb-10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
-              3
-            </div>
-            <div className="flex items-center gap-4">
-              {/* Mobile: título como link */}
-              <Link 
-                href="/categoria/avancado"
-                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-red-600 transition-colors"
-              >
-                {t('sections.advanced')}
-              </Link>
-              {/* Desktop: título normal + botão */}
-              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
-              <Link 
-                href="/categoria/avancado"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-800 transition-colors text-sm font-medium"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Ver categoria
-              </Link>
-            </div>
-          </div>
-          {(() => {
-            const visitedCount = ADVANCED_SECTIONS.filter(s => isVisited(s)).length;
-            const percentage = (visitedCount / ADVANCED_SECTIONS.length) * 100;
-            return (
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-gray-600">{visitedCount}/{ADVANCED_SECTIONS.length}</span>
-                </div>
-                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                  <div 
-                    className="bg-gradient-to-r from-red-500 to-rose-500 h-1.5 rounded-full transition-all duration-500"
-                    style={{ width: `${percentage}%` }}
-                  ></div>
-                </div>
+        <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
+                3
               </div>
-            );
-          })()}
+              <div className="flex items-center gap-4">
+                {/* Mobile: título como link */}
+                <Link
+                  href="/categoria/avancado"
+                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-red-600 transition-colors"
+                >
+                  {t('sections.advanced')}
+                </Link>
+                {/* Desktop: título normal + botão */}
+                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.advanced')}</h2>
+                <Link
+                  href="/categoria/avancado"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 hover:text-red-800 transition-colors text-sm font-medium"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  Ver categoria
+                </Link>
+              </div>
+            </div>
+            {(() => {
+              const visitedCount = ADVANCED_SECTIONS.filter(s => isVisited(s)).length;
+              const percentage = (visitedCount / ADVANCED_SECTIONS.length) * 100;
+              return (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{ADVANCED_SECTIONS.length}</span>
+                  </div>
+                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-gradient-to-r from-red-500 to-rose-500 h-1.5 rounded-full transition-all duration-500"
+                      style={{ width: `${percentage}%` }}
+                    ></div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
         </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {ADVANCED_SECTIONS.map((s) => (
-            <li key={s}>
-              <SectionCard 
-                section={s} 
-                onClick={() => handleSectionClick(s)} 
-                isVisited={isVisited(s)}
-                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
-              />
-            </li>
-          ))}
-        </ul>
+        {layout === "grid" ? (
+          <ul className="columns-1 sm:columns-2 lg:columns-3 gap-3">
+            {ADVANCED_SECTIONS.map((s) => (
+              <li key={s} className="break-inside-avoid mb-3">
+                <SectionCard
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <ul className="space-y-1">
+              {ADVANCED_SECTIONS.map((s) => (
+                <SectionListItem
+                  key={s}
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {/* Táticas */}
       <section className="mb-10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
-              4
-            </div>
-            <div className="flex items-center gap-4">
-              {/* Mobile: título como link */}
-              <Link 
-                href="/categoria/taticas"
-                className="sm:hidden text-2xl font-bold text-gray-900 hover:text-purple-600 transition-colors"
-              >
-                {t('sections.tactics')}
-              </Link>
-              {/* Desktop: título normal + botão */}
-              <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
-              <Link 
-                href="/categoria/taticas"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-700 hover:text-purple-800 transition-colors text-sm font-medium"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                Ver categoria
-              </Link>
-            </div>
-          </div>
-          {(() => {
-            const visitedCount = TACTICS_SECTIONS.filter(s => isVisited(s)).length;
-            const percentage = (visitedCount / TACTICS_SECTIONS.length) * 100;
-            return (
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-xs font-medium text-gray-600">{visitedCount}/{TACTICS_SECTIONS.length}</span>
-                </div>
-                <div className="w-16 bg-gray-200 rounded-full h-1.5">
-                  <div 
-                    className="bg-gradient-to-r from-purple-500 to-violet-500 h-1.5 rounded-full transition-all duration-500"
-                    style={{ width: `${percentage}%` }}
-                  ></div>
-                </div>
+        <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
+                4
               </div>
-            );
-          })()}
+              <div className="flex items-center gap-4">
+                {/* Mobile: título como link */}
+                <Link
+                  href="/categoria/taticas"
+                  className="sm:hidden text-2xl font-bold text-gray-900 hover:text-purple-600 transition-colors"
+                >
+                  {t('sections.tactics')}
+                </Link>
+                {/* Desktop: título normal + botão */}
+                <h2 className="hidden sm:block text-2xl font-bold text-gray-900">{t('sections.tactics')}</h2>
+                <Link
+                  href="/categoria/taticas"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-700 hover:text-purple-800 transition-colors text-sm font-medium"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  Ver categoria
+                </Link>
+              </div>
+            </div>
+            {(() => {
+              const visitedCount = TACTICS_SECTIONS.filter(s => isVisited(s)).length;
+              const percentage = (visitedCount / TACTICS_SECTIONS.length) * 100;
+              return (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span className="text-xs font-medium text-gray-600">{visitedCount}/{TACTICS_SECTIONS.length}</span>
+                  </div>
+                  <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-gradient-to-r from-purple-500 to-violet-500 h-1.5 rounded-full transition-all duration-500"
+                      style={{ width: `${percentage}%` }}
+                    ></div>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
         </div>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {TACTICS_SECTIONS.map((s) => (
-            <li key={s}>
-              <SectionCard 
-                section={s} 
-                onClick={() => handleSectionClick(s)} 
-                isVisited={isVisited(s)}
-                onToggleStudied={(e) => toggleStudiedStatus(s, e)}
-              />
-            </li>
-          ))}
-        </ul>
+        {layout === "grid" ? (
+          <ul className="columns-1 sm:columns-2 lg:columns-3 gap-3">
+            {TACTICS_SECTIONS.map((s) => (
+              <li key={s} className="break-inside-avoid mb-3">
+                <SectionCard
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <ul className="space-y-1">
+              {TACTICS_SECTIONS.map((s) => (
+                <SectionListItem
+                  key={s}
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
       {/* Theme Selector Section */}
-      <section className="mb-10">
+      {/* <section className="mb-10">
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 sm:p-6 text-white">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex-1">
@@ -526,7 +657,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </main>
   );
