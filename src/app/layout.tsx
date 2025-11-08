@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import Header from "@/components/Header";
+import MobileLayoutSelector from "@/components/MobileLayoutSelector";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,12 +64,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
         <Providers>
           <Header />
+          <MobileLayoutSelector />
           
           {/* Conteúdo principal */}
           <div className="max-w-6xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">

@@ -229,7 +229,7 @@ const SectionListItem = ({ section, onClick, isVisited, onToggleStudied }: { sec
             e.stopPropagation();
             onToggleStudied(e);
           }}
-          className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-200 ${isVisited
+          className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-200 cursor-pointer ${isVisited
               ? `${checkboxColor} text-white`
               : 'border-gray-300 hover:border-gray-400'
             }`}
