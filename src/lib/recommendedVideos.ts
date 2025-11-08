@@ -163,15 +163,6 @@ export const RECOMMENDED_VIDEOS: RecommendedVideo[] = [
     duration: '1:48',
     channel: 'Mari Humberg Pickleball'
   },
-  {
-    id: '18',
-    title: 'O que é Pickleball?',
-    description: 'Introdução ao esporte pickleball para iniciantes.',
-    youtubeId: 'itFZLAz0cAo',
-    category: 'dicas',
-    duration: '1:37',
-    channel: 'Mari Humberg Pickleball'
-  },
   
   // Vídeos sobre Regras do Pickleball em Português Brasileiro
   {

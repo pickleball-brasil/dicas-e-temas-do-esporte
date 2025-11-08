@@ -400,8 +400,8 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
   "treino-com-paredao": {
     id: "wall-training",
     name: "Treino com Paredão",
-    displayName: "Treino com Paredão",
-    description: "Guia completo de treinos individuais usando parede para melhorar técnica e consistência",
+    displayName: "Paredão",
+    description: "Treinos individuais usando parede ",
     level: "Intermediário",
     fileName: "treino-com-paredao.md",
     color: "bg-gradient-to-br from-amber-500 to-orange-600",
