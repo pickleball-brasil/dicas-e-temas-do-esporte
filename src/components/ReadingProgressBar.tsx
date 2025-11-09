@@ -1,11 +1,31 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { SECTIONS } from "@/lib/sections";
 
 export default function ReadingProgressBar() {
   const [progress, setProgress] = useState(0);
   const [visitedCount, setVisitedCount] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const totalSections = SECTIONS.length;
+  const pathname = usePathname();
+  
+  // Verificar se está na página de estudo ou dicas
+  const isStudyOrDicasPage = pathname?.includes('/estudo/') || pathname?.includes('/dicas/');
+
+  // Verificar se é mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -53,6 +73,11 @@ export default function ReadingProgressBar() {
       clearInterval(interval);
     };
   }, [totalSections]);
+
+  // Não mostrar no mobile nas páginas de estudo ou dicas
+  if (isMobile && isStudyOrDicasPage) {
+    return null;
+  }
 
   return (
     <div className="fixed top-14 sm:top-16 left-0 right-0 z-40 bg-gray-50/95 backdrop-blur-sm border-b border-gray-200/60">

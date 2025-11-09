@@ -5,6 +5,7 @@ import Providers from "./providers";
 import Header from "@/components/Header";
 import MobileLayoutSelector from "@/components/MobileLayoutSelector";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
+import InstallPrompt from "@/components/InstallPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,14 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Estudando o Pickleball - Domine o Pickleball",
+  title: "Pickleball Estudos - Domine o Pickleball",
   description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
   manifest: "/dicas-e-temas-do-esporte/manifest.json",
   themeColor: "#0ea5e9",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   icons: {
     icon: [
-      { url: "/dicas-e-temas-do-esporte/favicon.ico", sizes: "any" },
       { url: "/dicas-e-temas-do-esporte/favicon.png", type: "image/png" },
     ],
     apple: "/dicas-e-temas-do-esporte/favicon.png",
@@ -32,27 +32,32 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Estudando o Pickleball",
+    title: "Pickleball Estudos",
+  },
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "Pickleball Estudos",
   },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: "",
-    siteName: "Estudando o Pickleball",
-    title: "Estudando o Pickleball - Domine o Pickleball",
+    siteName: "Pickleball Estudos",
+    title: "Pickleball Estudos - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
     images: [
       {
         url: "/dicas-e-temas-do-esporte/logo.png",
         width: 512,
         height: 512,
-        alt: "Estudando o Pickleball Logo",
+        alt: "Pickleball Estudos Logo",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "Estudando o Pickleball - Domine o Pickleball",
+    title: "Pickleball Estudos - Domine o Pickleball",
     description: "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
     images: ["/dicas-e-temas-do-esporte/logo.png"],
   },
@@ -65,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-white">
+    <html lang="pt-BR" className="bg-white">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
@@ -73,6 +78,7 @@ export default function RootLayout({
           <Header />
           <ReadingProgressBar />
           <MobileLayoutSelector />
+          <InstallPrompt />
           
           {/* Conteúdo principal */}
           <div className="max-w-6xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
@@ -97,24 +103,7 @@ export default function RootLayout({
             </footer>
           </div>
           
-          {/* PWA Service Worker Registration */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                if ('serviceWorker' in navigator) {
-                  window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/dicas-e-temas-do-esporte/sw.js')
-                      .then(function(registration) {
-                        // Service worker registered
-                      })
-                      .catch(function(registrationError) {
-                        // Service worker registration failed
-                      });
-                  });
-                }
-              `,
-            }}
-          />
+          {/* PWA Service Worker Registration - next-pwa faz isso automaticamente em produção */}
         </Providers>
       </body>
     </html>

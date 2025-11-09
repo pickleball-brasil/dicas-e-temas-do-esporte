@@ -320,7 +320,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
           {/* Botão flutuante para menu mobile */}
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden fixed top-20 left-4 z-40 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            className="lg:hidden fixed bottom-4 left-4 z-40 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />

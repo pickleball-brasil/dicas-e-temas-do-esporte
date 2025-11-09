@@ -142,7 +142,7 @@ export default function AvancadoPage() {
   const percentage = (visitedCount / ADVANCED_SECTIONS.length) * 100;
 
   return (
-    <main className="py-4 pt-12 sm:pt-14">
+    <main className="py-4 pt-12 sm:pt-8">
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">

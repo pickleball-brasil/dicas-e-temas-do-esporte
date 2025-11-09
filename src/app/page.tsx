@@ -377,11 +377,16 @@ export default function Home() {
   };
 
   return (
-    <main className="py-4 pt-12 sm:pt-14">
-      <div className="mb-8 text-center">
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-          Explore os tópicos de pickleball organizados por categorias. <br/> Clique no tópico para começar a estudar.
-        </p>
+    <main className="py-4 pt-6 sm:pt-8">
+      <div className="mb-10 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent">
+            Aprenda Pickleball de Forma Estruturada
+          </h1>
+          <p className="text-gray-600 text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            Explore tópicos organizados por nível de dificuldade. Cada categoria oferece conteúdo completo para seu desenvolvimento no esporte.
+          </p>
+        </div>
       </div>
 
       {/* Básico */}

@@ -28,7 +28,7 @@ const translations = {
       close: "Fechar"
     },
     header: {
-      title: "Estudando o Pickleball",
+      title: "Pickleball Estudos",
       subtitle: "Material para jogadores e professores"
     },
     modes: {

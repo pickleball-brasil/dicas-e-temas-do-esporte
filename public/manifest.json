@@ -1,20 +1,28 @@
 {
-  "name": "Estudando o Pickleball - Domine o Pickleball",
-  "short_name": "Estudando o Pickleball",
-  "description": "Domine o Pickleball com conhecimento",
+  "name": "Pickleball Estudos - Domine o Pickleball",
+  "short_name": "Pickleball Estudos",
+  "description": "Domine o Pickleball com conhecimento. Guias completos para iniciantes, intermediários e avançados.",
   "start_url": "/dicas-e-temas-do-esporte/",
   "scope": "/dicas-e-temas-do-esporte/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0ea5e9",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "categories": ["sports", "education"],
   "lang": "pt-BR",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/dicas-e-temas-do-esporte/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/dicas-e-temas-do-esporte/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/dicas-e-temas-do-esporte/favicon.png",
@@ -27,6 +35,21 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Início",
+      "short_name": "Início",
+      "description": "Voltar para a página inicial",
+      "url": "/dicas-e-temas-do-esporte/",
+      "icons": [
+        {
+          "src": "/dicas-e-temas-do-esporte/favicon.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
