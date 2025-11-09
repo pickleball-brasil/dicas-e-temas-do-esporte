@@ -7,6 +7,7 @@ import { getDisplayName } from '@/lib/displayNames';
 
 const sectionColors: Record<string, string> = {
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
+  "drive": "bg-gradient-to-br from-amber-400 to-orange-600",
   "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
   "lob": "bg-gradient-to-br from-amber-400 to-amber-600",
   "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
@@ -30,6 +31,11 @@ const sectionColors: Record<string, string> = {
   "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
   "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
   "mecanicas-fundamentais": "bg-gradient-to-br from-orange-500 to-orange-600",
+  "analise-de-pontos": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "preparacao-mental-intermediaria": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "estrategias-saque-devolucao-avancadas": "bg-gradient-to-br from-orange-400 to-amber-500",
+  "controle-mental": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "exercicios-mobilidade-forca": "bg-gradient-to-br from-amber-500 to-orange-600",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
@@ -115,6 +121,8 @@ export default function IntermediarioPage() {
   useEffect(() => {
     if (visitedSections.size > 0) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
+      // Disparar evento customizado para atualizar barra de progresso
+      window.dispatchEvent(new Event('visitedSectionsChanged'));
     }
   }, [visitedSections]);
 
@@ -134,7 +142,7 @@ export default function IntermediarioPage() {
   const percentage = (visitedCount / INTERMEDIATE_SECTIONS.length) * 100;
 
   return (
-    <main className="py-4">
+    <main className="py-4 pt-12 sm:pt-14">
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">

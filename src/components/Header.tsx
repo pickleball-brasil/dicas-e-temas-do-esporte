@@ -12,7 +12,7 @@ export default function Header() {
   const isHomePage = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gray-50/90 border-b border-gray-200/60 shadow-lg">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gray-50/90 border-b border-gray-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo e branding */}

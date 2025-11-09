@@ -2,7 +2,7 @@
 export const SECTION_IDS: Record<string, string> = {
   // Básico
   "regras": "rules",
-  "saque": "serve", 
+  "saque": "serve",
   "devolucao": "return",
   "dink": "dink",
   "voleio": "volley",
@@ -20,7 +20,11 @@ export const SECTION_IDS: Record<string, string> = {
   "pontuacao-detalhada": "scoring",
   "etiqueta-em-quadra": "court-etiquette",
   "seguranca-e-prevencao-lesoes": "safety-injury-prevention",
-  
+  "historia-e-origem": "history-origin",
+  "vocabulario-e-termos": "vocabulary-terms",
+  "como-escolher-parceiro": "choosing-partner",
+  "drills-e-treinos-basicos": "basic-drills-training",
+
   // Intermediário
   "drop-shot": "drop-shot",
   "drive": "drive",
@@ -48,6 +52,11 @@ export const SECTION_IDS: Record<string, string> = {
   "tipos-de-voleios-pickleball": "volley-types",
   "tipos-de-dink-pickleball": "dink-types",
   "mecanicas-fundamentais": "fundamental-mechanics",
+  "analise-de-pontos": "point-analysis",
+  "preparacao-mental-intermediaria": "intermediate-mental-prep",
+  "estrategias-saque-devolucao-avancadas": "advanced-serve-return-strategies",
+  "controle-mental": "mental-control",
+  "exercicios-mobilidade-forca": "mobility-strength-exercises",
   
   // Avançado
   "tecnicas-de-decepcao-engano": "deception-techniques",
@@ -55,6 +64,11 @@ export const SECTION_IDS: Record<string, string> = {
   "quimica-e-sinergia-duplas-avancadas": "advanced-doubles-synergy",
   "selecao-de-golpes-avancada": "advanced-shot-selection",
   "construcao-de-pontos": "point-construction",
+  "analise-de-video": "video-analysis",
+  "preparacao-fisica-avancada-competicoes": "advanced-physical-prep-competitions",
+  "scouting-analise-oponentes": "scouting-opponent-analysis",
+  "drills-e-treinos-avancados": "advanced-drills-training",
+  "jogo-da-porcentagem": "percentage-play",
   "transicao-defesa-ataque": "defense-to-attack-transition",
   "gerenciamento-momentum-timeouts": "momentum-timeout-management",
   "acelerar-as-bolas": "speeding-up-balls",
@@ -75,7 +89,7 @@ export const SECTION_IDS: Record<string, string> = {
   "switching": "switching",
   "tecnicas-avancadas": "advanced-techniques",
   "torneios": "tournaments",
-  
+
   // Táticas
   "pressao-constante": "constant-pressure",
   "jogo-cruzado": "cross-court-play",
@@ -123,6 +137,10 @@ export const BASIC_SECTIONS = [
   "pontuacao-detalhada",
   "etiqueta-em-quadra",
   "seguranca-e-prevencao-lesoes",
+  "historia-e-origem",
+  "vocabulario-e-termos",
+  "como-escolher-parceiro",
+  "drills-e-treinos-basicos",
 ] as const;
 
 // Intermediário
@@ -153,6 +171,11 @@ export const INTERMEDIATE_SECTIONS = [
   "tipos-de-voleios-pickleball",
   "tipos-de-dink-pickleball",
   "mecanicas-fundamentais",
+  "analise-de-pontos",
+  "preparacao-mental-intermediaria",
+  "estrategias-saque-devolucao-avancadas",
+  "controle-mental",
+  "exercicios-mobilidade-forca",
 ] as const;
 
 // Avançado
@@ -180,6 +203,11 @@ export const ADVANCED_SECTIONS = [
   "quimica-e-sinergia-duplas-avancadas",
   "selecao-de-golpes-avancada",
   "construcao-de-pontos",
+  "analise-de-video",
+  "preparacao-fisica-avancada-competicoes",
+  "scouting-analise-oponentes",
+  "jogo-da-porcentagem",
+  "drills-e-treinos-avancados",
 ] as const;
 
 // Táticas
@@ -239,6 +267,10 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "pontuacao-detalhada": "Básico",
   "etiqueta-em-quadra": "Básico",
   "seguranca-e-prevencao-lesoes": "Básico",
+  "historia-e-origem": "Básico",
+  "vocabulario-e-termos": "Básico",
+  "como-escolher-parceiro": "Básico",
+  "drills-e-treinos-basicos": "Básico",
   "drop-shot": "Intermediário",
   "drive": "Intermediário",
   "terceira-bola": "Intermediário",
@@ -265,6 +297,11 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "tipos-de-voleios-pickleball": "Intermediário",
   "tipos-de-dink-pickleball": "Intermediário",
   "mecanicas-fundamentais": "Intermediário",
+  "analise-de-pontos": "Intermediário",
+  "preparacao-mental-intermediaria": "Intermediário",
+  "estrategias-saque-devolucao-avancadas": "Intermediário",
+  "controle-mental": "Intermediário",
+  "exercicios-mobilidade-forca": "Intermediário",
   "smash": "Avançado",
   "acelerar-as-bolas": "Avançado",
   "reset": "Avançado",
@@ -288,6 +325,11 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "quimica-e-sinergia-duplas-avancadas": "Avançado",
   "selecao-de-golpes-avancada": "Avançado",
   "construcao-de-pontos": "Avançado",
+  "analise-de-video": "Avançado",
+  "preparacao-fisica-avancada-competicoes": "Avançado",
+  "scouting-analise-oponentes": "Avançado",
+  "jogo-da-porcentagem": "Avançado",
+  "drills-e-treinos-avancados": "Avançado",
   "controle-de-ritmo": "Táticas",
   "jogo-no-meio": "Táticas",
   "explorar-fraquezas": "Táticas",

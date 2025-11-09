@@ -20,6 +20,8 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "dicas": "Dicas",
   "dink": "Dink",
   "drills-e-treinos": "Drills e Treinos",
+  "drills-e-treinos-basicos": "Drills e Treinos Básicos",
+  "drills-e-treinos-avancados": "Drills e Treinos Avançados",
   "treino-com-paredao": "Treino com Paredão",
   "drop-shot": "Drop Shot",
   "drive": "Drive",
@@ -87,9 +89,30 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "tecnicas-avancadas": "Técnicas Avançadas",
   "uso-do-lob-tatico": "Uso do Lob Tático",
   "variacao-de-altura": "Variação de Altura",
-  "voleio": "Voleio"
+  "voleio": "Voleio",
+  "historia-e-origem": "História e Origem",
+  "vocabulario-e-termos": "Vocabulário e Termos",
+  "como-escolher-parceiro": "Como Escolher Parceiro",
+  "analise-de-pontos": "Análise de Pontos",
+  "preparacao-mental-intermediaria": "Preparação Mental Intermediária",
+  "estrategias-saque-devolucao-avancadas": "Estratégias de Saque e Devolução",
+  "controle-mental": "Controle Mental",
+  "exercicios-mobilidade-forca": "Exercícios de Mobilidade e Força",
+  "analise-de-video": "Análise de Vídeo",
+  "preparacao-fisica-avancada-competicoes": "Preparação Física Avançada",
+  "scouting-analise-oponentes": "Scouting e Análise de Oponentes",
+  "jogo-da-porcentagem": "Jogo da Porcentagem"
 };
 
 export function getDisplayName(fileName: string): string {
-  return DISPLAY_NAMES[fileName] || fileName;
+  // Primeiro tenta encontrar no mapeamento
+  if (DISPLAY_NAMES[fileName]) {
+    return DISPLAY_NAMES[fileName];
+  }
+  
+  // Se não encontrar, converte automaticamente: hífens para espaços e capitaliza
+  return fileName
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }

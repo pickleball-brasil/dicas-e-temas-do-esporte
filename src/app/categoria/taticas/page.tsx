@@ -111,6 +111,8 @@ export default function TaticasPage() {
   useEffect(() => {
     if (visitedSections.size > 0) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
+      // Disparar evento customizado para atualizar barra de progresso
+      window.dispatchEvent(new Event('visitedSectionsChanged'));
     }
   }, [visitedSections]);
 
@@ -130,7 +132,7 @@ export default function TaticasPage() {
   const percentage = (visitedCount / TACTICS_SECTIONS.length) * 100;
 
   return (
-    <main className="py-4">
+    <main className="py-4 pt-12 sm:pt-14">
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">

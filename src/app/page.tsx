@@ -51,12 +51,21 @@ const sectionColors: Record<string, string> = {
   "pontuacao-detalhada": "bg-gradient-to-br from-emerald-400 to-green-500",
   "etiqueta-em-quadra": "bg-gradient-to-br from-green-500 to-emerald-600",
   "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-emerald-500 to-green-600",
+  "historia-e-origem": "bg-gradient-to-br from-green-400 to-emerald-500",
+  "vocabulario-e-termos": "bg-gradient-to-br from-emerald-500 to-green-600",
+  "como-escolher-parceiro": "bg-gradient-to-br from-green-500 to-emerald-600",
+  "drills-e-treinos-basicos": "bg-gradient-to-br from-green-400 to-emerald-500",
   "selecao-de-golpes": "bg-gradient-to-br from-amber-400 to-orange-500",
   "lidar-com-bangers": "bg-gradient-to-br from-orange-500 to-amber-600",
   "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-500 to-orange-600",
   "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
   "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
   "mecanicas-fundamentais": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "analise-de-pontos": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "preparacao-mental-intermediaria": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "estrategias-saque-devolucao-avancadas": "bg-gradient-to-br from-orange-400 to-amber-500",
+  "controle-mental": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "exercicios-mobilidade-forca": "bg-gradient-to-br from-amber-500 to-orange-600",
   "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-500",
   "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
@@ -106,6 +115,11 @@ const sectionColors: Record<string, string> = {
   "lideranca-em-quadra": "bg-gradient-to-br from-rose-400 to-rose-600",
   "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   "construcao-de-pontos": "bg-gradient-to-br from-red-600 to-red-700",
+  "analise-de-video": "bg-gradient-to-br from-red-400 to-rose-500",
+  "preparacao-fisica-avancada-competicoes": "bg-gradient-to-br from-red-500 to-red-600",
+  "scouting-analise-oponentes": "bg-gradient-to-br from-rose-500 to-red-600",
+  "jogo-da-porcentagem": "bg-gradient-to-br from-red-500 to-rose-600",
+  "drills-e-treinos-avancados": "bg-gradient-to-br from-red-500 to-rose-600",
 
   // Táticas - ROXO
   "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",
@@ -281,6 +295,8 @@ export default function Home() {
   useEffect(() => {
     if (isLoaded) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
+      // Disparar evento customizado para atualizar barra de progresso
+      window.dispatchEvent(new Event('visitedSectionsChanged'));
     }
   }, [visitedSections, isLoaded]);
 
@@ -310,33 +326,10 @@ export default function Home() {
   };
 
   return (
-    <main className="py-4">
+    <main className="py-4 pt-12 sm:pt-14">
       <div className="mb-8 text-center">
-        <div className="mb-3">
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            {t('sections.title')}
-          </h1>
-          {visitedSections.size > 0 && (
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-700">
-                  Progresso Geral: {visitedSections.size} de {SECTIONS.length} tópicos
-                </span>
-              </div>
-              <div className="flex-1 max-w-xs">
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all duration-500"
-                    style={{ width: `${(visitedSections.size / SECTIONS.length) * 100}%` }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-          Explore os tópicos de pickleball organizados por nível de dificuldade. Clique no tópico para começar a estudar.
+          Explore os tópicos de pickleball organizados por categorias. <br/> Clique no tópico para começar a estudar.
         </p>
       </div>
 

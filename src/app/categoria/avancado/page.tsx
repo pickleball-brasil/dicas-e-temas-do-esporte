@@ -29,6 +29,11 @@ const sectionColors: Record<string, string> = {
   "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-400 to-rose-600",
   "selecao-de-golpes-avancada": "bg-gradient-to-br from-red-400 to-rose-500",
   "construcao-de-pontos": "bg-gradient-to-br from-rose-500 to-red-600",
+  "analise-de-video": "bg-gradient-to-br from-red-400 to-rose-500",
+  "preparacao-fisica-avancada-competicoes": "bg-gradient-to-br from-red-500 to-red-600",
+  "scouting-analise-oponentes": "bg-gradient-to-br from-rose-500 to-red-600",
+  "jogo-da-porcentagem": "bg-gradient-to-br from-red-500 to-rose-600",
+  "drills-e-treinos-avancados": "bg-gradient-to-br from-red-500 to-rose-600",
   "transicao-defesa-ataque": "bg-gradient-to-br from-red-400 to-red-600",
   "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-rose-400 to-red-600",
 };
@@ -116,6 +121,8 @@ export default function AvancadoPage() {
   useEffect(() => {
     if (visitedSections.size > 0) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
+      // Disparar evento customizado para atualizar barra de progresso
+      window.dispatchEvent(new Event('visitedSectionsChanged'));
     }
   }, [visitedSections]);
 
@@ -135,7 +142,7 @@ export default function AvancadoPage() {
   const percentage = (visitedCount / ADVANCED_SECTIONS.length) * 100;
 
   return (
-    <main className="py-4">
+    <main className="py-4 pt-12 sm:pt-14">
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">

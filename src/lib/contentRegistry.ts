@@ -251,6 +251,54 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Injury prevention and safety",
     category: "basico"
   },
+  "historia-e-origem": {
+    id: "history-origin",
+    name: "História e Origem do Pickleball",
+    displayName: "História e Origem",
+    description: "A fascinante história do pickleball desde sua criação",
+    level: "Básico",
+    fileName: "historia-e-origem.md",
+    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    englishName: "History and Origin",
+    englishDescription: "Learn about the fascinating history of pickleball",
+    category: "basico"
+  },
+  "vocabulario-e-termos": {
+    id: "vocabulary-terms",
+    name: "Vocabulário e Termos Essenciais",
+    displayName: "Vocabulário e Termos",
+    description: "Vocabulário fundamental do pickleball",
+    level: "Básico",
+    fileName: "vocabulario-e-termos.md",
+    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    englishName: "Vocabulary and Essential Terms",
+    englishDescription: "Learn the fundamental vocabulary of pickleball",
+    category: "basico"
+  },
+  "como-escolher-parceiro": {
+    id: "choosing-partner",
+    name: "Como Escolher seu Primeiro Parceiro",
+    displayName: "Escolher Parceiro",
+    description: "Critérios para escolher um parceiro de duplas",
+    level: "Básico",
+    fileName: "como-escolher-parceiro.md",
+    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    englishName: "How to Choose Your First Partner",
+    englishDescription: "Learn important criteria for choosing a doubles partner",
+    category: "basico"
+  },
+  "drills-e-treinos-basicos": {
+    id: "basic-drills-training",
+    name: "Drills e Treinos Básicos",
+    displayName: "Drills Básicos",
+    description: "Exercícios fundamentais para desenvolver habilidades básicas",
+    level: "Básico",
+    fileName: "drills-e-treinos-basicos.md",
+    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    englishName: "Basic Drills and Training",
+    englishDescription: "Fundamental exercises to develop basic skills",
+    category: "basico"
+  },
 
   // INTERMEDIÁRIO
   "drop-shot": {
@@ -565,6 +613,66 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Correct biomechanics for consistency and control",
     category: "intermediario"
   },
+  "analise-de-pontos": {
+    id: "point-analysis",
+    name: "Análise de Pontos e Padrões de Jogo",
+    displayName: "Análise de Pontos",
+    description: "Analise sequências de pontos e identifique padrões",
+    level: "Intermediário",
+    fileName: "analise-de-pontos.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Point Analysis and Game Patterns",
+    englishDescription: "Learn to analyze point sequences and identify opponent patterns",
+    category: "intermediario"
+  },
+  "preparacao-mental-intermediaria": {
+    id: "intermediate-mental-prep",
+    name: "Preparação Mental Intermediária",
+    displayName: "Preparação Mental Intermediária",
+    description: "Técnicas de foco, confiança e controle emocional",
+    level: "Intermediário",
+    fileName: "preparacao-mental-intermediaria.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Intermediate Mental Preparation",
+    englishDescription: "Develop focus, confidence and emotional control techniques",
+    category: "intermediario"
+  },
+  "estrategias-saque-devolucao-avancadas": {
+    id: "advanced-serve-return-strategies",
+    name: "Estratégias de Saque e Devolução Avançadas",
+    displayName: "Estratégias Saque/Devolução",
+    description: "Variações táticas de saque e devolução",
+    level: "Intermediário",
+    fileName: "estrategias-saque-devolucao-avancadas.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Advanced Serve and Return Strategies",
+    englishDescription: "Master tactical variations of serve and return",
+    category: "intermediario"
+  },
+  "controle-mental": {
+    id: "mental-control",
+    name: "Controle Mental no Pickleball",
+    displayName: "Controle Mental",
+    description: "Técnicas de controle mental e mentalidade",
+    level: "Intermediário",
+    fileName: "controle-mental.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Mental Control in Pickleball",
+    englishDescription: "Mental control and mindset techniques",
+    category: "intermediario"
+  },
+  "exercicios-mobilidade-forca": {
+    id: "mobility-strength-exercises",
+    name: "Exercícios de Mobilidade e Força",
+    displayName: "Mobilidade e Força",
+    description: "Exercícios específicos de mobilidade e força para pickleball",
+    level: "Intermediário",
+    fileName: "exercicios-mobilidade-forca.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "Mobility and Strength Exercises",
+    englishDescription: "Specific mobility and strength exercises for pickleball",
+    category: "intermediario"
+  },
 
   // AVANÇADO
   "smash": {
@@ -841,6 +949,66 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     color: "bg-gradient-to-br from-red-600 to-red-700",
     englishName: "Point Construction",
     englishDescription: "Tactical systems to build points and control the game",
+    category: "avancado"
+  },
+  "analise-de-video": {
+    id: "video-analysis",
+    name: "Análise de Vídeo e Autoavaliação",
+    displayName: "Análise de Vídeo",
+    description: "Grave e analise vídeos do seu jogo",
+    level: "Avançado",
+    fileName: "analise-de-video.md",
+    color: "bg-gradient-to-br from-red-600 to-red-700",
+    englishName: "Video Analysis and Self-Assessment",
+    englishDescription: "Learn to record, analyze and use videos of your own game",
+    category: "avancado"
+  },
+  "preparacao-fisica-avancada-competicoes": {
+    id: "advanced-physical-prep-competitions",
+    name: "Preparação Física Avançada para Competições",
+    displayName: "Preparação Física Avançada",
+    description: "Programa completo de preparação física para torneios",
+    level: "Avançado",
+    fileName: "preparacao-fisica-avancada-competicoes.md",
+    color: "bg-gradient-to-br from-red-600 to-red-700",
+    englishName: "Advanced Physical Preparation for Competitions",
+    englishDescription: "Develop a complete physical preparation program for tournaments",
+    category: "avancado"
+  },
+  "scouting-analise-oponentes": {
+    id: "scouting-opponent-analysis",
+    name: "Estratégias de Scouting e Análise de Oponentes",
+    displayName: "Scouting e Análise",
+    description: "Estude oponentes e identifique fraquezas",
+    level: "Avançado",
+    fileName: "scouting-analise-oponentes.md",
+    color: "bg-gradient-to-br from-red-600 to-red-700",
+    englishName: "Scouting and Opponent Analysis Strategies",
+    englishDescription: "Learn to study opponents before playing and identify weaknesses",
+    category: "avancado"
+  },
+  "jogo-da-porcentagem": {
+    id: "percentage-play",
+    name: "Jogo da Porcentagem",
+    displayName: "Jogo da Porcentagem",
+    description: "Maximize sucesso e minimize erros",
+    level: "Avançado",
+    fileName: "jogo-da-porcentagem.md",
+    color: "bg-gradient-to-br from-red-600 to-red-700",
+    englishName: "Percentage Play",
+    englishDescription: "Maximize success and minimize errors through percentage play",
+    category: "avancado"
+  },
+  "drills-e-treinos-avancados": {
+    id: "advanced-drills-training",
+    name: "Drills e Treinos Avançados",
+    displayName: "Drills Avançados",
+    description: "Exercícios avançados para refinar habilidades e preparar para competições",
+    level: "Avançado",
+    fileName: "drills-e-treinos-avancados.md",
+    color: "bg-gradient-to-br from-red-600 to-red-700",
+    englishName: "Advanced Drills and Training",
+    englishDescription: "Advanced exercises to refine skills and prepare for competitions",
     category: "avancado"
   },
 

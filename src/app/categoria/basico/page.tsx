@@ -25,6 +25,10 @@ const sectionColors: Record<string, string> = {
   "pontuacao-detalhada": "bg-gradient-to-br from-green-400 to-emerald-500",
   "etiqueta-em-quadra": "bg-gradient-to-br from-emerald-500 to-green-600",
   "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-green-500 to-emerald-600",
+  "historia-e-origem": "bg-gradient-to-br from-green-400 to-emerald-500",
+  "vocabulario-e-termos": "bg-gradient-to-br from-emerald-500 to-green-600",
+  "como-escolher-parceiro": "bg-gradient-to-br from-green-500 to-emerald-600",
+  "drills-e-treinos-basicos": "bg-gradient-to-br from-green-400 to-emerald-500",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
@@ -110,6 +114,8 @@ export default function BasicoPage() {
   useEffect(() => {
     if (visitedSections.size > 0) {
       localStorage.setItem('visitedSections', JSON.stringify([...visitedSections]));
+      // Disparar evento customizado para atualizar barra de progresso
+      window.dispatchEvent(new Event('visitedSectionsChanged'));
     }
   }, [visitedSections]);
 
@@ -129,7 +135,7 @@ export default function BasicoPage() {
   const percentage = (visitedCount / BASIC_SECTIONS.length) * 100;
 
   return (
-    <main className="py-4">
+    <main className="py-4 pt-12 sm:pt-14">
       {/* Header da categoria */}
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
