@@ -116,9 +116,9 @@ export default function DicasPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            Dicas e Prova: {getDisplayName(section)}
+            Testar conhecimento: {getDisplayName(section)}
           </h1>
-          <p className="text-gray-600">Aprenda as principais dicas e teste seu conhecimento</p>
+          <p className="text-gray-600">Acesse dicas práticas e teste seu conhecimento com exercícios interativos</p>
         </div>
 
         {/* Tabs */}

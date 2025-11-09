@@ -418,37 +418,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
         )}
 
-        {/* Footer */}
-        {!isCollapsed && (
-          <div className="px-4 py-5 border-t border-gray-200/60 bg-gradient-to-br from-white to-gray-50/50">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between px-3 py-2 bg-white/80 rounded-xl shadow-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <p className="text-xs font-medium text-gray-600">
-                    {SECTIONS.length} tópicos disponíveis
-                  </p>
-                </div>
-                <div className="text-xs text-gray-500 font-medium">
-                  {Math.round((visitedSections.size / SECTIONS.length) * 100)}%
-                </div>
-              </div>
-              {visitedSections.size > 0 && (
-                <div className="flex items-center justify-between px-3 py-2 bg-blue-50/80 rounded-xl shadow-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                    <p className="text-xs font-medium text-blue-700">
-                      {visitedSections.size} estudados
-                    </p>
-                  </div>
-                  <div className="text-xs text-blue-600 font-medium">
-                    {visitedSections.size}/{SECTIONS.length}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+  
       </div>
     </>
   );

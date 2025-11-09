@@ -142,74 +142,83 @@ const sectionColors: Record<string, string> = {
   "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
 };
 
-const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section: Section; onClick: () => void; isVisited: boolean; onToggleStudied: (event: React.MouseEvent) => void }) => (
-  <div 
-    className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left relative cursor-pointer ${isVisited
-     ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100'
-     : 'hover:shadow-md'
-    }`}
-    onClick={onClick}
-  >
-    <div className="flex items-center gap-3">
-      <div 
-        className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative flex-shrink-0 cursor-pointer ${isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
-        }`}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick();
-        }}
-      >
-        {section.charAt(0)}
-        {isVisited && (
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
-            <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-          </div>
-        )}
-      </div>
-      <div className="flex-1">
-        <span className={`font-semibold text-sm ${isVisited ? 'text-green-800' : 'text-gray-900'
-          }`}>{getDisplayName(section)}</span>
-        <span className={`text-xs block line-clamp-2 ${isVisited ? 'text-green-600' : 'text-gray-500'
-          }`}>
-          {CONTENT_REGISTRY[section]?.description || ''}
-        </span>
-      </div>
+const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section: Section; onClick: () => void; isVisited: boolean; onToggleStudied: (event: React.MouseEvent) => void }) => {
+  const category = getSectionCategory(section);
+  const studiedColors = categoryStudiedColors[category];
+  const studiedTextColors = categoryStudiedTextColors[category];
+  const studiedButtonColors = categoryStudiedButtonColors[category];
+  const studiedRingColors = categoryStudiedRingColors[category];
+  const studiedBadgeColors = categoryStudiedBadgeColors[category];
 
-      {/* Botão de marcar como estudado */}
-      <div className="flex items-center gap-2 flex-shrink-0">
-        <button
+  return (
+    <div 
+      className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left relative cursor-pointer ${isVisited
+       ? `${studiedColors} shadow-sm`
+       : 'hover:shadow-md'
+      }`}
+      onClick={onClick}
+    >
+      <div className="flex items-center gap-3">
+        <div 
+          className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative flex-shrink-0 cursor-pointer ${isVisited ? studiedRingColors : ''
+          }`}
           onClick={(e) => {
             e.stopPropagation();
-            onToggleStudied(e);
+            onClick();
           }}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer ${isVisited
-             ? 'bg-green-100 text-green-700 hover:bg-green-200'
-             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
         >
-          {isVisited ? (
-            <>
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          {section.charAt(0)}
+          {isVisited && (
+            <div className={`absolute -top-1 -right-1 w-4 h-4 ${studiedBadgeColors} rounded-full flex items-center justify-center shadow-sm`}>
+              <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              <span className="text-xs font-medium hidden sm:inline">Estudado</span>
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-              </svg>
-              <span className="text-xs font-medium hidden sm:inline">Marcar</span>
-            </>
+            </div>
           )}
-        </button>
+        </div>
+        <div className="flex-1">
+          <span className={`font-semibold text-sm ${isVisited ? studiedTextColors.title : 'text-gray-900'
+            }`}>{getDisplayName(section)}</span>
+          <span className={`text-xs block line-clamp-2 ${isVisited ? studiedTextColors.description : 'text-gray-500'
+            }`}>
+            {CONTENT_REGISTRY[section]?.description || ''}
+          </span>
+        </div>
+
+        {/* Botão de marcar como estudado */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleStudied(e);
+            }}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all duration-200 hover:scale-105 cursor-pointer ${isVisited
+               ? studiedButtonColors
+               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
+          >
+            {isVisited ? (
+              <>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-xs font-medium hidden sm:inline">Estudado</span>
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span className="text-xs font-medium hidden sm:inline">Marcar</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Função para determinar a categoria de uma seção
 const getSectionCategory = (section: Section): 'basic' | 'intermediate' | 'advanced' | 'tactics' => {
@@ -226,6 +235,46 @@ const categoryCheckboxColors = {
   intermediate: 'bg-orange-500 border-orange-500',
   advanced: 'bg-red-500 border-red-500',
   tactics: 'bg-purple-500 border-purple-500',
+};
+
+// Cores de background para cards estudados por categoria
+const categoryStudiedColors = {
+  basic: 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200',
+  intermediate: 'bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200',
+  advanced: 'bg-gradient-to-br from-red-50 to-rose-50 border-red-200',
+  tactics: 'bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200',
+};
+
+// Cores de texto para cards estudados por categoria
+const categoryStudiedTextColors = {
+  basic: { title: 'text-green-800', description: 'text-green-600' },
+  intermediate: { title: 'text-orange-800', description: 'text-orange-600' },
+  advanced: { title: 'text-red-800', description: 'text-red-600' },
+  tactics: { title: 'text-purple-800', description: 'text-purple-600' },
+};
+
+// Cores do botão estudado por categoria
+const categoryStudiedButtonColors = {
+  basic: 'bg-green-100 text-green-700 hover:bg-green-200',
+  intermediate: 'bg-orange-100 text-orange-700 hover:bg-orange-200',
+  advanced: 'bg-red-100 text-red-700 hover:bg-red-200',
+  tactics: 'bg-purple-100 text-purple-700 hover:bg-purple-200',
+};
+
+// Cores do ring do ícone quando estudado por categoria
+const categoryStudiedRingColors = {
+  basic: 'ring-2 ring-green-300 ring-offset-2',
+  intermediate: 'ring-2 ring-orange-300 ring-offset-2',
+  advanced: 'ring-2 ring-red-300 ring-offset-2',
+  tactics: 'ring-2 ring-purple-300 ring-offset-2',
+};
+
+// Cores do badge de check quando estudado por categoria
+const categoryStudiedBadgeColors = {
+  basic: 'bg-green-500',
+  intermediate: 'bg-orange-500',
+  advanced: 'bg-red-500',
+  tactics: 'bg-purple-500',
 };
 
 // Componente simplificado em lista (checklist)
@@ -341,9 +390,6 @@ export default function Home() {
           <div className={`rounded-lg border ${categoryHeaderColors.basico} px-4 py-3 mb-4`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.basico} font-semibold text-xs`}>
-                  1
-                </div>
                 <div className="flex items-center gap-4">
                   {/* Mobile: título como link */}
                   <Link
@@ -422,9 +468,6 @@ export default function Home() {
           <div className={`rounded-lg border ${categoryHeaderColors.intermediario} px-4 py-3 mb-4`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.intermediario} font-semibold text-xs`}>
-                  2
-                </div>
                 <div className="flex items-center gap-4">
                   {/* Mobile: título como link */}
                   <Link
@@ -503,9 +546,6 @@ export default function Home() {
           <div className={`rounded-lg border ${categoryHeaderColors.avancado} px-4 py-3 mb-4`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.avancado} font-semibold text-xs`}>
-                  3
-                </div>
                 <div className="flex items-center gap-4">
                   {/* Mobile: título como link */}
                   <Link
@@ -584,9 +624,6 @@ export default function Home() {
           <div className={`rounded-lg border ${categoryHeaderColors.taticas} px-4 py-3 mb-4`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`flex items-center justify-center w-7 h-7 rounded ${categoryBadgeColors.taticas} font-semibold text-xs`}>
-                  4
-                </div>
                 <div className="flex items-center gap-4">
                   {/* Mobile: título como link */}
                   <Link
