@@ -5,6 +5,7 @@ import Link from "next/link";
 import * as LZString from "lz-string";
 import { CONTENT_REGISTRY } from "@/lib/contentRegistry";
 import { getDisplayName } from "@/lib/displayNames";
+import { RECOMMENDED_VIDEOS } from "@/lib/recommendedVideos";
 
 // Cores das categorias (igual à tela inicial)
 const categoryColors = {
@@ -53,6 +54,7 @@ const diasSemana = [
 interface DiaAula {
   topicosPrincipais: string[];
   topicosComplementares: string[];
+  linksComplementares: string[];
   horario: string | null;
 }
 
@@ -66,6 +68,7 @@ interface DiaAulaLegacy {
   topicos?: string[];
   topicosPrincipais?: string[];
   topicosComplementares?: string[];
+  linksComplementares?: string[];
   horario?: string | null;
 }
 
@@ -99,6 +102,7 @@ function CronogramaVisualizarContent() {
             semanaNormalizada[diaId] = {
               topicosPrincipais: Array.isArray(dia.topicosPrincipais) ? dia.topicosPrincipais : [],
               topicosComplementares: Array.isArray(dia.topicosComplementares) ? dia.topicosComplementares : [],
+              linksComplementares: Array.isArray(dia.linksComplementares) ? dia.linksComplementares : [],
               horario: dia.horario || null,
             };
           } else if (dia.topico !== undefined) {
@@ -106,6 +110,7 @@ function CronogramaVisualizarContent() {
             semanaNormalizada[diaId] = {
               topicosPrincipais: dia.topico ? [dia.topico] : [],
               topicosComplementares: [],
+              linksComplementares: [],
               horario: dia.horario || null,
             };
           } else if (dia.topicos !== undefined) {
@@ -113,6 +118,7 @@ function CronogramaVisualizarContent() {
             semanaNormalizada[diaId] = {
               topicosPrincipais: Array.isArray(dia.topicos) ? dia.topicos : [],
               topicosComplementares: [],
+              linksComplementares: [],
               horario: dia.horario || null,
             };
           } else {
@@ -120,6 +126,7 @@ function CronogramaVisualizarContent() {
             semanaNormalizada[diaId] = {
               topicosPrincipais: [],
               topicosComplementares: [],
+              linksComplementares: [],
               horario: dia.horario || null,
             };
           }
@@ -156,9 +163,9 @@ function CronogramaVisualizarContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen">
       <main className="py-6 sm:py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full">
           {/* Header */}
           <div className="mb-8 text-center">
             <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-2">
@@ -176,7 +183,7 @@ function CronogramaVisualizarContent() {
             {diasSemana.map((dia) => {
               const diaData = dados.semana[dia.id];
               const todosTopicos = [...diaData.topicosPrincipais, ...diaData.topicosComplementares];
-              const temConteudo = todosTopicos.length > 0 || diaData.horario;
+              const temConteudo = todosTopicos.length > 0 || diaData.linksComplementares.length > 0 || diaData.horario;
               
               return (
                 <div
@@ -240,7 +247,7 @@ function CronogramaVisualizarContent() {
 
                       {/* Lista de Tópicos Complementares */}
                       {diaData.topicosComplementares.length > 0 && (
-                        <div>
+                        <div className="mb-3">
                           <label className="block text-xs font-semibold text-gray-600 mb-1.5">Tópicos Complementares</label>
                           <div className="space-y-2">
                             {diaData.topicosComplementares.map((topicoId) => {
@@ -270,6 +277,41 @@ function CronogramaVisualizarContent() {
                           </div>
                         </div>
                       )}
+
+                      {/* Links Complementares (Vídeos) */}
+                      {diaData.linksComplementares.length > 0 && (
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-600 mb-1.5">Links Complementares</label>
+                          <div className="space-y-1.5">
+                            {diaData.linksComplementares.map((videoId) => {
+                              const video = RECOMMENDED_VIDEOS.find(v => v.id === videoId);
+                              if (!video) return null;
+                              return (
+                                <a
+                                  key={videoId}
+                                  href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-1.5 w-full px-2 py-1 rounded-md bg-gradient-to-r from-purple-50 to-violet-50 border border-purple-200 hover:shadow-sm transition-all duration-200 cursor-pointer"
+                                >
+                                  <svg className="w-3 h-3 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                  </svg>
+                                  <div className="flex-1 min-w-0">
+                                    <span className="text-[10px] font-semibold text-purple-900 block truncate leading-tight">{video.title}</span>
+                                    {video.channel && (
+                                      <span className="text-[10px] text-purple-600 block truncate leading-tight">{video.channel}</span>
+                                    )}
+                                  </div>
+                                  <svg className="w-2.5 h-2.5 flex-shrink-0 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                  </svg>
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                     </>
                   ) : (
                     <p className="text-sm text-gray-400 italic">Sem aula</p>
@@ -279,17 +321,17 @@ function CronogramaVisualizarContent() {
             })}
           </div>
 
-          {/* Botão Voltar */}
-          <div className="mt-8 text-center">
-            <Link
-              href="/cronograma"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all duration-200"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          {/* Observações */}
+          <div className="mt-8 bg-gradient-to-r from-sky-50 to-purple-50 rounded-xl border border-sky-200 p-4 sm:p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <svg className="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Voltar
-            </Link>
+              O que levar para a aula
+            </h3>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Água, snacks e frutas (opcional), raquetes (opcional), calçado apropriado e muita energia.
+            </p>
           </div>
         </div>
       </main>

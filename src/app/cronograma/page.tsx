@@ -5,6 +5,7 @@ import * as LZString from "lz-string";
 import { CONTENT_REGISTRY, getSectionsByCategory } from "@/lib/contentRegistry";
 import { getDisplayName } from "@/lib/displayNames";
 import { SECTIONS } from "@/lib/sections";
+import { RECOMMENDED_VIDEOS, type RecommendedVideo } from "@/lib/recommendedVideos";
 
 // Cores das categorias (igual à tela inicial)
 const categoryColors = {
@@ -50,17 +51,18 @@ const horarios = [
 interface DiaAula {
   topicosPrincipais: string[];
   topicosComplementares: string[];
+  linksComplementares: string[]; // IDs dos vídeos recomendados
   horario: string | null;
 }
 
 export default function CronogramaPage() {
   const [nomeAluno, setNomeAluno] = useState("");
   const [semana, setSemana] = useState<Record<string, DiaAula>>({
-    segunda: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-    terca: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-    quarta: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-    quinta: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-    sexta: { topicosPrincipais: [], topicosComplementares: [], horario: null },
+    segunda: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+    terca: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+    quarta: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+    quinta: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+    sexta: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
   });
   const [copied, setCopied] = useState(false);
   const [buscaTopicos, setBuscaTopicos] = useState<Record<string, string>>({});
@@ -119,20 +121,40 @@ export default function CronogramaPage() {
     }));
   };
 
+  const adicionarLink = (diaId: string, videoId: string) => {
+    setSemana(prev => ({
+      ...prev,
+      [diaId]: {
+        ...prev[diaId],
+        linksComplementares: [...prev[diaId].linksComplementares, videoId],
+      },
+    }));
+  };
+
+  const removerLink = (diaId: string, videoId: string) => {
+    setSemana(prev => ({
+      ...prev,
+      [diaId]: {
+        ...prev[diaId],
+        linksComplementares: prev[diaId].linksComplementares.filter(id => id !== videoId),
+      },
+    }));
+  };
+
   const limparDia = (diaId: string) => {
     setSemana(prev => ({
       ...prev,
-      [diaId]: { topicosPrincipais: [], topicosComplementares: [], horario: null },
+      [diaId]: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
     }));
   };
 
   const limparTudo = () => {
     setSemana({
-      segunda: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-      terca: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-      quarta: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-      quinta: { topicosPrincipais: [], topicosComplementares: [], horario: null },
-      sexta: { topicosPrincipais: [], topicosComplementares: [], horario: null },
+      segunda: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+      terca: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+      quarta: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+      quinta: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
+      sexta: { topicosPrincipais: [], topicosComplementares: [], linksComplementares: [], horario: null },
     });
     setNomeAluno("");
   };
@@ -159,12 +181,12 @@ export default function CronogramaPage() {
     }
   };
 
-  const temDados = Object.values(semana).some(d => d.topicosPrincipais.length > 0 || d.topicosComplementares.length > 0 || d.horario) || nomeAluno.trim();
+  const temDados = Object.values(semana).some(d => d.topicosPrincipais.length > 0 || d.topicosComplementares.length > 0 || d.linksComplementares.length > 0 || d.horario) || nomeAluno.trim();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen">
       <main className="py-6 sm:py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[100rem] mx-auto">
           {/* Header */}
           <div className="mb-8">
             <div className="mb-4">
@@ -392,6 +414,74 @@ export default function CronogramaPage() {
                       </div>
                     )}
                   </div>
+
+                  {/* Links Complementares (Vídeos) */}
+                  {diaData.linksComplementares.length > 0 && (
+                    <div className="mb-3">
+                      <label className="block text-xs font-semibold text-gray-600 mb-1.5">Links Complementares</label>
+                      <div className="space-y-2">
+                        {diaData.linksComplementares.map((videoId) => {
+                          const video = RECOMMENDED_VIDEOS.find(v => v.id === videoId);
+                          if (!video) return null;
+                          return (
+                            <div
+                              key={videoId}
+                              className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-gradient-to-r from-purple-50 to-violet-50 border border-purple-200"
+                            >
+                              <svg className="w-4 h-4 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
+                              <div className="flex-1 min-w-0">
+                                <span className="text-xs font-semibold text-purple-900 block truncate">{video.title}</span>
+                                {video.channel && (
+                                  <span className="text-xs text-purple-600 block truncate">{video.channel}</span>
+                                )}
+                              </div>
+                              <button
+                                onClick={() => removerLink(dia.id, videoId)}
+                                className="text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
+                                title="Remover link"
+                              >
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Seletor de Vídeo */}
+                  {RECOMMENDED_VIDEOS.filter(v => !diaData.linksComplementares.includes(v.id)).length > 0 && (
+                    <div className="mb-3 relative">
+                      <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                        Adicionar Link Complementar (Vídeo)
+                      </label>
+                      <div className="relative">
+                        <select
+                          defaultValue=""
+                          onChange={(e) => {
+                            if (e.target.value) {
+                              adicionarLink(dia.id, e.target.value);
+                              e.target.value = "";
+                            }
+                          }}
+                          className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all text-gray-900 bg-white"
+                        >
+                          <option value="">Selecione um vídeo...</option>
+                          {RECOMMENDED_VIDEOS
+                            .filter(v => !diaData.linksComplementares.includes(v.id))
+                            .map((video) => (
+                              <option key={video.id} value={video.id}>
+                                {video.title} {video.channel ? `- ${video.channel}` : ''}
+                              </option>
+                            ))}
+                        </select>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Seletor de Horário */}
                   <div>
