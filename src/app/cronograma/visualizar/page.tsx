@@ -56,6 +56,7 @@ interface DiaAula {
   topicosComplementares: string[];
   linksComplementares: string[];
   horario: string | null;
+  observacoes?: string;
 }
 
 interface CronogramaData {
@@ -63,18 +64,17 @@ interface CronogramaData {
   semana: Record<string, DiaAula>;
 }
 
-interface DiaAulaLegacy {
-  topico?: string | null;
-  topicos?: string[];
-  topicosPrincipais?: string[];
-  topicosComplementares?: string[];
-  linksComplementares?: string[];
-  horario?: string | null;
+interface DiaAulaOtimizado {
+  tp?: string[]; // topicosPrincipais
+  tc?: string[]; // topicosComplementares
+  lc?: string[]; // linksComplementares
+  h?: string | null; // horario
+  o?: string; // observacoes
 }
 
 interface CronogramaDataRaw {
-  nome?: string;
-  semana?: Record<string, DiaAulaLegacy>;
+  n?: string; // nome
+  s?: Record<string, DiaAulaOtimizado>; // semana
 }
 
 function CronogramaVisualizarContent() {
@@ -94,46 +94,36 @@ function CronogramaVisualizarContent() {
         }
         const dadosDecoded = JSON.parse(decompressed) as CronogramaDataRaw;
         
-        // Normalizar dados para novo formato (com topicosPrincipais e topicosComplementares)
+        const nome = dadosDecoded.n || '';
+        const semanaRaw = dadosDecoded.s || {};
+        
+        // Normalizar dados do formato otimizado
         const semanaNormalizada: Record<string, DiaAula> = {};
-        Object.entries(dadosDecoded.semana || {}).forEach(([diaId, dia]) => {
-          if (dia.topicosPrincipais !== undefined || dia.topicosComplementares !== undefined) {
-            // Formato novo: usar diretamente
-            semanaNormalizada[diaId] = {
-              topicosPrincipais: Array.isArray(dia.topicosPrincipais) ? dia.topicosPrincipais : [],
-              topicosComplementares: Array.isArray(dia.topicosComplementares) ? dia.topicosComplementares : [],
-              linksComplementares: Array.isArray(dia.linksComplementares) ? dia.linksComplementares : [],
-              horario: dia.horario || null,
-            };
-          } else if (dia.topico !== undefined) {
-            // Formato antigo (com topico): converter para principal
-            semanaNormalizada[diaId] = {
-              topicosPrincipais: dia.topico ? [dia.topico] : [],
-              topicosComplementares: [],
-              linksComplementares: [],
-              horario: dia.horario || null,
-            };
-          } else if (dia.topicos !== undefined) {
-            // Formato antigo (com topicos): converter todos para principais
-            semanaNormalizada[diaId] = {
-              topicosPrincipais: Array.isArray(dia.topicos) ? dia.topicos : [],
-              topicosComplementares: [],
-              linksComplementares: [],
-              horario: dia.horario || null,
-            };
-          } else {
-            // Sem dados
-            semanaNormalizada[diaId] = {
-              topicosPrincipais: [],
-              topicosComplementares: [],
-              linksComplementares: [],
-              horario: dia.horario || null,
-            };
-          }
+        
+        // Inicializar todos os dias da semana
+        diasSemana.forEach((dia) => {
+          semanaNormalizada[dia.id] = {
+            topicosPrincipais: [],
+            topicosComplementares: [],
+            linksComplementares: [],
+            horario: null,
+            observacoes: "",
+          };
+        });
+        
+        // Preencher com dados existentes (formato otimizado)
+        Object.entries(semanaRaw).forEach(([diaId, dia]) => {
+          semanaNormalizada[diaId] = {
+            topicosPrincipais: Array.isArray(dia.tp) ? dia.tp : [],
+            topicosComplementares: Array.isArray(dia.tc) ? dia.tc : [],
+            linksComplementares: Array.isArray(dia.lc) ? dia.lc : [],
+            horario: dia.h || null,
+            observacoes: dia.o || "",
+          };
         });
         
         setDados({
-          nome: dadosDecoded.nome || '',
+          nome: nome,
           semana: semanaNormalizada,
         });
       } else {
@@ -183,7 +173,7 @@ function CronogramaVisualizarContent() {
             {diasSemana.map((dia) => {
               const diaData = dados.semana[dia.id];
               const todosTopicos = [...diaData.topicosPrincipais, ...diaData.topicosComplementares];
-              const temConteudo = todosTopicos.length > 0 || diaData.linksComplementares.length > 0 || diaData.horario;
+              const temConteudo = todosTopicos.length > 0 || diaData.linksComplementares.length > 0 || diaData.horario || (diaData.observacoes && diaData.observacoes.trim().length > 0);
               
               return (
                 <div
@@ -279,7 +269,7 @@ function CronogramaVisualizarContent() {
 
                       {/* Links Complementares (Vídeos) */}
                       {diaData.linksComplementares.length > 0 && (
-                        <div>
+                        <div className="mb-3">
                           <label className="block text-xs font-semibold text-gray-600 mb-1.5">Links Complementares</label>
                           <div className="space-y-1.5">
                             {diaData.linksComplementares.map((videoId) => {
@@ -308,6 +298,18 @@ function CronogramaVisualizarContent() {
                                 </a>
                               );
                             })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Observações */}
+                      {diaData.observacoes && diaData.observacoes.trim().length > 0 && (
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-600 mb-1.5">Observações</label>
+                          <div className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+                            <p className="text-xs text-gray-700 whitespace-pre-wrap leading-relaxed">
+                              {diaData.observacoes}
+                            </p>
                           </div>
                         </div>
                       )}
