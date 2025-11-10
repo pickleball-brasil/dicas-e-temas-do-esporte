@@ -196,8 +196,7 @@ function CronogramaVisualizarContent() {
                 >
                   {/* Header do Dia */}
                   <div className="mb-4">
-                    <h3 className="font-bold text-gray-900 text-lg">{dia.short}</h3>
-                    <p className="text-xs text-gray-500 hidden sm:block">{dia.nome}</p>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg">{dia.nome}</h3>
                   </div>
 
                   {temConteudo ? (
