@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, SECTIONS, type Section } from "@/lib/sections";
+import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { useLayoutContext } from '@/contexts/LayoutContext';
 import { getDisplayName } from '@/lib/displayNames';
@@ -14,13 +14,6 @@ const categoryHeaderColors = {
   intermediario: 'bg-gradient-to-r from-orange-50 to-amber-50 text-orange-900 border-orange-200',
   avancado: 'bg-gradient-to-r from-red-50 to-rose-50 text-red-900 border-red-200',
   taticas: 'bg-gradient-to-r from-purple-50 to-violet-50 text-purple-900 border-purple-200',
-};
-
-const categoryBadgeColors = {
-  basico: 'bg-gradient-to-r from-sky-100 to-blue-100 text-sky-700 border-sky-200',
-  intermediario: 'bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 border-orange-200',
-  avancado: 'bg-gradient-to-r from-red-100 to-rose-100 text-red-700 border-red-200',
-  taticas: 'bg-gradient-to-r from-purple-100 to-violet-100 text-purple-700 border-purple-200',
 };
 
 const categoryTextColors = {
@@ -460,7 +453,7 @@ export default function Home() {
             Nenhum resultado encontrado
           </h3>
           <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-4">
-            Não encontramos tópicos correspondentes a <span className="font-medium text-gray-900">"{searchTerm}"</span>
+            Não encontramos tópicos correspondentes a <span className="font-medium text-gray-900">&quot;{searchTerm}&quot;</span>
           </p>
           <p className="text-xs sm:text-sm text-gray-500">
             Tente usar termos diferentes ou verifique a ortografia

@@ -20,7 +20,7 @@ export default function InstallPrompt() {
     // Detectar iOS
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
-    const isStandalone = (window.navigator as any).standalone === true;
+    const isStandalone = (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
     setIsIOS(isIOSDevice);
     
     if (isIOSDevice && isStandalone) {
@@ -34,7 +34,7 @@ export default function InstallPrompt() {
 
     // Verificar se já está instalado
     if (window.matchMedia('(display-mode: standalone)').matches || 
-        (window.navigator as any).standalone === true) {
+        (window.navigator as Navigator & { standalone?: boolean }).standalone === true) {
       setIsInstalled(true);
       return;
     }
@@ -193,7 +193,7 @@ export default function InstallPrompt() {
             {isIOS ? (
               <>
                 <p className="text-xs text-gray-600 mb-3">
-                  Toque no botão <strong>Compartilhar</strong> e depois em <strong>"Adicionar à Tela de Início"</strong> para instalar.
+                  Toque no botão <strong>Compartilhar</strong> e depois em <strong>&quot;Adicionar à Tela de Início&quot;</strong> para instalar.
                 </p>
                 <div className="flex items-center gap-2">
                   <button
