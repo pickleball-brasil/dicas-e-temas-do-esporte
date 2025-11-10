@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "/dicas-e-temas-do-esporte/cronograma/visualizar",
+    url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/cronograma/visualizar",
     siteName: "Pickleball Estudos",
     title: "Cronograma de Aulas - Pickleball Estudos",
     description: "Visualize o cronograma semanal de aulas de pickleball com tópicos e horários organizados para seu aprendizado.",
     images: [
       {
-        url: "/dicas-e-temas-do-esporte/logo.png",
+        url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png",
         width: 512,
         height: 512,
         alt: "Pickleball Estudos - Cronograma de Aulas",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cronograma de Aulas - Pickleball Estudos",
     description: "Visualize o cronograma semanal de aulas de pickleball com tópicos e horários organizados para seu aprendizado.",
-    images: ["/dicas-e-temas-do-esporte/logo.png"],
+    images: ["https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png"],
   },
   other: {
     "og:image:width": "512",

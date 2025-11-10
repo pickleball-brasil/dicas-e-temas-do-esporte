@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "/dicas-e-temas-do-esporte/compartilhar",
+    url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/compartilhar",
     siteName: "Pickleball Estudos",
     title: "Temas Compartilhados - Pickleball Estudos",
     description: "Explore uma coleção personalizada de temas sobre pickleball selecionados para você estudar e praticar.",
     images: [
       {
-        url: "/dicas-e-temas-do-esporte/logo.png",
+        url: "https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png",
         width: 512,
         height: 512,
         alt: "Pickleball Estudos - Temas Compartilhados",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Temas Compartilhados - Pickleball Estudos",
     description: "Explore uma coleção personalizada de temas sobre pickleball selecionados para você estudar e praticar.",
-    images: ["/dicas-e-temas-do-esporte/logo.png"],
+    images: ["https://pickleball-brasil.github.io/dicas-e-temas-do-esporte/logo.png"],
   },
   other: {
     "og:image:width": "512",
