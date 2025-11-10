@@ -12,7 +12,7 @@ export default function Header() {
   const isHomePage = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gray-50/90 border-b border-gray-200/60">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-r from-sky-50 to-purple-50 border-b border-gray-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo e branding */}
@@ -21,7 +21,7 @@ export default function Header() {
             {!isHomePage && (
               <Link
                 href="/"
-                className="inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-white hover:bg-gray-50 transition-colors text-gray-600 border border-gray-200 flex-shrink-0"
+                className="inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-sky-600 to-purple-600 hover:from-sky-700 hover:to-purple-700 transition-all duration-200 text-white border border-transparent flex-shrink-0 shadow-md hover:shadow-lg"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -45,13 +45,13 @@ export default function Header() {
           <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
             {/* Seletor de Layout - apenas na página principal e desktop */}
             {isHomePage && (
-              <div className="hidden sm:inline-flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 bg-gray-100 rounded-lg border border-gray-200">
+              <div className="hidden sm:inline-flex items-center gap-0.5 sm:gap-1 p-0.5 sm:p-1 bg-gradient-to-r from-sky-50 to-purple-50 rounded-lg border border-gray-200/60">
                 <button
                   onClick={() => setLayout("grid")}
                   className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
                     layout === "grid"
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "bg-gradient-to-r from-sky-600 to-purple-600 text-white shadow-md"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
                   }`}
                   title="Layout em grade"
                 >
@@ -63,8 +63,8 @@ export default function Header() {
                   onClick={() => setLayout("list")}
                   className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
                     layout === "list"
-                      ? "bg-white text-gray-900 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "bg-gradient-to-r from-sky-600 to-purple-600 text-white shadow-md"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
                   }`}
                   title="Layout em lista"
                 >
@@ -78,7 +78,7 @@ export default function Header() {
             {/* Link para Vídeos Recomendados */}
             <Link
               href="/videos"
-              className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white transition-all duration-200 text-xs sm:text-sm font-medium shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-sky-600 to-purple-600 hover:from-sky-700 hover:to-purple-700 text-white transition-all duration-200 text-xs sm:text-sm font-medium shadow-md hover:shadow-lg"
             >
               <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -89,7 +89,7 @@ export default function Header() {
             {/* Link para o Seletor de Temas */}
             <Link
               href="/selecionar-temas"
-              className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white transition-all duration-200 text-xs sm:text-sm font-medium shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-sky-600 to-purple-600 hover:from-sky-700 hover:to-purple-700 text-white transition-all duration-200 text-xs sm:text-sm font-medium shadow-md hover:shadow-lg"
             >
               <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />

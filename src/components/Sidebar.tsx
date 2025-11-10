@@ -14,37 +14,47 @@ interface SidebarProps {
 const levelConfig: Record<SectionLevel, { 
   color: string; 
   bgColor: string; 
+  hoverBgColor: string;
   borderColor: string; 
   icon: string; 
   gradient: string;
+  borderGradient: string;
 }> = {
   "Básico": { 
-    color: "text-green-700", 
-    bgColor: "bg-green-50", 
-    borderColor: "border-green-200",
+    color: "text-sky-700", 
+    bgColor: "bg-sky-50", 
+    hoverBgColor: "hover:bg-sky-100",
+    borderColor: "border-sky-200",
     icon: "🟢",
-    gradient: "from-green-500 to-emerald-600"
+    gradient: "from-sky-500 to-blue-600",
+    borderGradient: "border-sky-500"
   },
   "Intermediário": { 
     color: "text-orange-700", 
     bgColor: "bg-orange-50", 
+    hoverBgColor: "hover:bg-orange-100",
     borderColor: "border-orange-200",
     icon: "🟡",
-    gradient: "from-orange-500 to-amber-600"
+    gradient: "from-orange-500 to-amber-600",
+    borderGradient: "border-orange-500"
   },
   "Avançado": { 
     color: "text-red-700", 
     bgColor: "bg-red-50", 
+    hoverBgColor: "hover:bg-red-100",
     borderColor: "border-red-200",
     icon: "🔴",
-    gradient: "from-red-500 to-rose-600"
+    gradient: "from-red-500 to-rose-600",
+    borderGradient: "border-red-500"
   },
   "Táticas": { 
     color: "text-purple-700", 
     bgColor: "bg-purple-50", 
+    hoverBgColor: "hover:bg-purple-100",
     borderColor: "border-purple-200",
     icon: "🟣",
-    gradient: "from-purple-500 to-violet-600"
+    gradient: "from-purple-500 to-violet-600",
+    borderGradient: "border-purple-500"
   }
 };
 
@@ -230,7 +240,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           {isCollapsed ? (
             <div className="flex flex-col items-center space-y-4">
               {/* Menu Icon */}
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 bg-gradient-to-r from-sky-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -250,7 +260,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <>
               <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+                  <div className="w-8 h-8 bg-gradient-to-r from-sky-600 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
@@ -328,7 +338,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs text-gray-500">{sections.length} tópicos</span>
                           {visitedInLevel > 0 && (
-                            <span className="text-xs text-green-600 font-medium">
+                            <span className={`text-xs font-medium ${config.color}`}>
                               • {visitedInLevel} estudados
                             </span>
                           )}
@@ -366,9 +376,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           className={`
                             w-full text-left px-4 py-3 rounded-lg transition-all duration-200 group cursor-pointer
                             ${isActive(section) 
-                              ? `bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 shadow-sm ${config.color}`
+                              ? `${config.bgColor} border-l-4 ${config.borderGradient} shadow-sm ${config.color}`
                               : isVisited(section)
-                              ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50/80 bg-gray-50/30'
+                              ? `${config.bgColor} ${config.hoverBgColor} ${config.color} opacity-90`
                               : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/60'
                             }
                           `}
@@ -377,18 +387,18 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                             <div className={`
                               w-2 h-2 rounded-full transition-all duration-200
                               ${isActive(section) 
-                                ? 'bg-blue-500 scale-125' 
+                                ? `bg-gradient-to-r ${config.gradient} scale-125` 
                                 : isVisited(section)
-                                ? 'bg-green-400 group-hover:bg-green-500 group-hover:scale-110'
+                                ? `bg-gradient-to-r ${config.gradient} group-hover:scale-110`
                                 : 'bg-gray-300 group-hover:bg-gray-400 group-hover:scale-110'
                               }
                             `} />
                             <span className="text-sm font-medium flex-1 truncate">{getDisplayName(section)}</span>
                             {isActive(section) && (
-                              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                              <div className={`w-2 h-2 bg-gradient-to-r ${config.gradient} rounded-full animate-pulse`} />
                             )}
                             {isVisited(section) && !isActive(section) && (
-                              <div className="w-4 h-4 text-green-500 flex items-center justify-center">
+                              <div className={`w-4 h-4 ${config.color} flex items-center justify-center`}>
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>

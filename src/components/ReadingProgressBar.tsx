@@ -6,26 +6,11 @@ import { SECTIONS } from "@/lib/sections";
 export default function ReadingProgressBar() {
   const [progress, setProgress] = useState(0);
   const [visitedCount, setVisitedCount] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const totalSections = SECTIONS.length;
   const pathname = usePathname();
   
-  // Verificar se está na página de estudo ou dicas
-  const isStudyOrDicasPage = pathname?.includes('/estudo/') || pathname?.includes('/dicas/');
-
-  // Verificar se é mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
+  // Verificar se está na página principal (home)
+  const isHomePage = pathname === '/' || pathname === '/dicas-e-temas-do-esporte' || pathname === '/dicas-e-temas-do-esporte/';
 
   useEffect(() => {
     const updateProgress = () => {
@@ -74,13 +59,13 @@ export default function ReadingProgressBar() {
     };
   }, [totalSections]);
 
-  // Não mostrar no mobile nas páginas de estudo ou dicas
-  if (isMobile && isStudyOrDicasPage) {
+  // Mostrar apenas na página principal
+  if (!isHomePage) {
     return null;
   }
 
   return (
-    <div className="fixed top-14 sm:top-16 left-0 right-0 z-40 bg-gray-50/95 backdrop-blur-sm border-b border-gray-200/60">
+    <div className="fixed top-14 sm:top-16 left-0 right-0 z-40 bg-gradient-to-r from-sky-50 to-purple-50 backdrop-blur-sm border-b border-gray-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 h-8 sm:h-9">
           {/* Informação de progresso */}

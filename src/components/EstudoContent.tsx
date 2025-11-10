@@ -10,17 +10,65 @@ import { hasSectionTips } from "@/lib/tipsData";
 import Sidebar from "./Sidebar";
 
 const levelColors: Record<SectionLevel, string> = {
-  "Básico": "from-green-500 to-emerald-600",
+  "Básico": "from-sky-500 to-blue-600",
   "Intermediário": "from-orange-500 to-amber-600",
   "Avançado": "from-red-500 to-rose-600",
   "Táticas": "from-purple-500 to-violet-600",
 };
 
 const levelBadgeColors: Record<SectionLevel, string> = {
-  "Básico": "bg-green-100 text-green-700 border-green-200",
+  "Básico": "bg-sky-100 text-sky-700 border-sky-200",
   "Intermediário": "bg-orange-100 text-orange-700 border-orange-200",
   "Avançado": "bg-red-100 text-red-700 border-red-200",
   "Táticas": "bg-purple-100 text-purple-700 border-purple-200",
+};
+
+// Cores para botões de marcação de estudo por categoria
+const levelStudiedButtonColors: Record<SectionLevel, string> = {
+  "Básico": "bg-sky-400/30 text-sky-50 border-sky-300/50 hover:bg-sky-400/40",
+  "Intermediário": "bg-orange-400/30 text-orange-50 border-orange-300/50 hover:bg-orange-400/40",
+  "Avançado": "bg-red-400/30 text-red-50 border-red-300/50 hover:bg-red-400/40",
+  "Táticas": "bg-purple-400/30 text-purple-50 border-purple-300/50 hover:bg-purple-400/40",
+};
+
+// Cores para botão de marcação no final da página
+const levelStudiedButtonBottomColors: Record<SectionLevel, string> = {
+  "Básico": "from-sky-500 to-blue-500",
+  "Intermediário": "from-orange-500 to-amber-500",
+  "Avançado": "from-red-500 to-rose-500",
+  "Táticas": "from-purple-500 to-violet-500",
+};
+
+// Cores para banner de "Testar conhecimento"
+const levelBannerColors: Record<SectionLevel, { bg: string; border: string; button: string }> = {
+  "Básico": {
+    bg: "from-sky-50 to-blue-50",
+    border: "border-sky-200",
+    button: "from-sky-600 to-blue-600"
+  },
+  "Intermediário": {
+    bg: "from-orange-50 to-amber-50",
+    border: "border-orange-200",
+    button: "from-orange-600 to-amber-600"
+  },
+  "Avançado": {
+    bg: "from-red-50 to-rose-50",
+    border: "border-red-200",
+    button: "from-red-600 to-rose-600"
+  },
+  "Táticas": {
+    bg: "from-purple-50 to-violet-50",
+    border: "border-purple-200",
+    button: "from-purple-600 to-violet-600"
+  },
+};
+
+// Cores para botão flutuante do menu mobile
+const levelMobileMenuButtonColors: Record<SectionLevel, string> = {
+  "Básico": "from-sky-600 to-blue-600",
+  "Intermediário": "from-orange-600 to-amber-600",
+  "Avançado": "from-red-600 to-rose-600",
+  "Táticas": "from-purple-600 to-violet-600",
 };
 
 interface EstudoContentProps {
@@ -110,6 +158,10 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
   const level = content?.level || getSectionLevel(section);
   const gradientColor = levelColors[level];
   const badgeColor = levelBadgeColors[level];
+  const studiedButtonColor = levelStudiedButtonColors[level];
+  const studiedButtonBottomColor = levelStudiedButtonBottomColors[level];
+  const bannerColors = levelBannerColors[level];
+  const mobileMenuButtonColor = levelMobileMenuButtonColors[level];
 
   // Encontrar seções anterior e próxima
   const currentIndex = SECTIONS.indexOf(section);
@@ -162,7 +214,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                 onClick={toggleStudiedStatus}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-sm transition-all duration-200 hover:scale-105 ${
                   isVisited 
-                    ? 'bg-green-400/30 text-green-50 border-green-300/50 hover:bg-green-400/40' 
+                    ? studiedButtonColor
                     : 'bg-white/20 text-white border-white/30 hover:bg-white/30'
                 }`}
                 title={isVisited ? 'Marcar como não estudado' : 'Marcar como estudado'}
@@ -199,7 +251,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
             <div className="max-w-7xl mx-auto">
               {/* Banner de Dicas e Provas */}
               {hasSectionTips(section) && (
-                <div className="mb-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-200 shadow-sm">
+                <div className={`mb-8 bg-gradient-to-r ${bannerColors.bg} rounded-2xl p-6 border ${bannerColors.border} shadow-sm`}>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
@@ -211,7 +263,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                     </div>
                     <Link
                       href={`/dicas/${section}`}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
+                      className={`inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r ${bannerColors.button} text-white rounded-xl font-medium hover:shadow-lg transition-all duration-200 w-full sm:w-auto`}
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -247,7 +299,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
                     onClick={toggleStudiedStatus}
                     className={`w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl transition-all duration-200 hover:scale-[1.02] active:scale-100 ${
                       isVisited
-                        ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg hover:shadow-xl'
+                        ? `bg-gradient-to-r ${studiedButtonBottomColor} text-white shadow-lg hover:shadow-xl`
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-gray-300'
                     }`}
                   >
@@ -320,7 +372,7 @@ export default function EstudoContent({ section, content }: EstudoContentProps) 
           {/* Botão flutuante para menu mobile */}
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden fixed bottom-4 left-4 z-40 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            className={`lg:hidden fixed bottom-4 left-4 z-40 p-3 bg-gradient-to-r ${mobileMenuButtonColor} text-white rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300`}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />

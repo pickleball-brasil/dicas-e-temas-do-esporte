@@ -6,29 +6,29 @@ import { useLanguageContext } from '@/contexts/LanguageContext';
 import { getDisplayName } from '@/lib/displayNames';
 
 const sectionColors: Record<string, string> = {
-  "regras": "bg-gradient-to-br from-green-500 to-green-600",
-  "saque": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "devolucao": "bg-gradient-to-br from-emerald-400 to-emerald-600",
-  "dink": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "voleio": "bg-gradient-to-br from-green-500 to-green-600",
-  "footwork": "bg-gradient-to-br from-green-400 to-green-600",
-  "posicionamento": "bg-gradient-to-br from-green-500 to-green-600",
-  "empunhadura": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "aquecimento": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "erros-comuns": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "dicas": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "equipamentos": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "golpes-fundamentais": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "tecnica-de-base": "bg-gradient-to-br from-emerald-500 to-emerald-600",
-  "concentracao": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "respiracao": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "pontuacao-detalhada": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "etiqueta-em-quadra": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "historia-e-origem": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "vocabulario-e-termos": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "como-escolher-parceiro": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "drills-e-treinos-basicos": "bg-gradient-to-br from-green-400 to-emerald-500",
+  "regras": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "saque": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "devolucao": "bg-gradient-to-br from-blue-400 to-sky-600",
+  "dink": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "voleio": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "footwork": "bg-gradient-to-br from-sky-400 to-blue-600",
+  "posicionamento": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "empunhadura": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "aquecimento": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "erros-comuns": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "dicas": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "equipamentos": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "golpes-fundamentais": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "tecnica-de-base": "bg-gradient-to-br from-blue-500 to-blue-600",
+  "concentracao": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "respiracao": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "pontuacao-detalhada": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "etiqueta-em-quadra": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "historia-e-origem": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "vocabulario-e-termos": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "como-escolher-parceiro": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "drills-e-treinos-basicos": "bg-gradient-to-br from-sky-400 to-blue-500",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (
@@ -36,7 +36,7 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
     onClick={onClick}
     className={`card block p-4 group hover:scale-[1.02] active:scale-100 transition-all duration-300 w-full text-left ${
       isVisited 
-        ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 shadow-green-100' 
+        ? 'bg-gradient-to-br from-sky-50 to-blue-50 border-sky-200 shadow-sky-100' 
         : 'hover:shadow-md'
     }`}
   >
@@ -44,11 +44,11 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative ${
-              isVisited ? 'ring-2 ring-green-300 ring-offset-2' : ''
+              isVisited ? 'ring-2 ring-sky-300 ring-offset-2' : ''
             }`}>
               {section.charAt(0)}
               {isVisited && (
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-sky-500 rounded-full flex items-center justify-center shadow-sm">
                   <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
@@ -58,12 +58,12 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
                    <div className="flex flex-col">
                      <span className={`font-semibold text-sm ${
                        isVisited 
-                         ? 'text-green-800' 
+                         ? 'text-sky-800' 
                          : 'text-gray-900'
                      }`}>{getDisplayName(section)}</span>
                      <span className={`text-xs ${
                        isVisited 
-                         ? 'text-green-600' 
+                         ? 'text-sky-600' 
                          : 'text-gray-500'
                      }`}>
                        {isVisited ? '✓ Concluído' : 'Clique para estudar'}
@@ -72,7 +72,7 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
           </div>
           <div className="flex items-center gap-2">
             {isVisited && (
-              <div className="flex items-center gap-1.5 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+              <div className="flex items-center gap-1.5 px-2 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
@@ -81,7 +81,7 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
             )}
             <svg className={`w-4 h-4 transition-all duration-300 flex-shrink-0 ${
               isVisited 
-                ? 'text-green-500 group-hover:text-green-600' 
+                ? 'text-sky-500 group-hover:text-sky-600' 
                 : 'text-gray-400 group-hover:text-sky-600'
             } group-hover:translate-x-1`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -140,7 +140,7 @@ export default function BasicoPage() {
       <div className="mb-8">
         <div className="flex items-center gap-4 mb-4">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-100 text-sky-700 font-bold text-sm">
               1
             </div>
             <h1 className="text-4xl font-bold text-gray-900">{t('sections.basic')}</h1>
@@ -150,7 +150,7 @@ export default function BasicoPage() {
         {/* Progresso da categoria */}
         <div className="flex items-center gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-sky-500 rounded-full animate-pulse"></div>
             <span className="text-sm font-medium text-gray-700">
               Progresso: {visitedCount} de {BASIC_SECTIONS.length} tópicos
             </span>
@@ -158,7 +158,7 @@ export default function BasicoPage() {
           <div className="flex-1 max-w-xs">
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-sky-500 to-blue-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${percentage}%` }}
               ></div>
             </div>

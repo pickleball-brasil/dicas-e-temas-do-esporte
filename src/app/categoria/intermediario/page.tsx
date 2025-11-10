@@ -9,28 +9,28 @@ const sectionColors: Record<string, string> = {
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
   "drive": "bg-gradient-to-br from-amber-400 to-orange-600",
   "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "lob": "bg-gradient-to-br from-amber-400 to-amber-600",
+  "lob": "bg-gradient-to-br from-amber-400 to-orange-500",
   "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-orange-600",
-  "defesa": "bg-gradient-to-br from-orange-500 to-orange-600",
-  "bloqueio": "bg-gradient-to-br from-orange-400 to-orange-600",
+  "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-amber-600",
+  "defesa": "bg-gradient-to-br from-orange-500 to-amber-600",
+  "bloqueio": "bg-gradient-to-br from-orange-400 to-amber-600",
   "spin": "bg-gradient-to-br from-orange-400 to-amber-500",
   "contra-ataque": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "comunicacao": "bg-gradient-to-br from-amber-400 to-amber-600",
-  "drills-e-treinos": "bg-gradient-to-br from-orange-400 to-orange-600",
+  "comunicacao": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "drills-e-treinos": "bg-gradient-to-br from-orange-400 to-amber-600",
   "preparacao-fisica": "bg-gradient-to-br from-amber-400 to-orange-600",
   "estrategia-de-jogo": "bg-gradient-to-br from-orange-500 to-amber-600",
   "tempo-de-reacao": "bg-gradient-to-br from-amber-400 to-orange-500",
-  "antecipacao": "bg-gradient-to-br from-amber-400 to-amber-600",
+  "antecipacao": "bg-gradient-to-br from-amber-400 to-orange-500",
   "leitura-de-jogo": "bg-gradient-to-br from-amber-400 to-orange-500",
   "adaptacao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "consistencia": "bg-gradient-to-br from-orange-400 to-amber-500",
   "selecao-de-golpes": "bg-gradient-to-br from-amber-400 to-orange-600",
   "lidar-com-bangers": "bg-gradient-to-br from-orange-500 to-amber-600",
-  "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-500 to-orange-600",
   "tipos-de-voleios-pickleball": "bg-gradient-to-br from-orange-400 to-amber-500",
   "tipos-de-dink-pickleball": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "mecanicas-fundamentais": "bg-gradient-to-br from-orange-500 to-orange-600",
+  "mecanicas-fundamentais": "bg-gradient-to-br from-amber-500 to-orange-600",
   "analise-de-pontos": "bg-gradient-to-br from-amber-400 to-orange-500",
   "preparacao-mental-intermediaria": "bg-gradient-to-br from-amber-500 to-orange-600",
   "estrategias-saque-devolucao-avancadas": "bg-gradient-to-br from-orange-400 to-amber-500",
@@ -89,7 +89,7 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
             <svg className={`w-4 h-4 transition-all duration-300 flex-shrink-0 ${
               isVisited 
                 ? 'text-orange-500 group-hover:text-orange-600' 
-                : 'text-gray-400 group-hover:text-sky-600'
+                : 'text-gray-400 group-hover:text-orange-600'
             } group-hover:translate-x-1`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -165,7 +165,7 @@ export default function IntermediarioPage() {
           <div className="flex-1 max-w-xs">
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-orange-500 to-amber-500 h-2 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${percentage}%` }}
               ></div>
             </div>

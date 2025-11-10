@@ -85,7 +85,7 @@ export default function RootLayout({
             {children}
             
             {/* Footer padronizado */}
-            <footer className="mt-20 py-10 text-center border-t border-gray-200/50">
+            <footer className="mt-20 py-10 text-center bg-gradient-to-r from-sky-50 to-purple-50 border-t border-gray-200/50 rounded-t-2xl">
               <p className="text-sm text-gray-500 mb-2">
                 Desenvolvido por Fabrício Ziliotti @2025
               </p>

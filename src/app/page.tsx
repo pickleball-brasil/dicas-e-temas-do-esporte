@@ -8,53 +8,53 @@ import { useLayoutContext } from '@/contexts/LayoutContext';
 import { getDisplayName } from '@/lib/displayNames';
 import { CONTENT_REGISTRY } from '@/lib/contentRegistry';
 
-// Cores para os títulos das categorias
+// Cores para os títulos das categorias - Gradientes azul, laranja, vermelho e roxo
 const categoryHeaderColors = {
-  basico: 'bg-green-50 text-green-900 border-green-200',
-  intermediario: 'bg-orange-50 text-orange-900 border-orange-200',
-  avancado: 'bg-red-50 text-red-900 border-red-200',
-  taticas: 'bg-purple-50 text-purple-900 border-purple-200',
+  basico: 'bg-gradient-to-r from-sky-50 to-blue-50 text-sky-900 border-sky-200',
+  intermediario: 'bg-gradient-to-r from-orange-50 to-amber-50 text-orange-900 border-orange-200',
+  avancado: 'bg-gradient-to-r from-red-50 to-rose-50 text-red-900 border-red-200',
+  taticas: 'bg-gradient-to-r from-purple-50 to-violet-50 text-purple-900 border-purple-200',
 };
 
 const categoryBadgeColors = {
-  basico: 'bg-green-100 text-green-700 border-green-200',
-  intermediario: 'bg-orange-100 text-orange-700 border-orange-200',
-  avancado: 'bg-red-100 text-red-700 border-red-200',
-  taticas: 'bg-purple-100 text-purple-700 border-purple-200',
+  basico: 'bg-gradient-to-r from-sky-100 to-blue-100 text-sky-700 border-sky-200',
+  intermediario: 'bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 border-orange-200',
+  avancado: 'bg-gradient-to-r from-red-100 to-rose-100 text-red-700 border-red-200',
+  taticas: 'bg-gradient-to-r from-purple-100 to-violet-100 text-purple-700 border-purple-200',
 };
 
 const categoryTextColors = {
-  basico: 'text-green-900',
+  basico: 'text-sky-900',
   intermediario: 'text-orange-900',
   avancado: 'text-red-900',
   taticas: 'text-purple-900',
 };
 
 const sectionColors: Record<string, string> = {
-  // Básico - VERDE
-  "regras": "bg-gradient-to-br from-green-500 to-green-600",
-  "saque": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "devolucao": "bg-gradient-to-br from-emerald-400 to-emerald-600",
-  "dink": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "voleio": "bg-gradient-to-br from-green-500 to-green-600",
-  "footwork": "bg-gradient-to-br from-green-400 to-green-600",
-  "posicionamento": "bg-gradient-to-br from-green-500 to-green-600",
-  "empunhadura": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "aquecimento": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "erros-comuns": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "dicas": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "equipamentos": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "golpes-fundamentais": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "tecnica-de-base": "bg-gradient-to-br from-emerald-500 to-emerald-600",
-  "concentracao": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "respiracao": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "pontuacao-detalhada": "bg-gradient-to-br from-emerald-400 to-green-500",
-  "etiqueta-em-quadra": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "historia-e-origem": "bg-gradient-to-br from-green-400 to-emerald-500",
-  "vocabulario-e-termos": "bg-gradient-to-br from-emerald-500 to-green-600",
-  "como-escolher-parceiro": "bg-gradient-to-br from-green-500 to-emerald-600",
-  "drills-e-treinos-basicos": "bg-gradient-to-br from-green-400 to-emerald-500",
+  // Básico - AZUL (sky/blue)
+  "regras": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "saque": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "devolucao": "bg-gradient-to-br from-blue-400 to-sky-600",
+  "dink": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "voleio": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "footwork": "bg-gradient-to-br from-sky-400 to-blue-600",
+  "posicionamento": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "empunhadura": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "aquecimento": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "erros-comuns": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "dicas": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "equipamentos": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "golpes-fundamentais": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "tecnica-de-base": "bg-gradient-to-br from-blue-500 to-blue-600",
+  "concentracao": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "respiracao": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "pontuacao-detalhada": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "etiqueta-em-quadra": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "seguranca-e-prevencao-lesoes": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "historia-e-origem": "bg-gradient-to-br from-sky-400 to-blue-500",
+  "vocabulario-e-termos": "bg-gradient-to-br from-blue-500 to-sky-600",
+  "como-escolher-parceiro": "bg-gradient-to-br from-sky-500 to-blue-600",
+  "drills-e-treinos-basicos": "bg-gradient-to-br from-sky-400 to-blue-500",
   "selecao-de-golpes": "bg-gradient-to-br from-amber-400 to-orange-500",
   "lidar-com-bangers": "bg-gradient-to-br from-orange-500 to-amber-600",
   "variacoes-de-saque-intermediario": "bg-gradient-to-br from-amber-500 to-orange-600",
@@ -69,32 +69,32 @@ const sectionColors: Record<string, string> = {
   "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-500",
   "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
-  "transicao-defesa-ataque": "bg-gradient-to-br from-purple-400 to-indigo-500",
-  "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-indigo-500 to-purple-600",
+  "transicao-defesa-ataque": "bg-gradient-to-br from-purple-400 to-violet-500",
+  "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-violet-500 to-purple-600",
 
-  // Intermediário - LARANJA
+  // Intermediário - LARANJA (orange/amber)
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
   "drive": "bg-gradient-to-br from-amber-400 to-orange-600",
   "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "lob": "bg-gradient-to-br from-amber-400 to-amber-600",
+  "lob": "bg-gradient-to-br from-amber-400 to-orange-500",
   "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
-  "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-orange-600",
-  "defesa": "bg-gradient-to-br from-orange-500 to-orange-600",
-  "bloqueio": "bg-gradient-to-br from-orange-400 to-orange-600",
+  "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-amber-600",
+  "defesa": "bg-gradient-to-br from-orange-500 to-amber-600",
+  "bloqueio": "bg-gradient-to-br from-orange-400 to-amber-600",
   "spin": "bg-gradient-to-br from-orange-400 to-amber-500",
   "contra-ataque": "bg-gradient-to-br from-amber-500 to-orange-600",
-  "comunicacao": "bg-gradient-to-br from-amber-400 to-amber-600",
-  "drills-e-treinos": "bg-gradient-to-br from-orange-400 to-orange-600",
+  "comunicacao": "bg-gradient-to-br from-amber-400 to-orange-500",
+  "drills-e-treinos": "bg-gradient-to-br from-orange-400 to-amber-600",
   "treino-com-paredao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "preparacao-fisica": "bg-gradient-to-br from-amber-400 to-orange-600",
   "estrategia-de-jogo": "bg-gradient-to-br from-orange-500 to-amber-600",
   "tempo-de-reacao": "bg-gradient-to-br from-amber-400 to-orange-500",
-  "antecipacao": "bg-gradient-to-br from-amber-400 to-amber-600",
+  "antecipacao": "bg-gradient-to-br from-amber-400 to-orange-500",
   "leitura-de-jogo": "bg-gradient-to-br from-amber-400 to-orange-500",
   "adaptacao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "consistencia": "bg-gradient-to-br from-orange-400 to-amber-500",
 
-  // Avançado - VERMELHO
+  // Avançado - VERMELHO (red/rose) - mantém vermelho
   "smash": "bg-gradient-to-br from-rose-500 to-red-600",
   "acelerar-as-bolas": "bg-gradient-to-br from-rose-400 to-red-600",
   "reset": "bg-gradient-to-br from-rose-500 to-red-600",
@@ -229,17 +229,17 @@ const getSectionCategory = (section: Section): 'basic' | 'intermediate' | 'advan
   return 'basic'; // fallback
 };
 
-// Cores dos checkboxes por categoria
+// Cores dos checkboxes por categoria - Nova paleta azul, laranja, vermelho e roxo
 const categoryCheckboxColors = {
-  basic: 'bg-green-500 border-green-500',
+  basic: 'bg-sky-500 border-sky-500',
   intermediate: 'bg-orange-500 border-orange-500',
   advanced: 'bg-red-500 border-red-500',
-  tactics: 'bg-purple-500 border-purple-500',
+  tactics: 'bg-violet-500 border-violet-500',
 };
 
 // Cores de background para cards estudados por categoria
 const categoryStudiedColors = {
-  basic: 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200',
+  basic: 'bg-gradient-to-br from-sky-50 to-blue-50 border-sky-200',
   intermediate: 'bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200',
   advanced: 'bg-gradient-to-br from-red-50 to-rose-50 border-red-200',
   tactics: 'bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200',
@@ -247,7 +247,7 @@ const categoryStudiedColors = {
 
 // Cores de texto para cards estudados por categoria
 const categoryStudiedTextColors = {
-  basic: { title: 'text-green-800', description: 'text-green-600' },
+  basic: { title: 'text-sky-800', description: 'text-sky-600' },
   intermediate: { title: 'text-orange-800', description: 'text-orange-600' },
   advanced: { title: 'text-red-800', description: 'text-red-600' },
   tactics: { title: 'text-purple-800', description: 'text-purple-600' },
@@ -255,7 +255,7 @@ const categoryStudiedTextColors = {
 
 // Cores do botão estudado por categoria
 const categoryStudiedButtonColors = {
-  basic: 'bg-green-100 text-green-700 hover:bg-green-200',
+  basic: 'bg-sky-100 text-sky-700 hover:bg-sky-200',
   intermediate: 'bg-orange-100 text-orange-700 hover:bg-orange-200',
   advanced: 'bg-red-100 text-red-700 hover:bg-red-200',
   tactics: 'bg-purple-100 text-purple-700 hover:bg-purple-200',
@@ -263,7 +263,7 @@ const categoryStudiedButtonColors = {
 
 // Cores do ring do ícone quando estudado por categoria
 const categoryStudiedRingColors = {
-  basic: 'ring-2 ring-green-300 ring-offset-2',
+  basic: 'ring-2 ring-sky-300 ring-offset-2',
   intermediate: 'ring-2 ring-orange-300 ring-offset-2',
   advanced: 'ring-2 ring-red-300 ring-offset-2',
   tactics: 'ring-2 ring-purple-300 ring-offset-2',
@@ -271,7 +271,7 @@ const categoryStudiedRingColors = {
 
 // Cores do badge de check quando estudado por categoria
 const categoryStudiedBadgeColors = {
-  basic: 'bg-green-500',
+  basic: 'bg-sky-500',
   intermediate: 'bg-orange-500',
   advanced: 'bg-red-500',
   tactics: 'bg-purple-500',
