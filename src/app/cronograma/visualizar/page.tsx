@@ -195,19 +195,19 @@ function CronogramaVisualizarContent() {
                   } p-4 transition-all duration-200`}
                 >
                   {/* Header do Dia */}
-                  <div className="mb-4">
-                    <h3 className="font-bold text-gray-900 text-base sm:text-lg">{dia.nome}</h3>
+                  <div className="mb-4 pb-3 border-b border-gray-200">
+                    <h3 className="font-bold bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent text-lg sm:text-xl">{dia.nome}</h3>
                   </div>
 
                   {temConteudo ? (
                     <>
                       {/* Horário */}
                       {diaData.horario && (
-                        <div className="flex items-center gap-2 mb-3">
-                          <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-gradient-to-r from-sky-50 to-purple-50 rounded-lg border border-sky-200">
+                          <svg className="w-5 h-5 text-sky-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span className="text-sm font-medium text-gray-900">{diaData.horario}</span>
+                          <span className="text-base font-bold text-sky-900">{diaData.horario}</span>
                         </div>
                       )}
 
