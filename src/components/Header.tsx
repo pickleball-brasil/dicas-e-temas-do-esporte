@@ -12,7 +12,7 @@ export default function Header() {
   const isHomePage = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-gradient-to-r from-sky-50 to-purple-50 border-b border-gray-200/60">
+    <header className="relative z-50 backdrop-blur-xl bg-gradient-to-r from-sky-50 to-purple-50 border-b border-gray-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo e branding */}
@@ -21,7 +21,7 @@ export default function Header() {
             {!isHomePage && (
               <Link
                 href="/"
-                className="inline-flex items-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-sky-600 to-purple-600 hover:from-sky-700 hover:to-purple-700 transition-all duration-200 text-white border border-transparent flex-shrink-0 shadow-md hover:shadow-lg"
+                className="inline-flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-gradient-to-r from-sky-600 to-purple-600 hover:from-sky-700 hover:to-purple-700 transition-all duration-200 text-white border border-transparent flex-shrink-0 shadow-md hover:shadow-lg"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

@@ -65,7 +65,7 @@ export default function ReadingProgressBar() {
   }
 
   return (
-    <div className="fixed top-14 sm:top-16 left-0 right-0 z-40 bg-gradient-to-r from-sky-50 to-purple-50 backdrop-blur-sm border-b border-gray-200/60">
+    <div className="relative w-full bg-gradient-to-r from-sky-50 to-purple-50 backdrop-blur-sm border-b border-gray-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 h-8 sm:h-9">
           {/* Informação de progresso */}

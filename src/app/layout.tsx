@@ -81,27 +81,33 @@ export default function RootLayout({
           <InstallPrompt />
           
           {/* Conteúdo principal */}
-          <div className="max-w-6xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto w-full px-2 py-6 sm:px-6 lg:px-8">
             {children}
-            
-            {/* Footer padronizado */}
-            <footer className="mt-20 py-10 text-center bg-gradient-to-r from-sky-50 to-purple-50 border-t border-gray-200/50 rounded-t-2xl">
-              <p className="text-sm text-gray-500 mb-2">
-                Desenvolvido por Fabrício Ziliotti @2025
-              </p>
-              <a 
-                href="https://pickleball-brasil.github.io/fabricio-ziliotti/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200"
-              >
-                <span>Conheça o autor deste projeto</span>
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </footer>
           </div>
+          
+          {/* Footer padronizado - largura total */}
+          <footer className="mt-20 w-full bg-white border-t border-gray-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-center sm:text-left">
+                  <p className="text-sm text-gray-600">
+                    Desenvolvido por <span className="font-medium text-gray-800">Fabrício Ziliotti</span> © 2025
+                  </p>
+                </div>
+                <a 
+                  href="https://pickleball-brasil.github.io/fabricio-ziliotti/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-600 hover:text-gray-800 transition-colors duration-200 flex items-center gap-1.5"
+                >
+                  <span>Conheça o autor deste projeto</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </footer>
           
           {/* PWA Service Worker Registration - next-pwa faz isso automaticamente em produção */}
         </Providers>
