@@ -3,28 +3,33 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://pickleball-brasil.github.io/dicas-e-temas-do-esporte"),
   title: "Temas Compartilhados - Pickleball Estudos",
-  description: "Explore uma coleção personalizada de temas sobre pickleball",
+  description: "Explore uma coleção personalizada de temas sobre pickleball selecionados para você estudar e praticar.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "/compartilhar",
+    url: "/dicas-e-temas-do-esporte/compartilhar",
     siteName: "Pickleball Estudos",
     title: "Temas Compartilhados - Pickleball Estudos",
-    description: "Explore uma coleção personalizada de temas sobre pickleball",
+    description: "Explore uma coleção personalizada de temas sobre pickleball selecionados para você estudar e praticar.",
     images: [
       {
-        url: "/logo.png",
+        url: "/dicas-e-temas-do-esporte/logo.png",
         width: 512,
         height: 512,
-        alt: "Pickleball Estudos Logo",
+        alt: "Pickleball Estudos - Temas Compartilhados",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Temas Compartilhados - Pickleball Estudos",
-    description: "Explore uma coleção personalizada de temas sobre pickleball",
-    images: ["/logo.png"],
+    description: "Explore uma coleção personalizada de temas sobre pickleball selecionados para você estudar e praticar.",
+    images: ["/dicas-e-temas-do-esporte/logo.png"],
+  },
+  other: {
+    "og:image:width": "512",
+    "og:image:height": "512",
+    "og:image:type": "image/png",
   },
 };
 

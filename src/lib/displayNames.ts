@@ -83,6 +83,7 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "switching": "Switching",
   "tempo-de-reacao": "Tempo de Reação",
   "terceira-bola": "Terceira bola",
+  "quarta-bola": "Quarta bola",
   "torneios": "Torneios",
   "transicao": "Transição",
   "tecnica-de-base": "Técnica de Base",

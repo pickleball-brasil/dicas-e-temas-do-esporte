@@ -53,7 +53,7 @@ const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClic
             <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110 relative ${
               isVisited ? 'ring-2 ring-red-300 ring-offset-2' : ''
             }`}>
-              {section.charAt(0)}
+              {getDisplayName(section).charAt(0).toUpperCase()}
               {isVisited && (
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center shadow-sm">
                   <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">

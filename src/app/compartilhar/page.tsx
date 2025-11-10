@@ -43,6 +43,7 @@ const sectionColors: Record<string, string> = {
   // Intermediário - LARANJA
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
   "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "quarta-bola": "bg-gradient-to-br from-orange-500 to-amber-600",
   "lob": "bg-gradient-to-br from-amber-400 to-amber-600",
   "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-orange-600",
@@ -113,7 +114,7 @@ const SectionCard = ({ section, onClick }: {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className={`section-icon ${sectionColors[section]} text-white shadow-md group-hover:shadow-lg group-hover:scale-110`}>
-            {section.charAt(0)}
+            {getDisplayName(section).charAt(0).toUpperCase()}
           </div>
           <div className="flex flex-col">
             <span className="font-semibold text-sm text-gray-900">

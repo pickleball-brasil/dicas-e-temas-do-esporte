@@ -50,9 +50,7 @@ function SectionCard({ sectionId, isSelected, onToggle }: {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
         />
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm ${color}`}>
-          {config.level === 'Básico' ? '1' : 
-           config.level === 'Intermediário' ? '2' : 
-           config.level === 'Avançado' ? '3' : '4'}
+          {displayName.charAt(0).toUpperCase()}
         </div>
         <div className="flex-1">
           <h3 className="font-semibold text-gray-900 text-sm">{displayName}</h3>
@@ -145,10 +143,12 @@ export default function ThemeSelector() {
           <section className="mb-10">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-green-100 text-green-700 font-bold text-sm">
-                  1
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-sm shadow-md">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Básico</h2>
+                <h2 className="text-2xl font-bold text-sky-900">Básico</h2>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">
@@ -172,10 +172,12 @@ export default function ThemeSelector() {
           <section className="mb-10">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
-                  2
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-amber-600 text-white font-bold text-sm shadow-md">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Intermediário</h2>
+                <h2 className="text-2xl font-bold text-orange-900">Intermediário</h2>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">
@@ -199,10 +201,12 @@ export default function ThemeSelector() {
           <section className="mb-10">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-100 text-red-700 font-bold text-sm">
-                  3
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-rose-600 text-white font-bold text-sm shadow-md">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Avançado</h2>
+                <h2 className="text-2xl font-bold text-red-900">Avançado</h2>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">
@@ -226,10 +230,12 @@ export default function ThemeSelector() {
           <section className="mb-10">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-sm">
-                  4
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 text-white font-bold text-sm shadow-md">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Táticas</h2>
+                <h2 className="text-2xl font-bold text-purple-900">Táticas</h2>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">

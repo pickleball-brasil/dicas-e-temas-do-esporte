@@ -337,6 +337,18 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Third shot strategy",
     category: "intermediario"
   },
+  "quarta-bola": {
+    id: "fourth-shot",
+    name: "Quarta Bola",
+    displayName: "Quarta Bola",
+    description: "Estratégia da quarta bola para manter controle do ponto",
+    level: "Intermediário",
+    fileName: "quarta-bola.md",
+    color: "bg-gradient-to-br from-orange-500 to-amber-600",
+    englishName: "Fourth Shot",
+    englishDescription: "Fourth shot strategy to maintain point control",
+    category: "intermediario"
+  },
   "lob": {
     id: "lob",
     name: "Lob",

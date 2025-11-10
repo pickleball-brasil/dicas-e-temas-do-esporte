@@ -69,6 +69,7 @@ const sectionColors: Record<string, string> = {
   "drop-shot": "bg-gradient-to-br from-amber-400 to-orange-600",
   "drive": "bg-gradient-to-br from-amber-400 to-orange-600",
   "terceira-bola": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "quarta-bola": "bg-gradient-to-br from-orange-500 to-amber-600",
   "lob": "bg-gradient-to-br from-amber-400 to-orange-500",
   "transicao": "bg-gradient-to-br from-amber-400 to-orange-600",
   "jogo-de-duplas": "bg-gradient-to-br from-orange-500 to-amber-600",
@@ -160,7 +161,7 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
             onClick();
           }}
         >
-          {section.charAt(0)}
+          {getDisplayName(section).charAt(0).toUpperCase()}
           {isVisited && (
             <div className={`absolute -top-1 -right-1 w-4 h-4 ${studiedBadgeColors} rounded-full flex items-center justify-center shadow-sm`}>
               <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
