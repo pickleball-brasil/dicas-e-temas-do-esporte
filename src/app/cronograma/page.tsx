@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import * as LZString from "lz-string";
-import { CONTENT_REGISTRY, getSectionsByCategory } from "@/lib/contentRegistry";
+import { CONTENT_REGISTRY } from "@/lib/contentRegistry";
 import { getDisplayName } from "@/lib/displayNames";
 import { SECTIONS } from "@/lib/sections";
-import { RECOMMENDED_VIDEOS, type RecommendedVideo } from "@/lib/recommendedVideos";
+import { RECOMMENDED_VIDEOS } from "@/lib/recommendedVideos";
 
 // Cores das categorias (igual à tela inicial)
 const categoryColors = {
@@ -187,9 +187,23 @@ export default function CronogramaPage() {
 
   const temDados = Object.values(semana).some(d => d.topicosPrincipais.length > 0 || d.topicosComplementares.length > 0 || d.linksComplementares.length > 0 || d.horario || d.observacoes.trim()) || nomeAluno.trim();
 
+  // Interface para dados otimizados
+  interface DiaAulaOtimizado {
+    tp?: string[];
+    tc?: string[];
+    lc?: string[];
+    h?: string | null;
+    o?: string;
+  }
+
+  interface DadosOtimizados {
+    n?: string;
+    s?: Record<string, DiaAulaOtimizado>;
+  }
+
   // Função para otimizar e compactar dados antes da compressão
-  const otimizarDados = (dados: { nome: string; semana: Record<string, DiaAula> }) => {
-    const semanaOtimizada: Record<string, any> = {};
+  const otimizarDados = (dados: { nome: string; semana: Record<string, DiaAula> }): DadosOtimizados => {
+    const semanaOtimizada: Record<string, DiaAulaOtimizado> = {};
     
     Object.entries(dados.semana).forEach(([diaId, dia]) => {
       // Só incluir dias que têm conteúdo
@@ -201,7 +215,7 @@ export default function CronogramaPage() {
         return; // Pular dias vazios
       }
 
-      const diaOtimizado: any = {};
+      const diaOtimizado: DiaAulaOtimizado = {};
       
       // Usar chaves abreviadas
       if (dia.topicosPrincipais.length > 0) {
@@ -224,7 +238,7 @@ export default function CronogramaPage() {
       semanaOtimizada[diaId] = diaOtimizado;
     });
 
-    const dadosOtimizados: any = {};
+    const dadosOtimizados: DadosOtimizados = {};
     if (dados.nome.trim()) {
       dadosOtimizados.n = dados.nome.trim();
     }
@@ -636,7 +650,6 @@ export default function CronogramaPage() {
                               <div className="text-[10px] font-semibold text-gray-600 mb-1">Principais:</div>
                               <div className="space-y-1">
                                 {diaData.topicosPrincipais.slice(0, 2).map((topicoId) => {
-                                  const categoria = CONTENT_REGISTRY[topicoId]?.category || 'basico';
                                   return (
                                     <div key={topicoId} className="text-[10px] px-1.5 py-0.5 rounded bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200 text-sky-900 truncate">
                                       {getDisplayName(topicoId)}
