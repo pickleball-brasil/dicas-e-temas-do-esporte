@@ -30,7 +30,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Regras fundamentais do pickleball",
     level: "Básico",
     fileName: "regras.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Rules",
     englishDescription: "Fundamental pickleball rules",
     category: "basico"
@@ -42,7 +42,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Técnicas básicas de saque",
     level: "Básico",
     fileName: "saque.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Serve",
     englishDescription: "Basic serving techniques",
     category: "basico"
@@ -54,7 +54,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Como devolver o saque",
     level: "Básico",
     fileName: "devolucao.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Return",
     englishDescription: "How to return the serve",
     category: "basico"
@@ -66,7 +66,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Golpe suave próximo à rede",
     level: "Básico",
     fileName: "dink.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Dink",
     englishDescription: "Soft shot near the net",
     category: "basico"
@@ -78,7 +78,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Técnica de voleio na rede",
     level: "Básico",
     fileName: "voleio.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Volley",
     englishDescription: "Net volley technique",
     category: "basico"
@@ -90,7 +90,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Movimentação e posicionamento",
     level: "Básico",
     fileName: "footwork.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Footwork",
     englishDescription: "Movement and positioning",
     category: "basico"
@@ -102,7 +102,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Estratégias de posicionamento",
     level: "Básico",
     fileName: "posicionamento.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Positioning",
     englishDescription: "Positioning strategies",
     category: "basico"
@@ -114,7 +114,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Técnicas de empunhadura",
     level: "Básico",
     fileName: "empunhadura.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Grip",
     englishDescription: "Grip techniques",
     category: "basico"
@@ -126,7 +126,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Preparação física antes do jogo",
     level: "Básico",
     fileName: "aquecimento.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Warm-up",
     englishDescription: "Physical preparation before the game",
     category: "basico"
@@ -138,7 +138,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Erros frequentes e como evitá-los",
     level: "Básico",
     fileName: "erros-comuns.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Common Mistakes",
     englishDescription: "Frequent mistakes and how to avoid them",
     category: "basico"
@@ -150,7 +150,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Dicas gerais para iniciantes",
     level: "Básico",
     fileName: "dicas.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Tips",
     englishDescription: "General tips for beginners",
     category: "basico"
@@ -162,7 +162,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Escolha de equipamentos",
     level: "Básico",
     fileName: "equipamentos.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Equipment",
     englishDescription: "Equipment selection",
     category: "basico"
@@ -174,7 +174,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Golpes básicos do pickleball",
     level: "Básico",
     fileName: "golpes-fundamentais.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Fundamental Shots",
     englishDescription: "Basic pickleball shots",
     category: "basico"
@@ -186,7 +186,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Fundamentos técnicos",
     level: "Básico",
     fileName: "tecnica-de-base.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Basic Technique",
     englishDescription: "Technical fundamentals",
     category: "basico"
@@ -198,7 +198,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Manter foco durante o jogo",
     level: "Básico",
     fileName: "concentracao.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Concentration",
     englishDescription: "Maintaining focus during the game",
     category: "basico"
@@ -210,7 +210,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Controle da respiração",
     level: "Básico",
     fileName: "respiracao.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Breathing",
     englishDescription: "Breathing control",
     category: "basico"
@@ -222,7 +222,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Sistema de pontuação completo",
     level: "Básico",
     fileName: "pontuacao-detalhada.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Detailed Scoring",
     englishDescription: "Complete scoring system",
     category: "basico"
@@ -234,7 +234,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Boa conduta em quadra",
     level: "Básico",
     fileName: "etiqueta-em-quadra.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Court Etiquette",
     englishDescription: "Good court conduct",
     category: "basico"
@@ -246,7 +246,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Prevenção de lesões e segurança",
     level: "Básico",
     fileName: "seguranca-e-prevencao-lesoes.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Safety and Injury Prevention",
     englishDescription: "Injury prevention and safety",
     category: "basico"
@@ -258,7 +258,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "A fascinante história do pickleball desde sua criação",
     level: "Básico",
     fileName: "historia-e-origem.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "History and Origin",
     englishDescription: "Learn about the fascinating history of pickleball",
     category: "basico"
@@ -270,7 +270,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Vocabulário fundamental do pickleball",
     level: "Básico",
     fileName: "vocabulario-e-termos.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Vocabulary and Essential Terms",
     englishDescription: "Learn the fundamental vocabulary of pickleball",
     category: "basico"
@@ -282,7 +282,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Critérios para escolher um parceiro de duplas",
     level: "Básico",
     fileName: "como-escolher-parceiro.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "How to Choose Your First Partner",
     englishDescription: "Learn important criteria for choosing a doubles partner",
     category: "basico"
@@ -294,7 +294,7 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     description: "Exercícios fundamentais para desenvolver habilidades básicas",
     level: "Básico",
     fileName: "drills-e-treinos-basicos.md",
-    color: "bg-gradient-to-br from-green-500 to-emerald-600",
+    color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "Basic Drills and Training",
     englishDescription: "Fundamental exercises to develop basic skills",
     category: "basico"

@@ -125,12 +125,13 @@ export default function ThemeSelector() {
     <div>
       {/* Floating Menu - Only shows when themes are selected */}
 
-      <main className="py-4">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-3">
+      <main className="py-4 pt-6 sm:pt-8">
+        {/* Header da página */}
+        <div className="mb-10">
+          <h1 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-sky-600 to-purple-600 bg-clip-text text-transparent mb-3">
             Seletor de Temas Personalizado
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg text-gray-600 max-w-3xl leading-relaxed">
             Crie sua coleção personalizada de temas de pickleball e compartilhe com outros jogadores.
           </p>
         </div>
