@@ -14,6 +14,7 @@ const levelColors = {
   "Intermediário": "from-orange-500 to-amber-600",
   "Avançado": "from-red-500 to-rose-600",
   "Táticas": "from-purple-500 to-violet-600",
+  "Roteiro de Aulas": "from-emerald-500 to-teal-600",
 };
 
 const levelBadgeColors = {
@@ -21,6 +22,7 @@ const levelBadgeColors = {
   "Intermediário": "bg-orange-100 text-orange-700 border-orange-200",
   "Avançado": "bg-red-100 text-red-700 border-red-200",
   "Táticas": "bg-purple-100 text-purple-700 border-purple-200",
+  "Roteiro de Aulas": "bg-emerald-100 text-emerald-700 border-emerald-200",
 };
 
 export default function SectionModal({ section, onClose }: SectionModalProps) {
