@@ -10,7 +10,7 @@ import { Section } from './sections';
 export interface SectionContent {
   title: string;
   description: string;
-  level: 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas';
+  level: 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas' | 'Roteiro de Aulas';
   tips: string[];
   content: string;
   metadata: {
@@ -32,7 +32,8 @@ const categoryFolders = {
   'Básico': 'basico',
   'Intermediário': 'intermediario', 
   'Avançado': 'avancado',
-  'Táticas': 'taticas'
+  'Táticas': 'taticas',
+  'Roteiro de Aulas': 'roteiros'
 } as const;
 
 // Debug para ambiente CI - removido

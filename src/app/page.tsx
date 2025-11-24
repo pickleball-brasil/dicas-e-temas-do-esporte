@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, type Section } from "@/lib/sections";
+import { BASIC_SECTIONS, INTERMEDIATE_SECTIONS, ADVANCED_SECTIONS, TACTICS_SECTIONS, ROTEIROS_SECTIONS, type Section } from "@/lib/sections";
 import { useLanguageContext } from '@/contexts/LanguageContext';
 import { useLayoutContext } from '@/contexts/LayoutContext';
 import { getDisplayName } from '@/lib/displayNames';
@@ -14,6 +14,7 @@ const categoryHeaderColors = {
   intermediario: 'bg-gradient-to-r from-orange-50 to-amber-50 text-orange-900 border-orange-200',
   avancado: 'bg-gradient-to-r from-red-50 to-rose-50 text-red-900 border-red-200',
   taticas: 'bg-gradient-to-r from-purple-50 to-violet-50 text-purple-900 border-purple-200',
+  roteiros: 'bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-900 border-emerald-200',
 };
 
 const categoryTextColors = {
@@ -21,6 +22,7 @@ const categoryTextColors = {
   intermediario: 'text-orange-900',
   avancado: 'text-red-900',
   taticas: 'text-purple-900',
+  roteiros: 'text-emerald-900',
 };
 
 const sectionColors: Record<string, string> = {
@@ -134,6 +136,16 @@ const sectionColors: Record<string, string> = {
   "exploracao-de-angulos": "bg-gradient-to-br from-violet-500 to-purple-600",
   "jogos-mentais": "bg-gradient-to-br from-violet-500 to-purple-600",
   "adaptacao-tatica": "bg-gradient-to-br from-purple-400 to-purple-600",
+
+  // Roteiros de Aulas - VERDE (emerald/teal)
+  "roteiro-aula-dinks-aceleracao": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "roteiro-aula-terceira-bola": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "roteiro-aula-drive": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "roteiro-aula-drop": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "roteiro-aula-tomada-decisao": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "roteiro-aula-saque-devolucao": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "roteiro-aula-jogo-das-porcentagens": "bg-gradient-to-br from-emerald-500 to-teal-600",
+  "estudos-e-pesquisas": "bg-gradient-to-br from-emerald-500 to-teal-600",
 };
 
 const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section: Section; onClick: () => void; isVisited: boolean; onToggleStudied: (event: React.MouseEvent) => void }) => {
@@ -143,6 +155,17 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
   const studiedButtonColors = categoryStudiedButtonColors[category];
   const studiedRingColors = categoryStudiedRingColors[category];
   const studiedBadgeColors = categoryStudiedBadgeColors[category];
+
+  // Função para obter a inicial do tópico (removendo "Roteiro: " se presente)
+  const getInitial = (displayName: string) => {
+    // Se começar com "Roteiro: ", pega a primeira letra após os dois pontos
+    if (displayName.startsWith("Roteiro: ")) {
+      const topicName = displayName.replace("Roteiro: ", "").trim();
+      return topicName.charAt(0).toUpperCase();
+    }
+    // Caso contrário, pega a primeira letra normal
+    return displayName.charAt(0).toUpperCase();
+  };
 
   return (
     <div 
@@ -161,7 +184,7 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
             onClick();
           }}
         >
-          {getDisplayName(section).charAt(0).toUpperCase()}
+          {getInitial(getDisplayName(section))}
           {isVisited && (
             <div className={`absolute -top-1 -right-1 w-4 h-4 ${studiedBadgeColors} rounded-full flex items-center justify-center shadow-sm`}>
               <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -215,20 +238,22 @@ const SectionCard = ({ section, onClick, isVisited, onToggleStudied }: { section
 };
 
 // Função para determinar a categoria de uma seção
-const getSectionCategory = (section: Section): 'basic' | 'intermediate' | 'advanced' | 'tactics' => {
+const getSectionCategory = (section: Section): 'basic' | 'intermediate' | 'advanced' | 'tactics' | 'roteiros' => {
   if ((BASIC_SECTIONS as readonly Section[]).includes(section)) return 'basic';
   if ((INTERMEDIATE_SECTIONS as readonly Section[]).includes(section)) return 'intermediate';
   if ((ADVANCED_SECTIONS as readonly Section[]).includes(section)) return 'advanced';
   if ((TACTICS_SECTIONS as readonly Section[]).includes(section)) return 'tactics';
+  if ((ROTEIROS_SECTIONS as readonly Section[]).includes(section)) return 'roteiros';
   return 'basic'; // fallback
 };
 
-// Cores dos checkboxes por categoria - Nova paleta azul, laranja, vermelho e roxo
+// Cores dos checkboxes por categoria - Nova paleta azul, laranja, vermelho, roxo e verde
 const categoryCheckboxColors = {
   basic: 'bg-sky-500 border-sky-500',
   intermediate: 'bg-orange-500 border-orange-500',
   advanced: 'bg-red-500 border-red-500',
   tactics: 'bg-violet-500 border-violet-500',
+  roteiros: 'bg-emerald-500 border-emerald-500',
 };
 
 // Cores de background para cards estudados por categoria
@@ -237,6 +262,7 @@ const categoryStudiedColors = {
   intermediate: 'bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200',
   advanced: 'bg-gradient-to-br from-red-50 to-rose-50 border-red-200',
   tactics: 'bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200',
+  roteiros: 'bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200',
 };
 
 // Cores de texto para cards estudados por categoria
@@ -245,6 +271,7 @@ const categoryStudiedTextColors = {
   intermediate: { title: 'text-orange-800', description: 'text-orange-600' },
   advanced: { title: 'text-red-800', description: 'text-red-600' },
   tactics: { title: 'text-purple-800', description: 'text-purple-600' },
+  roteiros: { title: 'text-emerald-800', description: 'text-emerald-600' },
 };
 
 // Cores do botão estudado por categoria
@@ -253,6 +280,7 @@ const categoryStudiedButtonColors = {
   intermediate: 'bg-orange-100 text-orange-700 hover:bg-orange-200',
   advanced: 'bg-red-100 text-red-700 hover:bg-red-200',
   tactics: 'bg-purple-100 text-purple-700 hover:bg-purple-200',
+  roteiros: 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200',
 };
 
 // Cores do ring do ícone quando estudado por categoria
@@ -261,6 +289,7 @@ const categoryStudiedRingColors = {
   intermediate: 'ring-2 ring-orange-300 ring-offset-2',
   advanced: 'ring-2 ring-red-300 ring-offset-2',
   tactics: 'ring-2 ring-purple-300 ring-offset-2',
+  roteiros: 'ring-2 ring-emerald-300 ring-offset-2',
 };
 
 // Cores do badge de check quando estudado por categoria
@@ -269,6 +298,7 @@ const categoryStudiedBadgeColors = {
   intermediate: 'bg-orange-500',
   advanced: 'bg-red-500',
   tactics: 'bg-purple-500',
+  roteiros: 'bg-emerald-500',
 };
 
 // Componente simplificado em lista (checklist)
@@ -390,13 +420,15 @@ export default function Home() {
   const filteredIntermediateSections = filterSections(INTERMEDIATE_SECTIONS);
   const filteredAdvancedSections = filterSections(ADVANCED_SECTIONS);
   const filteredTacticsSections = filterSections(TACTICS_SECTIONS);
+  const filteredRoteirosSections = filterSections(ROTEIROS_SECTIONS);
 
   // Verificar se há resultados na busca
   const hasSearchResults = searchTerm.trim() && (
     filteredBasicSections.length > 0 ||
     filteredIntermediateSections.length > 0 ||
     filteredAdvancedSections.length > 0 ||
-    filteredTacticsSections.length > 0
+    filteredTacticsSections.length > 0 ||
+    filteredRoteirosSections.length > 0
   );
 
   const hasNoResults = searchTerm.trim() && !hasSearchResults;
@@ -824,6 +856,100 @@ export default function Home() {
           <div className="max-w-2xl mx-auto">
             <ul className="space-y-1">
               {filteredTacticsSections.map((s) => (
+                <SectionListItem
+                  key={s}
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
+      )}
+
+      {/* Roteiros de Aulas */}
+      {(filteredRoteirosSections.length > 0 || !searchTerm.trim()) && (
+      <section className="mb-12">
+        <div className={`${layout === "list" ? "max-w-2xl mx-auto" : ""}`}>
+          <div className={`rounded-xl border-2 ${categoryHeaderColors.roteiros} px-3 sm:px-5 py-2 sm:py-3 mb-4 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden`}>
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-teal-100/30 opacity-50 pointer-events-none"></div>
+            
+            <div className="flex items-center justify-between gap-2 sm:gap-3 relative z-10">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                {/* Icon */}
+                <div className="w-8 h-8 sm:w-11 sm:h-11 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
+                  <svg className="w-4 h-4 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+                    {/* Mobile: título como link */}
+                    <Link
+                      href="/categoria/roteiros"
+                      className={`sm:hidden text-base font-bold ${categoryTextColors.roteiros} hover:opacity-80 transition-opacity truncate`}
+                    >
+                      Roteiro de Aulas
+                    </Link>
+                    {/* Desktop: título normal + botão */}
+                    <h2 className={`hidden sm:block text-xl font-bold ${categoryTextColors.roteiros}`}>Roteiro de Aulas</h2>
+                    <Link
+                      href="/categoria/roteiros"
+                      className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-semibold shadow-md hover:shadow-lg transition-all duration-200`}
+                    >
+                      <span>Ver todos</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              
+              {(() => {
+                const visitedCount = ROTEIROS_SECTIONS.filter(s => isVisited(s)).length;
+                const percentage = (visitedCount / ROTEIROS_SECTIONS.length) * 100;
+                return (
+                  <div className="flex items-center gap-1.5 sm:gap-4 flex-shrink-0">
+                    <div className="hidden sm:flex items-center gap-1.5">
+                      <div className="w-2.5 h-2.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full shadow-sm"></div>
+                      <span className={`text-xs sm:text-sm font-semibold ${categoryTextColors.roteiros}`}>{visitedCount}/{ROTEIROS_SECTIONS.length}</span>
+                    </div>
+                    <div className="w-12 sm:w-22 bg-gray-200 rounded-full h-1.5 shadow-inner">
+                      <div
+                        className="bg-gradient-to-r from-emerald-500 to-teal-600 h-1.5 rounded-full transition-all duration-500 shadow-sm"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                    <span className={`sm:hidden text-xs font-semibold ${categoryTextColors.roteiros}`}>{visitedCount}/{ROTEIROS_SECTIONS.length}</span>
+                  </div>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
+        {layout === "grid" ? (
+          <ul className="columns-1 sm:columns-2 lg:columns-3 gap-3">
+            {filteredRoteirosSections.map((s) => (
+              <li key={s} className="break-inside-avoid mb-3">
+                <SectionCard
+                  section={s}
+                  onClick={() => handleSectionClick(s)}
+                  isVisited={isVisited(s)}
+                  onToggleStudied={(e) => toggleStudiedStatus(s, e)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="max-w-2xl mx-auto">
+            <ul className="space-y-1">
+              {filteredRoteirosSections.map((s) => (
                 <SectionListItem
                   key={s}
                   section={s}

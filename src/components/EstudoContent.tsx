@@ -14,6 +14,7 @@ const levelColors: Record<SectionLevel, string> = {
   "Intermediário": "from-orange-500 to-amber-600",
   "Avançado": "from-red-500 to-rose-600",
   "Táticas": "from-purple-500 to-violet-600",
+  "Roteiro de Aulas": "from-emerald-500 to-teal-600",
 };
 
 const levelBadgeColors: Record<SectionLevel, string> = {
@@ -21,6 +22,7 @@ const levelBadgeColors: Record<SectionLevel, string> = {
   "Intermediário": "bg-orange-100 text-orange-700 border-orange-200",
   "Avançado": "bg-red-100 text-red-700 border-red-200",
   "Táticas": "bg-purple-100 text-purple-700 border-purple-200",
+  "Roteiro de Aulas": "bg-emerald-100 text-emerald-700 border-emerald-200",
 };
 
 // Cores para botões de marcação de estudo por categoria
@@ -29,6 +31,7 @@ const levelStudiedButtonColors: Record<SectionLevel, string> = {
   "Intermediário": "bg-orange-400/30 text-orange-50 border-orange-300/50 hover:bg-orange-400/40",
   "Avançado": "bg-red-400/30 text-red-50 border-red-300/50 hover:bg-red-400/40",
   "Táticas": "bg-purple-400/30 text-purple-50 border-purple-300/50 hover:bg-purple-400/40",
+  "Roteiro de Aulas": "bg-emerald-400/30 text-emerald-50 border-emerald-300/50 hover:bg-emerald-400/40",
 };
 
 // Cores para botão de marcação no final da página
@@ -37,6 +40,7 @@ const levelStudiedButtonBottomColors: Record<SectionLevel, string> = {
   "Intermediário": "from-orange-500 to-amber-500",
   "Avançado": "from-red-500 to-rose-500",
   "Táticas": "from-purple-500 to-violet-500",
+  "Roteiro de Aulas": "from-emerald-500 to-teal-500",
 };
 
 // Cores para banner de "Testar conhecimento"
@@ -61,6 +65,11 @@ const levelBannerColors: Record<SectionLevel, { bg: string; border: string; butt
     border: "border-purple-200",
     button: "from-purple-600 to-violet-600"
   },
+  "Roteiro de Aulas": {
+    bg: "from-emerald-50 to-teal-50",
+    border: "border-emerald-200",
+    button: "from-emerald-600 to-teal-600"
+  },
 };
 
 // Cores para botão flutuante do menu mobile
@@ -69,6 +78,7 @@ const levelMobileMenuButtonColors: Record<SectionLevel, string> = {
   "Intermediário": "from-orange-600 to-amber-600",
   "Avançado": "from-red-600 to-rose-600",
   "Táticas": "from-purple-600 to-violet-600",
+  "Roteiro de Aulas": "from-emerald-600 to-teal-600",
 };
 
 interface EstudoContentProps {

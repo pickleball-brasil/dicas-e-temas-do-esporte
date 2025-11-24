@@ -5,7 +5,7 @@
  * de atualizar múltiplos arquivos manualmente ao criar novos posts.
  */
 
-export type ContentLevel = 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas';
+export type ContentLevel = 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas' | 'Roteiro de Aulas';
 
 export interface SectionConfig {
   id: string;
@@ -17,7 +17,7 @@ export interface SectionConfig {
   color: string;
   englishName: string;
   englishDescription: string;
-  category: 'basico' | 'intermediario' | 'avancado' | 'taticas';
+  category: 'basico' | 'intermediario' | 'avancado' | 'taticas' | 'roteiros';
 }
 
 // 🎯 REGISTRO CENTRALIZADO DE TODAS AS SEÇÕES
@@ -348,6 +348,102 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishName: "Fourth Shot",
     englishDescription: "Fourth shot strategy to maintain point control",
     category: "intermediario"
+  },
+  "roteiro-aula-dinks-aceleracao": {
+    id: "lesson-plan-dinks-acceleration",
+    name: "Roteiro: Dinks e Aceleração",
+    displayName: "Roteiro: Dinks e Aceleração",
+    description: "Roteiro completo de aula de 60 minutos focando em dinks e aceleração na NVZ",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-dinks-aceleracao.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Dinks and Acceleration",
+    englishDescription: "Complete 60-minute lesson plan focusing on dinks and acceleration in the NVZ",
+    category: "roteiros"
+  },
+  "roteiro-aula-terceira-bola": {
+    id: "lesson-plan-third-shot",
+    name: "Roteiro: Terceira Bola",
+    displayName: "Roteiro: Terceira Bola",
+    description: "Plano de aula de 60 minutos focando na decisão e execução da terceira bola (Drive vs Drop)",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-terceira-bola.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Third Shot",
+    englishDescription: "60-minute lesson plan focusing on decision-making and execution of the third shot (Drive vs Drop)",
+    category: "roteiros"
+  },
+  "roteiro-aula-drive": {
+    id: "lesson-plan-drive",
+    name: "Roteiro: Drive",
+    displayName: "Roteiro: Drive",
+    description: "Plano de aula de 60 minutos focando no desenvolvimento técnico e tático do drive",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-drive.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Drive",
+    englishDescription: "60-minute lesson plan focusing on technical and tactical development of the drive",
+    category: "roteiros"
+  },
+  "roteiro-aula-drop": {
+    id: "lesson-plan-drop",
+    name: "Roteiro: Drop",
+    displayName: "Roteiro: Drop",
+    description: "Plano de aula de 60 minutos focando no desenvolvimento técnico e tático do drop shot",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-drop.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Drop Shot",
+    englishDescription: "60-minute lesson plan focusing on technical and tactical development of the drop shot",
+    category: "roteiros"
+  },
+  "roteiro-aula-tomada-decisao": {
+    id: "lesson-plan-decision-making",
+    name: "Roteiro: Tomada de Decisão",
+    displayName: "Roteiro: Tomada de Decisão",
+    description: "Plano de aula de 60 minutos focando no desenvolvimento da capacidade de tomar decisões rápidas e eficazes",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-tomada-decisao.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Decision Making",
+    englishDescription: "60-minute lesson plan focusing on developing quick and effective decision-making skills",
+    category: "roteiros"
+  },
+  "roteiro-aula-saque-devolucao": {
+    id: "lesson-plan-serve-return",
+    name: "Roteiro: Saque e Devolução",
+    displayName: "Roteiro: Saque e Devolução",
+    description: "Plano de aula de 60 minutos focando no desenvolvimento técnico e tático do saque e da devolução",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-saque-devolucao.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Serve and Return",
+    englishDescription: "60-minute lesson plan focusing on technical and tactical development of serve and return",
+    category: "roteiros"
+  },
+  "roteiro-aula-jogo-das-porcentagens": {
+    id: "lesson-plan-percentage-play",
+    name: "Roteiro: Jogo das Porcentagens",
+    displayName: "Roteiro: Jogo das Porcentagens",
+    description: "Roteiro de 60-90 minutos focando no conceito tático do Jogo das Porcentagens e tomada de decisão",
+    level: "Roteiro de Aulas",
+    fileName: "roteiro-aula-jogo-das-porcentagens.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Lesson Plan: Percentage Play",
+    englishDescription: "60-90 minute lesson plan focusing on the tactical concept of percentage play and decision-making",
+    category: "roteiros"
+  },
+  "estudos-e-pesquisas": {
+    id: "studies-research",
+    name: "Estudos e Pesquisas",
+    displayName: "Estudos e Pesquisas",
+    description: "Coleção de estudos e pesquisas sobre pickleball em formato PDF",
+    level: "Roteiro de Aulas",
+    fileName: "estudos-e-pesquisas.md",
+    color: "bg-gradient-to-br from-emerald-500 to-teal-600",
+    englishName: "Studies and Research",
+    englishDescription: "Collection of pickleball studies and research in PDF format",
+    category: "roteiros"
   },
   "lob": {
     id: "lob",

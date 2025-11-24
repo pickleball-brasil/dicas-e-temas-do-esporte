@@ -30,6 +30,14 @@ export const SECTION_IDS: Record<string, string> = {
   "drive": "drive",
   "terceira-bola": "third-shot",
   "quarta-bola": "fourth-shot",
+  "roteiro-aula-dinks-aceleracao": "lesson-plan-dinks-acceleration",
+  "roteiro-aula-terceira-bola": "lesson-plan-third-shot",
+  "roteiro-aula-drive": "lesson-plan-drive",
+  "roteiro-aula-drop": "lesson-plan-drop",
+  "roteiro-aula-tomada-decisao": "lesson-plan-decision-making",
+  "roteiro-aula-saque-devolucao": "lesson-plan-serve-return",
+  "roteiro-aula-jogo-das-porcentagens": "lesson-plan-percentage-play",
+  "estudos-e-pesquisas": "studies-research",
   "lob": "lob",
   "transicao": "transition",
   "jogo-de-duplas": "doubles-play",
@@ -236,18 +244,31 @@ export const TACTICS_SECTIONS = [
   "gerenciamento-momentum-timeouts",
 ] as const;
 
+// Roteiros de Aulas
+export const ROTEIROS_SECTIONS = [
+  "roteiro-aula-dinks-aceleracao",
+  "roteiro-aula-terceira-bola",
+  "roteiro-aula-drive",
+  "roteiro-aula-drop",
+  "roteiro-aula-tomada-decisao",
+  "roteiro-aula-saque-devolucao",
+  "roteiro-aula-jogo-das-porcentagens",
+  "estudos-e-pesquisas",
+] as const;
+
 // Todas as seções
 export const SECTIONS = [
   ...BASIC_SECTIONS,
   ...INTERMEDIATE_SECTIONS,
   ...ADVANCED_SECTIONS,
   ...TACTICS_SECTIONS,
+  ...ROTEIROS_SECTIONS,
 ] as const;
 
 export type Section = typeof SECTIONS[number];
 
 // Níveis das seções
-export type SectionLevel = 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas';
+export type SectionLevel = 'Básico' | 'Intermediário' | 'Avançado' | 'Táticas' | 'Roteiro de Aulas';
 
 export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "regras": "Básico",
@@ -353,6 +374,14 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "adaptacao-tatica": "Táticas",
   "transicao-defesa-ataque": "Táticas",
   "gerenciamento-momentum-timeouts": "Táticas",
+  "roteiro-aula-dinks-aceleracao": "Roteiro de Aulas",
+  "roteiro-aula-terceira-bola": "Roteiro de Aulas",
+  "roteiro-aula-drive": "Roteiro de Aulas",
+  "roteiro-aula-drop": "Roteiro de Aulas",
+  "roteiro-aula-tomada-decisao": "Roteiro de Aulas",
+  "roteiro-aula-saque-devolucao": "Roteiro de Aulas",
+  "roteiro-aula-jogo-das-porcentagens": "Roteiro de Aulas",
+  "estudos-e-pesquisas": "Roteiro de Aulas",
 };
 
 export function getSectionLevel(section: Section): SectionLevel {

@@ -55,6 +55,15 @@ const levelConfig: Record<SectionLevel, {
     icon: "🟣",
     gradient: "from-purple-500 to-violet-600",
     borderGradient: "border-purple-500"
+  },
+  "Roteiro de Aulas": { 
+    color: "text-emerald-700", 
+    bgColor: "bg-emerald-50", 
+    hoverBgColor: "hover:bg-emerald-100",
+    borderColor: "border-emerald-200",
+    icon: "📚",
+    gradient: "from-emerald-500 to-teal-600",
+    borderGradient: "border-emerald-500"
   }
 };
 
