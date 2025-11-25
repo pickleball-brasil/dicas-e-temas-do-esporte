@@ -25,6 +25,7 @@ Os estudos abaixo estão organizados por tema e podem ser baixados para consulta
 - [Dink e Aceleração](/dicas-e-temas-do-esporte/estudos/dink-e-aceleracao.pdf) - Metodologia de Ensino da Zona de Não-Voleio e Transição Ofensiva
 - [Otimização Atlética e Periodização de Alto Rendimento para o Pickleball Profissional](/dicas-e-temas-do-esporte/estudos/treinamento-profissional.pdf) - Uma Análise Biomecânica, Fisiológica e Tática Integrada
 - [Uma Análise Exaustiva da Regra 80/20](/dicas-e-temas-do-esporte/estudos/80-20.pdf) - Biomecânica Avançada e Arquitetura Tática
+- [Drills Avançados no Pickleball](/dicas-e-temas-do-esporte/estudos/drills-avancados.pdf) - Exercícios e Treinamentos Avançados para Alto Rendimento
 
 
 ---
