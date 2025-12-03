@@ -53,7 +53,6 @@ export const sectionDescriptions: Record<string, string> = {
   
   "Aquecimento": "Um aquecimento adequado prepara corpo e mente para o jogo. Inclui alongamentos dinâmicos, exercícios de mobilidade, ativação muscular, e progressão gradual de intensidade. Reduz risco de lesões e melhora performance desde o primeiro ponto.",
   
-  "Equipamentos": "Escolha da raquete (peso, grip, material), bolas adequadas (indoor/outdoor), calçados específicos para quadra, roupas confortáveis, acessórios úteis (munhequeiras, óculos, boné), e como manter seus equipamentos em bom estado.",
   
   "Spin": "O spin (efeito na bola) adiciona controle e imprevisibilidade. Aprenda topspin (bola gira para frente), backspin (gira para trás), sidespin (lateral), como aplicar cada tipo, e como ler e responder ao spin do adversário.",
   

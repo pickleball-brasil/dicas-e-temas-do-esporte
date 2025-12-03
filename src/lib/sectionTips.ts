@@ -173,15 +173,6 @@ export const sectionTips: Record<string, string[]> = {
     "Estabeleça metas mensuráveis mensais",
     "Celebre vitórias e aprenda com derrotas"
   ],
-  "Equipamentos": [
-    "Raquete 7.5-8.5 oz para começar (leve=controle, pesada=potência)",
-    "Tênis de quadra com boa tração lateral",
-    "Bolas outdoor são mais pesadas que indoor",
-    "Troque grip quando escorregadio, use overgrip",
-    "Considere óculos de sol para jogos ao ar livre",
-    "Leve toalha, água e bolas extras",
-    "Raquete backup para treinos e torneios"
-  ],
   "Golpes Fundamentais": [
     "Forehand: movimento de baixo para cima com rotação do corpo",
     "Backhand: use duas mãos para mais controle e potência",

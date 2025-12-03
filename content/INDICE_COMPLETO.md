@@ -4,15 +4,15 @@ Este é o índice completo de todos os tópicos disponíveis no sistema de estud
 
 ## 📊 Estatísticas Gerais
 
-- **Total de Tópicos:** 87
-- **Básico:** 19 tópicos (22%)
+- **Total de Tópicos:** 83
+- **Básico:** 13 tópicos (16%)
 - **Intermediário:** 24 tópicos (28%)
-- **Avançado:** 23 tópicos (26%)
-- **Táticas:** 21 tópicos (24%)
+- **Avançado:** 23 tópicos (27%)
+- **Táticas:** 21 tópicos (25%)
 
 ---
 
-## 🟢 **NÍVEL BÁSICO** (19 tópicos)
+## 🟢 **NÍVEL BÁSICO** (13 tópicos)
 
 - **[Regras](./regras.md)** - Regras fundamentais do pickleball
 - **[Saque](./saque.md)** - Técnicas básicas de saque
@@ -25,14 +25,11 @@ Este é o índice completo de todos os tópicos disponíveis no sistema de estud
 - **[Aquecimento](./aquecimento.md)** - Preparação física antes do jogo
 - **[Erros Comuns](./erros-comuns.md)** - Erros frequentes e como evitá-los
 - **[Dicas](./dicas.md)** - Dicas gerais para iniciantes
-- **[Equipamentos](./equipamentos.md)** - Escolha de equipamentos
 - **[Golpes Fundamentais](./golpes-fundamentais.md)** - Golpes básicos do pickleball
 - **[Técnica de Base](./tecnica-de-base.md)** - Fundamentos técnicos
 - **[Concentração](./concentracao.md)** - Manter foco durante o jogo
 - **[Respiração](./respiracao.md)** - Controle da respiração
-- **[Pontuação Detalhada](./pontuacao-detalhada.md)** - Sistema de pontuação completo
 - **[Etiqueta em Quadra](./etiqueta-em-quadra.md)** - Boa conduta em quadra
-- **[Segurança e Prevenção de Lesões](./seguranca-e-prevencao-lesoes.md)** - Prevenção de lesões e segurança
 
 ---
 

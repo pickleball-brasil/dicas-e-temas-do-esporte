@@ -1,11 +1,11 @@
 {
   "titulo": "Índice Completo - Pickleball Study Guide",
-    "total_topicos": 73,
+    "total_topicos": 69,
   "categorias": {
     "basico": {
       "nome": "Básico",
       "cor": "🟢",
-      "quantidade": 17,
+      "quantidade": 13,
       "percentual": 25,
       "topicos": [
         {
@@ -62,11 +62,6 @@
           "nome": "Dicas",
           "arquivo": "Dicas.md",
           "descricao": "Dicas gerais para iniciantes"
-        },
-        {
-          "nome": "Equipamentos",
-          "arquivo": "Equipamentos.md",
-          "descricao": "Raquetes, bolas e acessórios"
         },
         {
           "nome": "Golpes Fundamentais",
@@ -417,13 +412,13 @@
   "estatisticas": {
     "total_topicos": 73,
     "distribuicao": {
-      "basico": 17,
+      "basico": 13,
       "intermediario": 19,
       "avancado": 20,
       "taticas": 18
     },
     "percentuais": {
-      "basico": 25,
+      "basico": 19,
       "intermediario": 27,
       "avancado": 28,
       "taticas": 26

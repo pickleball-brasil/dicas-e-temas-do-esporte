@@ -155,18 +155,6 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "General tips for beginners",
     category: "basico"
   },
-  "equipamentos": {
-    id: "equipment",
-    name: "Equipamentos",
-    displayName: "Equipamentos",
-    description: "Escolha de equipamentos",
-    level: "Básico",
-    fileName: "equipamentos.md",
-    color: "bg-gradient-to-br from-sky-500 to-blue-600",
-    englishName: "Equipment",
-    englishDescription: "Equipment selection",
-    category: "basico"
-  },
   "golpes-fundamentais": {
     id: "fundamental-shots",
     name: "Golpes Fundamentais",
@@ -215,18 +203,6 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Breathing control",
     category: "basico"
   },
-  "pontuacao-detalhada": {
-    id: "scoring",
-    name: "Pontuação Detalhada",
-    displayName: "Pontuação Detalhada",
-    description: "Sistema de pontuação completo",
-    level: "Básico",
-    fileName: "pontuacao-detalhada.md",
-    color: "bg-gradient-to-br from-sky-500 to-blue-600",
-    englishName: "Detailed Scoring",
-    englishDescription: "Complete scoring system",
-    category: "basico"
-  },
   "etiqueta-em-quadra": {
     id: "court-etiquette",
     name: "Etiqueta em Quadra",
@@ -239,18 +215,6 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Good court conduct",
     category: "basico"
   },
-  "seguranca-e-prevencao-lesoes": {
-    id: "safety-injury-prevention",
-    name: "Segurança e Prevenção de Lesões",
-    displayName: "Prevenção de Lesões",
-    description: "Prevenção de lesões e segurança",
-    level: "Básico",
-    fileName: "seguranca-e-prevencao-lesoes.md",
-    color: "bg-gradient-to-br from-sky-500 to-blue-600",
-    englishName: "Safety and Injury Prevention",
-    englishDescription: "Injury prevention and safety",
-    category: "basico"
-  },
   "historia-e-origem": {
     id: "history-origin",
     name: "História e Origem do Pickleball",
@@ -261,18 +225,6 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     color: "bg-gradient-to-br from-sky-500 to-blue-600",
     englishName: "History and Origin",
     englishDescription: "Learn about the fascinating history of pickleball",
-    category: "basico"
-  },
-  "vocabulario-e-termos": {
-    id: "vocabulary-terms",
-    name: "Vocabulário e Termos Essenciais",
-    displayName: "Vocabulário e Termos",
-    description: "Vocabulário fundamental do pickleball",
-    level: "Básico",
-    fileName: "vocabulario-e-termos.md",
-    color: "bg-gradient-to-br from-sky-500 to-blue-600",
-    englishName: "Vocabulary and Essential Terms",
-    englishDescription: "Learn the fundamental vocabulary of pickleball",
     category: "basico"
   },
   "como-escolher-parceiro": {

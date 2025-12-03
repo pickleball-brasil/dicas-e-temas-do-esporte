@@ -61,7 +61,6 @@ const translations = {
       "Aquecimento": "Aquecimento",
       "Erros Comuns": "Erros Comuns",
       "Dicas": "Dicas",
-      "Equipamentos": "Equipamentos",
       "Golpes Fundamentais": "Golpes Fundamentais",
       "Técnica de Base": "Técnica de Base",
       "Concentração": "Concentração",
@@ -133,7 +132,6 @@ const translations = {
       "Aquecimento": "Um aquecimento adequado antes de jogar pickleball é essencial para prevenir lesões e melhorar a performance. Inclui exercícios de mobilidade, alongamento dinâmico e prática de golpes básicos para preparar o corpo e a mente para o jogo.",
       "Erros Comuns": "Conhecer os erros mais comuns no pickleball e como evitá-los é crucial para melhorar rapidamente. Desde erros técnicos até estratégicos, entender essas armadilhas comuns ajuda a acelerar o desenvolvimento do seu jogo.",
       "Dicas": "Dicas gerais para melhorar seu jogo: desde equipamentos, preparação física, mentalidade, aquecimento, até pequenos ajustes técnicos que podem fazer grande diferença. Inclui conselhos de jogadores experientes e erros comuns a evitar.",
-      "Equipamentos": "Escolher os equipamentos certos pode fazer uma grande diferença no seu jogo. Desde a raquete ideal até o calçado adequado, conhecer as opções disponíveis e suas características ajuda a otimizar sua performance em quadra.",
       "Golpes Fundamentais": "Os golpes básicos do pickleball que formam a base de todo o jogo. Dominar esses golpes fundamentais é essencial antes de avançar para técnicas mais complexas e estratégias avançadas.",
       "Técnica de Base": "A técnica correta é a fundação de um bom jogo de pickleball. Inclui postura, preparação, execução e finalização de cada golpe, além de princípios gerais que se aplicam a todas as situações em quadra.",
       "Concentração": "A concentração é um aspecto mental crucial no pickleball. Manter o foco durante todo o jogo, especialmente em momentos decisivos, pode ser a diferença entre vitória e derrota. Aprenda técnicas para melhorar sua concentração.",
@@ -422,15 +420,6 @@ const translations = {
         "Participe de clínicas e workshops",
         "Estabeleça metas mensuráveis mensais",
         "Celebre vitórias e aprenda com derrotas"
-      ],
-      "Equipamentos": [
-        "Raquete 7.5-8.5 oz para começar (leve=controle, pesada=potência)",
-        "Teste diferentes pesos antes de comprar",
-        "Grip size correto = conforto e controle",
-        "Bolas oficiais para treino consistente",
-        "Calçado com boa tração e suporte",
-        "Roupas confortáveis que não limitem movimento",
-        "Protetor solar e hidratação sempre"
       ],
       "Golpes Fundamentais": [
         "Saque: por baixo, diagonal, profundo",
@@ -1592,7 +1581,6 @@ const translations = {
       "Aquecimento": "Warm-up",
       "Erros Comuns": "Common Mistakes",
       "Dicas": "Tips",
-      "Equipamentos": "Equipment",
       "Golpes Fundamentais": "Basic Shots",
       "Técnica de Base": "Basic Technique",
       "Concentração": "Concentration",
@@ -1667,7 +1655,6 @@ const translations = {
       "Aquecimento": "Proper warm-up before playing pickleball is essential to prevent injuries and improve performance. It includes mobility exercises, dynamic stretching, and basic shot practice to prepare the body and mind for the game.",
       "Erros Comuns": "Knowing the most common mistakes in pickleball and how to avoid them is crucial for rapid improvement. From technical to strategic errors, understanding these common pitfalls helps accelerate your game development.",
       "Dicas": "General tips to improve your game: from equipment, physical preparation, mindset, warm-up, to small technical adjustments that can make a big difference. Includes advice from experienced players and common mistakes to avoid.",
-      "Equipamentos": "Choosing the right equipment can make a big difference in your game. From the ideal paddle to proper footwear, knowing the available options and their characteristics helps optimize your court performance.",
       "Golpes Fundamentais": "The basic shots of pickleball that form the foundation of the entire game. Mastering these fundamental shots is essential before advancing to more complex techniques and advanced strategies.",
       "Técnica de Base": "Correct technique is the foundation of good pickleball play. It includes posture, preparation, execution and finish of each shot, plus general principles that apply to all court situations.",
       "Concentração": "Concentration is a crucial mental aspect in pickleball. Maintaining focus throughout the game, especially in decisive moments, can be the difference between victory and defeat. Learn techniques to improve your concentration.",
