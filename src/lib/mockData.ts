@@ -125,10 +125,6 @@ export const mockLinks: Record<string, string[]> = {
         "https://www.youtube.com/watch?v=vXgpGBbh5r8",
         "https://www.youtube.com/watch?v=Yw0AOmKIYP4"
       ],
-        "https://www.youtube.com/watch?v=fBpJX0KIwXE",
-        "https://www.youtube.com/watch?v=Rl5kCJI8uGo",
-        "https://www.youtube.com/watch?v=3WKNWZTvfuE"
-      ],
       "Golpes Fundamentais": [
         "https://www.youtube.com/watch?v=x_vLGBnSzPo",
         "https://www.youtube.com/watch?v=puKEWrHH8bY",
