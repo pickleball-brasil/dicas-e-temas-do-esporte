@@ -57,6 +57,7 @@ const sectionColors: Record<string, string> = {
   "estrategias-saque-devolucao-avancadas": "bg-gradient-to-br from-orange-400 to-amber-500",
   "controle-mental": "bg-gradient-to-br from-amber-500 to-orange-600",
   "exercicios-mobilidade-forca": "bg-gradient-to-br from-amber-500 to-orange-600",
+  "sistema-de-semaforo": "bg-gradient-to-br from-amber-500 to-orange-600",
   "tecnicas-de-decepcao-engano": "bg-gradient-to-br from-rose-400 to-red-500",
   "recuperacao-e-cobertura-quadra-avancada": "bg-gradient-to-br from-red-500 to-rose-600",
   "quimica-e-sinergia-duplas-avancadas": "bg-gradient-to-br from-rose-500 to-red-600",
@@ -112,6 +113,7 @@ const sectionColors: Record<string, string> = {
   "scouting-analise-oponentes": "bg-gradient-to-br from-rose-500 to-red-600",
   "jogo-da-porcentagem": "bg-gradient-to-br from-red-500 to-rose-600",
   "drills-e-treinos-avancados": "bg-gradient-to-br from-red-500 to-rose-600",
+  "maestria-no-pickleball": "bg-gradient-to-br from-red-600 to-red-700",
 
   // Táticas - ROXO
   "controle-de-ritmo": "bg-gradient-to-br from-violet-400 to-purple-600",

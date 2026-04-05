@@ -733,6 +733,18 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     englishDescription: "Specific mobility and strength exercises for pickleball",
     category: "intermediario"
   },
+  "sistema-de-semaforo": {
+    id: "traffic-light-system",
+    name: "O Sistema de Semáforo",
+    displayName: "Sistema de Semáforo",
+    description: "Heurística profissional para decisões inteligentes no pickleball",
+    level: "Intermediário",
+    fileName: "sistema-de-semaforo.md",
+    color: "bg-gradient-to-br from-amber-500 to-orange-600",
+    englishName: "The Traffic Light System",
+    englishDescription: "Professional heuristic for smart decisions in pickleball",
+    category: "intermediario"
+  },
 
   // AVANÇADO
   "smash": {
@@ -1069,6 +1081,18 @@ export const CONTENT_REGISTRY: Record<string, SectionConfig> = {
     color: "bg-gradient-to-br from-red-600 to-red-700",
     englishName: "Advanced Drills and Training",
     englishDescription: "Advanced exercises to refine skills and prepare for competitions",
+    category: "avancado"
+  },
+  "maestria-no-pickleball": {
+    id: "pickleball-mastery",
+    name: "Maestria no Pickleball",
+    displayName: "Maestria no Pickleball",
+    description: "A ciência da construção de pontos e controle da quadra no nível elite",
+    level: "Avançado",
+    fileName: "maestria-no-pickleball.md",
+    color: "bg-gradient-to-br from-red-600 to-red-700",
+    englishName: "Pickleball Mastery",
+    englishDescription: "The science of point construction and court control at elite level",
     category: "avancado"
   },
 

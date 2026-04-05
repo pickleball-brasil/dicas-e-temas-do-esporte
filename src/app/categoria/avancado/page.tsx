@@ -36,6 +36,7 @@ const sectionColors: Record<string, string> = {
   "drills-e-treinos-avancados": "bg-gradient-to-br from-red-500 to-rose-600",
   "transicao-defesa-ataque": "bg-gradient-to-br from-red-400 to-red-600",
   "gerenciamento-momentum-timeouts": "bg-gradient-to-br from-rose-400 to-red-600",
+  "maestria-no-pickleball": "bg-gradient-to-br from-red-600 to-red-700",
 };
 
 const SectionCard = ({ section, onClick, isVisited }: { section: Section; onClick: () => void; isVisited: boolean }) => (

@@ -106,7 +106,9 @@ export const DISPLAY_NAMES: Record<string, string> = {
   "analise-de-video": "Análise de Vídeo",
   "preparacao-fisica-avancada-competicoes": "Preparação Física Avançada",
   "scouting-analise-oponentes": "Scouting e Análise de Oponentes",
-  "jogo-da-porcentagem": "Jogo da Porcentagem"
+  "jogo-da-porcentagem": "Jogo da Porcentagem",
+  "maestria-no-pickleball": "Maestria no Pickleball",
+  "sistema-de-semaforo": "Sistema de Semáforo",
 };
 
 export function getDisplayName(fileName: string): string {

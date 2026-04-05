@@ -83,7 +83,7 @@ Edite `src/lib/contentRegistry.ts` e adicione na seção correspondente:
 ```
 
 **Cores por nível:**
-- **Básico:** `from-green-500 to-emerald-600`
+- **Básico:** `from-sky-500 to-blue-600`
 - **Intermediário:** `from-amber-500 to-orange-600`
 - **Avançado:** `from-red-600 to-red-700`
 - **Táticas:** `from-violet-400 to-purple-600`

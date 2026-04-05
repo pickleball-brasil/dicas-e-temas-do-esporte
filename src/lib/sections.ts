@@ -62,7 +62,8 @@ export const SECTION_IDS: Record<string, string> = {
   "estrategias-saque-devolucao-avancadas": "advanced-serve-return-strategies",
   "controle-mental": "mental-control",
   "exercicios-mobilidade-forca": "mobility-strength-exercises",
-  
+  "sistema-de-semaforo": "traffic-light-system",
+
   // Avançado
   "tecnicas-de-decepcao-engano": "deception-techniques",
   "recuperacao-e-cobertura-quadra-avancada": "advanced-court-coverage",
@@ -74,6 +75,7 @@ export const SECTION_IDS: Record<string, string> = {
   "scouting-analise-oponentes": "scouting-opponent-analysis",
   "drills-e-treinos-avancados": "advanced-drills-training",
   "jogo-da-porcentagem": "percentage-play",
+  "maestria-no-pickleball": "pickleball-mastery",
   "transicao-defesa-ataque": "defense-to-attack-transition",
   "gerenciamento-momentum-timeouts": "momentum-timeout-management",
   "acelerar-as-bolas": "speeding-up-balls",
@@ -178,6 +180,7 @@ export const INTERMEDIATE_SECTIONS = [
   "estrategias-saque-devolucao-avancadas",
   "controle-mental",
   "exercicios-mobilidade-forca",
+  "sistema-de-semaforo",
 ] as const;
 
 // Avançado
@@ -210,6 +213,7 @@ export const ADVANCED_SECTIONS = [
   "scouting-analise-oponentes",
   "jogo-da-porcentagem",
   "drills-e-treinos-avancados",
+  "maestria-no-pickleball",
 ] as const;
 
 // Táticas
@@ -314,6 +318,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "estrategias-saque-devolucao-avancadas": "Intermediário",
   "controle-mental": "Intermediário",
   "exercicios-mobilidade-forca": "Intermediário",
+  "sistema-de-semaforo": "Intermediário",
   "smash": "Avançado",
   "acelerar-as-bolas": "Avançado",
   "reset": "Avançado",
@@ -342,6 +347,7 @@ export const SECTION_LEVELS: Record<Section, SectionLevel> = {
   "scouting-analise-oponentes": "Avançado",
   "jogo-da-porcentagem": "Avançado",
   "drills-e-treinos-avancados": "Avançado",
+  "maestria-no-pickleball": "Avançado",
   "controle-de-ritmo": "Táticas",
   "jogo-no-meio": "Táticas",
   "explorar-fraquezas": "Táticas",
